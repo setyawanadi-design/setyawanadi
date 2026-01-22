@@ -8,6 +8,9 @@ import { Progress } from "@/components/ui/Progress";
 import { HeroModule } from "@/components/modules/HeroModule";
 import { ProjectCard } from "@/components/modules/ProjectCard";
 import { StackModule } from "@/components/modules/StackModule";
+import { ActivityFeed } from "@/components/modules/ActivityFeed";
+import { VisualLog } from "@/components/modules/VisualLog";
+import { ContactCard } from "@/components/modules/ContactCard";
 
 export const metadata = {
     title: "Design System | setyawanadi",
@@ -180,6 +183,46 @@ export default function DesignPage() {
                         status="75%"
                         className="col-span-1 lg:col-span-2"
                     />
+                </div>
+            </section>
+            {/* SECTION 05: PHASE 3 COMPOSITION */}
+            <section className="space-y-8">
+                <div className="flex items-center gap-3 border-b border-border pb-2">
+                    <span className="font-mono text-accent">05.</span>
+                    <h2 className="text-xl font-bold uppercase tracking-widest">Phase 3: Organisms</h2>
+                </div>
+
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    {/* Column 1: Activity Feed (Right Panel Mockup) */}
+                    <div className="h-full">
+                        <p className="text-xs font-mono text-meta mb-2 uppercase">[Module] Activity Feed</p>
+                        <ActivityFeed
+                            className="h-[400px]"
+                            items={[
+                                { id: '1', text: 'Refactored site attendance logic for Q4 reporting', type: 'commit' },
+                                { id: '2', text: 'Deployed build 44a to staging environment', type: 'deploy' },
+                                { id: '3', text: 'Updated stack documentation: Added Astro', type: 'commit' },
+                                { id: '4', text: 'Optimized image assets for hero section', type: 'commit' },
+                            ]}
+                        />
+                    </div>
+
+                    {/* Column 2 & 3: Visuals & CTA */}
+                    <div className="lg:col-span-2 space-y-6">
+                        <div>
+                            <p className="text-xs font-mono text-meta mb-2 uppercase">[Module] Visual Log</p>
+                            <VisualLog
+                                id="TREK_026"
+                                year="2026"
+                                className="h-[280px]"
+                            />
+                        </div>
+
+                        <div>
+                            <p className="text-xs font-mono text-meta mb-2 uppercase">[Module] Contact Interaction</p>
+                            <ContactCard />
+                        </div>
+                    </div>
                 </div>
             </section>
         </div>
