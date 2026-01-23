@@ -35,14 +35,14 @@ export default function RootLayout({
 
         {/* Main Layout - Universal Grid */}
         <div className="flex-1 pt-20 pb-12 px-4 md:px-8 max-w-[1440px] mx-auto w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 h-full">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_200px] gap-8 h-full">
             {/* Zone A: Main Stage */}
-            <main className="lg:col-span-3">
+            <main className="min-w-0">
               {children}
             </main>
 
             {/* Zone B: Sidebar */}
-            <aside className="lg:col-span-1 hidden lg:block">
+            <aside className="hidden lg:block sticky top-24 h-[calc(100vh-8rem)]">
               <Sidebar />
             </aside>
           </div>

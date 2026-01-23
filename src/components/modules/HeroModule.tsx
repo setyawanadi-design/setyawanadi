@@ -31,7 +31,15 @@ export function HeroModule({
                     <Button variant="link" href={ctaLink}>{ctaText}</Button>
                 </div>
                 {/* Simulated Image Placeholder */}
-                <div className="w-32 h-32 bg-gray-200 rounded-full animate-pulse hidden md:block" />
+                {/* Decorative Visual */}
+                <div className="relative w-48 h-48 hidden md:block">
+                    <div className="absolute inset-0 bg-gradient-to-tr from-accent/20 to-transparent rounded-full blur-2xl" />
+                    <div className="absolute inset-4 border border-accent/20 rounded-full" />
+                    <div className="absolute inset-8 border border-dashed border-accent/40 rounded-full animate-[spin_10s_linear_infinite]" />
+                    <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="w-4 h-4 bg-accent/80 rounded-full shadow-[0_0_15px_rgba(59,130,246,0.5)]" />
+                    </div>
+                </div>
             </div>
         </Card>
     );

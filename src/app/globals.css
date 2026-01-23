@@ -26,6 +26,30 @@
   .glass {
     @apply bg-white/70 backdrop-blur-lg border border-white/20;
   }
+  
+  .border-dashed-tech {
+    background-image: linear-gradient(to right, var(--color-border) 60%, transparent 40%);
+    background-position: bottom;
+    background-size: 10px 2px;
+    background-repeat: repeat-x;
+  }
+
+  .border-dashed-tech-top {
+    background-image: linear-gradient(to right, var(--color-border) 60%, transparent 40%);
+    background-position: top;
+    background-size: 10px 2px;
+    background-repeat: repeat-x;
+  }
+
+  /* Combined Top and Bottom for ProjectHeader */
+  .border-dashed-tech-y {
+    background-image: 
+        linear-gradient(to right, var(--color-border) 60%, transparent 40%),
+        linear-gradient(to right, var(--color-border) 60%, transparent 40%);
+    background-position: top, bottom;
+    background-size: 10px 2px;
+    background-repeat: repeat-x;
+  }
 }
 
 body {

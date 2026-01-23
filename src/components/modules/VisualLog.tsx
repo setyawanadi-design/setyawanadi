@@ -22,7 +22,14 @@ export function VisualLog({ id, year, imageSrc, className }: VisualLogProps) {
                     className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
             ) : (
-                <div className="absolute inset-0 bg-gradient-to-br from-neutral-800 to-neutral-950" />
+                <div className="absolute inset-0 bg-neutral-900">
+                    <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:24px_24px]" />
+                    <div className="absolute top-0 right-0 p-4">
+                        <div className="w-16 h-16 rounded-full border border-white/5 flex items-center justify-center">
+                            <div className="w-8 h-8 rounded-full bg-white/5 animate-pulse" />
+                        </div>
+                    </div>
+                </div>
             )}
 
             {/* Overlay Gradient */}

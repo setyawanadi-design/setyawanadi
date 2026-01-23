@@ -26,7 +26,9 @@ export function StackModule({
                 </div>
                 <div className="mt-6 flex flex-wrap gap-2">
                     {tags.map((tag) => (
-                        <Badge key={tag} variant="outline">{tag}</Badge>
+                        <Badge key={tag} variant="outline" className="bg-neutral-100 text-meta border-border/50 font-normal">
+                            {tag}
+                        </Badge>
                     ))}
                 </div>
             </div>

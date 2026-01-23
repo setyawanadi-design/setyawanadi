@@ -1,8 +1,12 @@
 import Link from 'next/link';
+import { TECH_DASH } from '@/lib/utils';
 
 export function Header() {
     return (
-        <header className="fixed top-0 left-0 w-full h-16 bg-background border-b border-dashed border-border z-50 flex items-center justify-between px-6">
+        <header
+            className="fixed top-0 left-0 w-full h-16 bg-background z-50 flex items-center justify-between px-6"
+            style={{ ...TECH_DASH, backgroundPosition: 'bottom' }}
+        >
             <div className="font-serif text-xl font-bold text-primary flex items-center">
                 <Link href="/">Adi<span className="text-accent text-3xl leading-none">.</span></Link>
             </div>
