@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, IBM_Plex_Mono } from "next/font/google";
+import { Inter, IBM_Plex_Mono, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/shell/Header";
 import { Footer } from "@/components/shell/Footer";
@@ -16,6 +16,11 @@ const ibmPlexMono = IBM_Plex_Mono({
   subsets: ["latin"],
 });
 
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space",
+  subsets: ["latin"],
+});
+
 export const metadata: Metadata = {
   title: "setyawanadi",
   description: "Personal Workspace",
@@ -29,13 +34,13 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${inter.variable} ${ibmPlexMono.variable} antialiased min-h-screen flex flex-col`}
+        className={`${inter.variable} ${ibmPlexMono.variable} ${spaceGrotesk.variable} antialiased min-h-screen flex flex-col font-sans`}
       >
         <Header />
 
         {/* Main Layout - Universal Grid */}
-        <div className="flex-1 pt-20 pb-12 px-4 md:px-8 max-w-[1440px] mx-auto w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_200px] gap-8 h-full">
+        <div className="flex-1 pt-20 pb-12 px-4 md:px-4 max-w-[1440px] mx-auto w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_280px] gap-6 h-full">
             {/* Zone A: Main Stage */}
             <main className="min-w-0">
               {children}

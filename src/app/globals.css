@@ -3,22 +3,13 @@
 @plugin "@tailwindcss/typography";
 
 @theme {
-  --font-sans: var(--font-inter);
-  --font-mono: var(--font-ibm-mono);
-
   --color-background: #F2F2F2;
   --color-card: #FFFFFF;
   --color-border: #E5E5E5;
-  /* Slightly darker for better definition */
   --color-primary: #111111;
-  /* Nearly black for high contrast text */
   --color-meta: #666666;
-  /* Soft grey for secondary text */
   --color-accent: #3B82F6;
-  /* Standard Blue for now, can refine later */
-
   --radius-card: 16px;
-  /* Slightly larger for that modern feel */
 }
 
 /* Utilities */
@@ -26,7 +17,7 @@
   .glass {
     @apply bg-white/70 backdrop-blur-lg border border-white/20;
   }
-  
+
   .border-dashed-tech {
     background-image: linear-gradient(to right, var(--color-border) 60%, transparent 40%);
     background-position: bottom;
@@ -43,16 +34,34 @@
 
   /* Combined Top and Bottom for ProjectHeader */
   .border-dashed-tech-y {
-    background-image: 
-        linear-gradient(to right, var(--color-border) 60%, transparent 40%),
-        linear-gradient(to right, var(--color-border) 60%, transparent 40%);
+    background-image:
+      linear-gradient(to right, var(--color-border) 60%, transparent 40%),
+      linear-gradient(to right, var(--color-border) 60%, transparent 40%);
     background-position: top, bottom;
     background-size: 10px 2px;
     background-repeat: repeat-x;
   }
 }
 
+/* Force Tailwind Utilities Overrides */
+.font-sans {
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif !important;
+}
+
+.font-mono {
+  font-family: var(--font-ibm-mono), ui-monospace, SFMono-Regular, monospace !important;
+}
+
+.font-display {
+  font-family: var(--font-space), ui-sans-serif, system-ui, sans-serif !important;
+}
+
 body {
+  /* Map Next.js variables (present on body) to Tailwind tokens */
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-ibm-mono);
+  --font-display: var(--font-space);
+
   background-color: var(--color-background);
   color: var(--color-primary);
   font-family: var(--font-sans);

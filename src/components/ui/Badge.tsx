@@ -17,7 +17,7 @@ export function Badge({
     return (
         <span
             className={cn(
-                "inline-flex items-center justify-center px-2.5 py-0.5 text-xs font-medium uppercase tracking-wide transition-colors",
+                "inline-flex items-center justify-center px-2.5 py-0.5 text-xs font-mono font-medium uppercase tracking-wide transition-colors",
 
                 // Pill Variant (Standard Grey)
                 variant === "pill" && "rounded-full bg-meta/10 text-meta",

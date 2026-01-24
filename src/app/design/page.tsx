@@ -29,7 +29,7 @@ export default function DesignPage() {
                 style={{ ...TECH_DASH, backgroundPosition: 'bottom' }}
             >
                 <Badge variant="outline" className="mb-4">System Design</Badge>
-                <h1 className="text-5xl font-bold font-serif mb-4">Design DNA</h1>
+                <h1 className="text-5xl font-display font-bold mb-4">Design DNA</h1>
                 <p className="text-xl text-meta max-w-2xl">
                     The single source of truth for the Setyawanadi digital workspace.
                     Adhering to the "Zero-Clutter" philosophy.
@@ -49,16 +49,57 @@ export default function DesignPage() {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         {/* Typography */}
-                        <div className="space-y-6">
-                            <h3 className="text-sm font-mono text-meta uppercase">Typography</h3>
-                            <div>
-                                <p className="text-xs text-meta mb-1">Font Family: Inter (Sans)</p>
-                                <div className="text-4xl font-bold">The quick brown fox.</div>
+                        {/* Typography */}
+                        <div className="space-y-8">
+                            <h3 className="text-sm font-mono text-meta uppercase">Type Scale</h3>
+
+                            {/* Headings */}
+                            <div className="space-y-6">
+                                <div className="space-y-1">
+                                    <h1 className="text-5xl font-display font-bold">H1. System Design</h1>
+                                    <div className="flex items-center gap-2 text-xs font-mono text-meta">
+                                        <span className="text-primary">Space Grotesk</span>
+                                        <span>•</span>
+                                        <span>text-5xl</span>
+                                        <span>•</span>
+                                        <span>font-bold</span>
+                                    </div>
+                                </div>
+                                <div className="space-y-1">
+                                    <h2 className="text-3xl font-display font-bold">H2. Feature Module</h2>
+                                    <div className="flex items-center gap-2 text-xs font-mono text-meta">
+                                        <span className="text-primary">Space Grotesk</span>
+                                        <span>•</span>
+                                        <span>text-3xl</span>
+                                        <span>•</span>
+                                        <span>font-bold</span>
+                                    </div>
+                                </div>
                             </div>
-                            <div>
-                                <p className="text-xs text-meta mb-1">Font Family: IBM Plex Mono (Mono)</p>
-                                <div className="text-sm font-mono bg-meta/5 p-2 rounded w-fit">
-                                    const physics = "high-fidelity";
+
+                            {/* Body */}
+                            <div className="space-y-1">
+                                <p className="text-base text-primary/80 font-sans leading-relaxed max-w-md">
+                                    P (Body). The quick brown fox jumps over the lazy dog. Used for specific component descriptions and general reading text.
+                                </p>
+                                <div className="flex items-center gap-2 text-xs font-mono text-meta">
+                                    <span className="text-primary">Inter</span>
+                                    <span>•</span>
+                                    <span>text-base</span>
+                                    <span>•</span>
+                                    <span>font-normal</span>
+                                </div>
+                            </div>
+
+                            {/* Mono */}
+                            <div className="space-y-1">
+                                <div className="text-sm font-mono bg-meta/5 p-3 rounded w-fit text-accent">
+                                    const system = "zero-clutter";
+                                </div>
+                                <div className="flex items-center gap-2 text-xs font-mono text-meta">
+                                    <span className="text-primary">IBM Plex Mono</span>
+                                    <span>•</span>
+                                    <span>text-sm</span>
                                 </div>
                             </div>
                         </div>

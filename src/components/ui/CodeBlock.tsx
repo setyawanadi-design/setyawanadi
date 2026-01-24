@@ -16,7 +16,7 @@ export function CodeBlock({ filename, code, className }: CodeBlockProps) {
                     {filename}
                 </div>
             )}
-            <pre className="whitespace-pre-wrap text-meta">
+            <pre className="whitespace-pre-wrap text-meta font-mono">
                 <code>{code}</code>
             </pre>
         </Card>
