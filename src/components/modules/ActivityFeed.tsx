@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card } from "@/components/ui/Card";
 import { ChevronRight, RotateCcw } from "lucide-react";
-import { TECH_DASH } from "@/lib/utils";
+import { TECH_DASH, cn } from "@/lib/utils";
 
 interface ActivityItem {
     id: string;
@@ -15,23 +15,26 @@ interface ActivityFeedProps {
 
 export function ActivityFeed({ items, className }: ActivityFeedProps) {
     return (
-        <Card className={`group/card flex flex-col min-h-[320px] transition-colors duration-300 border-border/60 hover:border-accent ${className}`}>
+        <Card className={`group/card flex flex-col min-h-[320px] transition-colors duration-300 hover:border-accent ${className}`}>
             <div
                 className="flex items-center justify-between mb-6 pb-4"
                 style={{ ...TECH_DASH, backgroundPosition: 'bottom' }}
             >
-                <h3 className="font-mono text-xs font-bold uppercase tracking-widest text-primary">Recent Activity</h3>
+                <h3 className="font-mono text-xs font-bold uppercase tracking-widest text-primary flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-accent/80"></span>
+                    Recent Activity
+                </h3>
                 <RotateCcw className="w-3.5 h-3.5 text-meta group-hover/card:text-accent transition-colors" />
             </div>
 
-            <div className="flex-1 space-y-1 overflow-y-auto pr-2">
+            <div className="flex-1 space-y-1 overflow-y-auto pr-2 mb-6">
                 {items.map((item) => (
                     <div
                         key={item.id}
-                        className="group flex items-start gap-4 p-3 rounded-md transition-all duration-200 hover:bg-muted/40 cursor-default"
+                        className="group flex items-start gap-4 p-3 rounded-md transition-all duration-200 cursor-default hover:bg-accent/5"
                     >
-                        <ChevronRight className="w-4 h-4 mt-0.5 shrink-0 text-accent/70 group-hover:text-accent transition-colors" />
-                        <span className="leading-relaxed font-mono text-xs md:text-sm font-medium text-meta group-hover:text-primary transition-colors">
+                        <ChevronRight className="w-4 h-4 mt-0.5 shrink-0 transition-colors text-accent/40 group-hover:text-accent" />
+                        <span className="leading-relaxed font-mono text-xs md:text-sm font-medium transition-colors text-meta group-hover:text-primary">
                             {item.text}
                         </span>
                     </div>

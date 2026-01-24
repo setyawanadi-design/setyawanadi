@@ -12,6 +12,8 @@ import { ActivityFeed } from "@/components/modules/ActivityFeed";
 import { VisualLog } from "@/components/modules/VisualLog";
 import { ContactCard } from "@/components/modules/ContactCard";
 import { ProjectHeader } from "@/components/modules/ProjectHeader";
+import { LogSearch } from "@/components/modules/LogSearch";
+import { FocusCard } from "@/components/modules/FocusCard";
 import { CodeBlock } from "@/components/ui/CodeBlock";
 import { TECH_DASH } from "@/lib/utils";
 
@@ -277,6 +279,23 @@ export default function DesignPage() {
                                 className="col-span-1 lg:col-span-2"
                             />
                         </div>
+
+                        {/* New Focus Card Demo */}
+                        <div className="space-y-4">
+                            <h3 className="text-sm font-mono text-meta uppercase">Status & Focus</h3>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <FocusCard
+                                    title="Current Focus"
+                                    status="Active"
+                                    description="Developing the new Home Page Grid Layout and finalizing Component Architecture."
+                                />
+                                <FocusCard
+                                    title="Paused Task"
+                                    status="Paused"
+                                    description="Legacy system migration pending audit results."
+                                />
+                            </div>
+                        </div>
                     </div>
 
                     {/* Data & Log Group */}
@@ -304,6 +323,12 @@ export default function DesignPage() {
   "protocol": "MESH_NET_V2"
 }`}
                             />
+                        </div>
+
+                        {/* Log Search Demo */}
+                        <div className="space-y-4">
+                            <h3 className="text-sm font-mono text-meta uppercase">Log Interaction</h3>
+                            <LogSearch />
                         </div>
 
                         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">

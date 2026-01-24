@@ -24,8 +24,6 @@ export function ProjectCard({
         <Card className={className}>
             <div className="flex justify-between items-start mb-6">
                 <div className="flex items-center gap-2 text-sm text-meta font-mono uppercase">
-                    <span>Tracker</span>
-                    <span>//</span>
                     <span>{category}</span>
                 </div>
                 <span className="text-accent">↗</span>
