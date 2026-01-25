@@ -1,7 +1,8 @@
 import React from 'react';
 import { Card } from "@/components/ui/Card";
-import { ChevronRight, RotateCcw } from "lucide-react";
-import { TECH_DASH, cn } from "@/lib/utils";
+import { ChevronRight, RotateCcw, History, GitCommit, Play, Database, FileText } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { DashedLine } from "@/components/ui/DashedLine";
 
 interface ActivityItem {
     id: string;
@@ -15,13 +16,12 @@ interface ActivityFeedProps {
 
 export function ActivityFeed({ items, className }: ActivityFeedProps) {
     return (
-        <Card className={`group/card flex flex-col min-h-[320px] transition-colors duration-300 hover:border-accent ${className}`}>
-            <div
-                className="flex items-center justify-between mb-6 pb-4"
-                style={{ ...TECH_DASH, backgroundPosition: 'bottom' }}
-            >
-                <h3 className="font-mono text-xs font-bold uppercase tracking-widest text-primary flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-accent/80"></span>
+        <Card className={`group/card flex flex-col min-h-80 transition-colors duration-300 hover:border-accent ${className}`}>
+            {/* Header / Meta */}
+            <div className="flex items-center justify-between py-3 px-4 border-b border-border/40 relative">
+                <DashedLine className="absolute bottom-0 left-0 w-full" variant="receipt" />
+                <h3 className="font-mono text-xs uppercase tracking-widest text-meta flex items-center gap-2">
+                    <History className="w-3.5 h-3.5" />
                     Recent Activity
                 </h3>
                 <RotateCcw className="w-3.5 h-3.5 text-meta group-hover/card:text-accent transition-colors" />
@@ -41,14 +41,14 @@ export function ActivityFeed({ items, className }: ActivityFeedProps) {
                 ))}
             </div>
 
-            <div
-                className="mt-auto pt-4 flex items-center gap-3"
-                style={{ ...TECH_DASH, backgroundPosition: 'top' }}
-            >
-                <div className="w-2.5 h-2.5 rounded-full bg-accent animate-pulse" />
-                <span className="font-mono text-[10px] uppercase tracking-wider text-meta group-hover/card:text-accent transition-colors font-medium">
-                    Live Log Feed
-                </span>
+            {/* Footer / Status */}
+            <div className="py-3 px-4 bg-meta/5 border-t border-border/40 relative">
+                <DashedLine className="absolute top-0 left-0 w-full" variant="receipt" />
+                <div className="flex items-center justify-between font-mono text-micro text-meta/60">
+                    <span className="font-mono text-micro uppercase tracking-wider text-meta group-hover/card:text-accent transition-colors font-medium">
+                        Live Log Feed
+                    </span>
+                </div>
             </div>
         </Card>
     );

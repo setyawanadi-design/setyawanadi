@@ -4,7 +4,8 @@
 import React, { useEffect, useState } from "react";
 import { Card } from "@/components/ui/Card";
 import { ChevronRight } from "lucide-react";
-import { TECH_DASH } from "@/lib/utils";
+import { Bookmark } from "lucide-react";
+import { DashedLine } from "@/components/ui/DashedLine";
 
 interface TOCItem {
     id: string;
@@ -58,14 +59,11 @@ export function TableOfContents() {
             variant="glass"
             className="p-6 transition-all duration-300 hover:shadow-md hover:border-accent/50"
         >
-            <div
-                className="mb-4 pb-2"
-                style={{ ...TECH_DASH, backgroundPosition: 'bottom' }}
-            >
-                <h3 className="font-mono text-xs font-bold uppercase tracking-widest text-primary flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-                    On This Page
-                </h3>
+            <div className="py-4 border-b border-border/40 relative">
+                <DashedLine className="absolute bottom-0 left-0 w-full" variant="receipt" />
+                <h4 className="font-mono text-xs uppercase tracking-widest text-meta/60 mb-1 px-4">
+                    Contents
+                </h4>
             </div>
             <nav className="space-y-1">
                 {SECTIONS.map((section) => (

@@ -1,17 +1,21 @@
 import Link from 'next/link';
-import { TECH_DASH } from '@/lib/utils';
+import { DashedLine } from '@/components/ui/DashedLine';
+import { SystemStatus } from '@/components/shell/SystemStatus';
 
 export function Header() {
     return (
         <header
             className="fixed top-0 left-0 w-full h-16 bg-background z-50 flex items-center justify-between px-6"
-            style={{ ...TECH_DASH, backgroundPosition: 'bottom' }}
+
         >
+            {/* Bottom Border (Tech) */}
+            <DashedLine className="absolute bottom-0 left-0 w-full" variant="receipt" />
             <div className="text-xl font-display font-bold text-primary flex items-center">
+                <SystemStatus />
                 <Link href="/">Adi<span className="text-accent text-3xl leading-none">.</span></Link>
             </div>
             <nav className="flex items-center gap-6">
-                {['logs', 'about'].map((item) => (
+                {['logs'].map((item) => (
                     <Link
                         key={item}
                         href={`/${item}`}

@@ -1,6 +1,7 @@
 
 import React from 'react';
-import { TECH_DASH } from "@/lib/utils";
+import { cn } from "@/lib/utils";
+import { DashedLine } from "@/components/ui/DashedLine";
 
 interface ProjectHeaderProps {
     id: string;
@@ -13,13 +14,10 @@ interface ProjectHeaderProps {
 export function ProjectHeader({ id, date, location, completionPercentage, className }: ProjectHeaderProps) {
     return (
         <div
-            className={`w-full py-2 flex items-center justify-between font-mono text-[10px] uppercase tracking-wider text-meta ${className}`}
-            style={{
-                ...TECH_DASH,
-                backgroundImage: `${TECH_DASH.backgroundImage}, ${TECH_DASH.backgroundImage}`,
-                backgroundPosition: 'top, bottom'
-            }}
+            className={`relative w-full py-2 flex items-center justify-between font-mono text-micro uppercase tracking-wider text-meta ${className}`}
         >
+            <DashedLine className="absolute top-0 left-0 w-full" variant="receipt" />
+            <DashedLine className="absolute bottom-0 left-0 w-full" variant="receipt" />
             <div className="flex gap-4">
                 <span>ID: {id}</span>
                 <span className="text-border">{'//'}</span>

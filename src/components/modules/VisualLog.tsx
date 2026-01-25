@@ -41,7 +41,7 @@ export function VisualLog({ id, year, imageSrc, className }: VisualLogProps) {
                     <div>
                         <div className="flex items-center gap-2 mb-1">
                             <div className="w-1.5 h-1.5 rounded-full bg-accent" />
-                            <span className="font-mono text-[10px] uppercase text-white/70">Visual_Log</span>
+                            <span className="font-mono text-micro uppercase text-white/70">Visual_Log</span>
                         </div>
                         <h3 className="font-mono text-lg text-white font-bold">
                             ID: {id} <span className="text-white/40">//</span> {year}

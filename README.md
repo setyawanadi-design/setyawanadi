@@ -57,3 +57,12 @@ I'm a non-IT operations person who uses tech tools strategically. I coordinate n
 - Orchestrate tools (AI, code, automation)
 - Document and communicate complex work clearly
 - Ship functional projects without getting stuck in technical details
+
+## Changelog
+
+### 2026.01.25 // System Stabilization & Log Architecture
+We focused on consolidating technical debt and implementing the core Log Detail architecture.
+
+- **Unified Design System**: Cleaned up the borders. I replaced the old `ReceiptBorder` and `TECH_DASH` mess with a single `<DashedLine />` component. Looking at the Headers, Footers, and Cards feels much more consistent now and its easier to maintain.
+- **Log Detail Page**: Shipped the `/logs/[slug]` dynamic route. It supports rigid "Mockup-style" layouts via flexible MDX metadata (Frontmatter). Supports conditional rendering for logs Hero Images, Architecture Code Blocks, and Progress Indicators (tested and verified with 4 content scenarios (Minimal to Full-Feature).
+- **UX Improvements**: `LogCard` is now clickable and fixed Next.js 16 async param handling for smoother navigation.

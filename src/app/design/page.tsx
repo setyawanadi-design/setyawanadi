@@ -13,9 +13,14 @@ import { VisualLog } from "@/components/modules/VisualLog";
 import { ContactCard } from "@/components/modules/ContactCard";
 import { ProjectHeader } from "@/components/modules/ProjectHeader";
 import { LogSearch } from "@/components/modules/LogSearch";
+import { LogCard } from "@/components/modules/LogCard";
+import { LogCategories } from "@/components/modules/LogCategories";
+import { LogStats } from "@/components/modules/LogStats";
+import { PinnedLogs } from "@/components/modules/PinnedLogs";
 import { FocusCard } from "@/components/modules/FocusCard";
 import { CodeBlock } from "@/components/ui/CodeBlock";
-import { TECH_DASH } from "@/lib/utils";
+import { DashedLine } from "@/components/ui/DashedLine";
+
 
 export const metadata = {
     title: "Design System | setyawanadi",
@@ -26,25 +31,21 @@ export default function DesignPage() {
     return (
         <div className="max-w-7xl mx-auto pb-24 px-4 md:px-0">
             {/* Header */}
-            <div
-                className="pb-8 mb-16 pt-8"
-                style={{ ...TECH_DASH, backgroundPosition: 'bottom' }}
-            >
+            <div className="pb-8 mb-16 pt-8 relative">
+                <DashedLine className="absolute bottom-0 left-0 w-full" variant="tech" />
                 <Badge variant="outline" className="mb-4">System Design</Badge>
                 <h1 className="text-5xl font-display font-bold mb-4">Design DNA</h1>
                 <p className="text-xl text-meta max-w-2xl">
                     The single source of truth for the Setyawanadi digital workspace.
-                    Adhering to the "Zero-Clutter" philosophy.
+                    Adhering to the &quot;Zero-Clutter&quot; philosophy.
                 </p>
             </div>
 
             <div className="space-y-24">
                 {/* SECTION 01: TOKENS */}
                 <section id="tokens" className="scroll-mt-24 space-y-8">
-                    <div
-                        className="flex items-center gap-3 pb-2"
-                        style={{ ...TECH_DASH, backgroundPosition: 'bottom' }}
-                    >
+                    <div className="flex items-center gap-3 pb-2 relative">
+                        <DashedLine className="absolute bottom-0 left-0 w-full" variant="receipt" />
                         <span className="font-mono text-accent">01.</span>
                         <h2 className="text-xl font-bold uppercase tracking-widest">Tokens</h2>
                     </div>
@@ -96,7 +97,7 @@ export default function DesignPage() {
                             {/* Mono */}
                             <div className="space-y-1">
                                 <div className="text-sm font-mono bg-meta/5 p-3 rounded w-fit text-accent">
-                                    const system = "zero-clutter";
+                                    const system = &quot;zero-clutter&quot;;
                                 </div>
                                 <div className="flex items-center gap-2 text-xs font-mono text-meta">
                                     <span className="text-primary">IBM Plex Mono</span>
@@ -156,20 +157,10 @@ export default function DesignPage() {
                                 </div>
                             </div>
                             <div className="space-y-2">
-                                <div
-                                    className="h-12 w-full flex items-center justify-center bg-card rounded-md"
-                                    style={{
-                                        backgroundImage: 'linear-gradient(to right, var(--color-border) 60%, transparent 40%)',
-                                        backgroundSize: '10px 2px',
-                                        backgroundRepeat: 'repeat-x',
-                                        backgroundPosition: 'bottom'
-                                    }}
-                                >
-                                    <span className="text-xs text-meta font-mono">Tech Dash (Custom)</span>
-                                </div>
+                                <DashedLine variant="receipt" />
                                 <div className="flex justify-between text-xs font-mono">
-                                    <span>Linear Gradient</span>
-                                    <span className="text-meta">10px / 2px</span>
+                                    <span>Receipt Border</span>
+                                    <span className="text-meta">Wider / Darker</span>
                                 </div>
                             </div>
                         </div>
@@ -178,10 +169,8 @@ export default function DesignPage() {
 
                 {/* SECTION 02: ELEMENTS */}
                 <section id="elements" className="scroll-mt-24 space-y-8">
-                    <div
-                        className="flex items-center gap-3 pb-2"
-                        style={{ ...TECH_DASH, backgroundPosition: 'bottom' }}
-                    >
+                    <div className="flex items-center gap-3 pb-2 relative">
+                        <DashedLine className="absolute bottom-0 left-0 w-full" variant="receipt" />
                         <span className="font-mono text-accent">02.</span>
                         <h2 className="text-xl font-bold uppercase tracking-widest">Elements</h2>
                     </div>
@@ -219,11 +208,9 @@ export default function DesignPage() {
                 </section >
 
                 {/* SECTION 03: COMPONENTS */}
-                < section id="components" className="scroll-mt-24 space-y-8" >
-                    <div
-                        className="flex items-center gap-3 pb-2"
-                        style={{ ...TECH_DASH, backgroundPosition: 'bottom' }}
-                    >
+                <section id="components" className="scroll-mt-24 space-y-8" >
+                    <div className="flex items-center gap-3 pb-2 relative">
+                        <DashedLine className="absolute bottom-0 left-0 w-full" variant="receipt" />
                         <span className="font-mono text-accent">03.</span>
                         <h2 className="text-xl font-bold uppercase tracking-widest">Components</h2>
                     </div>
@@ -248,11 +235,9 @@ export default function DesignPage() {
                 </section >
 
                 {/* SECTION 04: MODULES */}
-                < section id="modules" className="scroll-mt-24 space-y-8" >
-                    <div
-                        className="flex items-center gap-3 pb-2"
-                        style={{ ...TECH_DASH, backgroundPosition: 'bottom' }}
-                    >
+                <section id="modules" className="scroll-mt-24 space-y-8" >
+                    <div className="flex items-center gap-3 pb-2 relative">
+                        <DashedLine className="absolute bottom-0 left-0 w-full" variant="receipt" />
                         <span className="font-mono text-accent">04.</span>
                         <h2 className="text-xl font-bold uppercase tracking-widest">Modules</h2>
                     </div>
@@ -302,9 +287,60 @@ export default function DesignPage() {
                     <div className="space-y-4">
                         <h3 className="text-sm font-mono text-meta uppercase">Data & Logs</h3>
 
+                        {/* NEW: Log Card Variants */}
+                        <div className="space-y-6">
+                            <h4 className="text-micro font-mono text-meta uppercase tracking-widest mb-3">Log Cards</h4>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <LogCard
+                                    variant="standard"
+                                    title="Standard Log Entry"
+                                    date="2026.08.14"
+                                    meta={{ status: "ACTIVE", loc: "REMOTE" }}
+                                    description="The standard card used for the main log feed."
+                                />
+                                <LogCard
+                                    variant="compact"
+                                    title="Compact / Pinned"
+                                    date="2026.08.14"
+                                    id="ID-001"
+                                    description="Used in sidebars for quick access."
+                                />
+                            </div>
+                            <LogCard
+                                variant="featured"
+                                title="Featured Log Entry"
+                                date="2026.08.14"
+                                meta={{ status: "RESOLVED", loc: "SUMATRA" }}
+                                description="Full width variant for hero log items."
+                                imageSrc="/placeholder"
+                            />
+                        </div>
+
+                        {/* NEW: Log Sidebar Widgets */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div className="space-y-2">
+                                <h4 className="text-micro font-mono text-meta uppercase tracking-widest mb-3">Sidebar: Categories</h4>
+                                <LogCategories items={[
+                                    { label: "DEMO_CATEGORY", count: 42, isActive: true },
+                                    { label: "INACTIVE_TAG", count: 12 },
+                                ]} />
+                            </div>
+                            <div className="space-y-2">
+                                <h4 className="text-micro font-mono text-meta uppercase tracking-widest mb-3">Sidebar: Stats</h4>
+                                <LogStats stats={[
+                                    { label: "UPTIME", value: "99.99%", isGood: true },
+                                    { label: "ERRORS", value: "0" },
+                                ]} />
+                            </div>
+                            <div className="space-y-2">
+                                <h4 className="text-micro font-mono text-meta uppercase tracking-widest mb-3">Sidebar: Pinned</h4>
+                                <PinnedLogs />
+                            </div>
+                        </div>
+
                         {/* Extracted Components Demo */}
                         <div className="space-y-6 border-2 border-dashed border-border/60 p-6 rounded-xl">
-                            <span className="text-[10px] font-mono text-accent uppercase bg-accent/10 p-1 px-2 rounded">Extracted Components</span>
+                            <h4 className="text-micro font-mono text-meta uppercase tracking-widest mb-3">Extracted Components</h4>
 
                             <ProjectHeader
                                 id="PROJ_STAB_01"

@@ -12,7 +12,7 @@ export function CodeBlock({ filename, code, className }: CodeBlockProps) {
     return (
         <Card className={`font-mono text-xs p-6 bg-neutral-50/50 ${className}`} variant="flat">
             {filename && (
-                <div className="mb-4 text-accent uppercase tracking-wider text-[10px] font-bold">
+                <div className="mb-4 text-accent uppercase tracking-wider text-micro font-bold">
                     {filename}
                 </div>
             )}

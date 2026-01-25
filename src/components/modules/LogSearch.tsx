@@ -18,7 +18,7 @@ export function LogSearch({ className }: LogSearchProps) {
     return (
         <Card
             className={cn(
-                "flex items-center justify-between p-2 pl-4 pr-2 rounded-2xl border-border bg-card min-h-[3.5rem]",
+                "flex items-center justify-between p-2 pl-4 pr-2 border-border bg-card min-h-[3.5rem]",
                 className
             )}
         >
@@ -29,7 +29,7 @@ export function LogSearch({ className }: LogSearchProps) {
                         key={cat}
                         onClick={() => setActiveCategory(cat)}
                         className={cn(
-                            "font-mono text-[10px] md:text-xs font-medium uppercase tracking-wide transition-colors whitespace-nowrap",
+                            "font-mono text-micro md:text-xs font-medium uppercase tracking-wide transition-colors whitespace-nowrap",
                             activeCategory === cat
                                 ? "text-accent"
                                 : "text-meta hover:text-primary"
@@ -46,7 +46,7 @@ export function LogSearch({ className }: LogSearchProps) {
                 <input
                     type="text"
                     placeholder="SEARCH_LOGS..."
-                    className="bg-transparent border-none outline-none font-mono text-[10px] md:text-xs text-primary placeholder:text-meta/40 w-24 md:w-32 uppercase tracking-wide"
+                    className="bg-transparent border-none outline-none font-mono text-micro md:text-xs text-primary placeholder:text-meta/40 w-24 md:w-32 uppercase tracking-wide"
                 />
             </div>
         </Card>

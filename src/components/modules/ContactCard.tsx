@@ -22,7 +22,7 @@ export function ContactCard({
         <Link href={href} className={cn("block group", className)}>
             <Card className="bg-blue-50/50 hover:bg-blue-50 border-blue-100 hover:border-blue-200 transition-all duration-300 flex items-center justify-between p-6">
                 <div>
-                    <span className="font-mono text-[10px] uppercase tracking-wider text-accent font-bold mb-1 block">
+                    <span className="font-mono text-micro uppercase tracking-wider text-accent font-bold mb-1 block">
                         {label}
                     </span>
                     <h3 className="text-lg font-bold text-primary group-hover:text-accent transition-colors">
