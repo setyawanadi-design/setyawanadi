@@ -347,7 +347,8 @@ export default function DesignPage() {
                                     id="PROJ_STAB_01"
                                     date="Q3 2026"
                                     location="LAHAT, SUMATRA"
-                                    completionPercentage={75}
+                                    category="SYSTEM"
+                                    tags={["Design", "Spec"]}
                                 />
                             </div>
 
