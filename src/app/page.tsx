@@ -17,7 +17,7 @@ export default function Home() {
   }));
 
   return (
-    <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+    <div className="space-y-2 md:space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
 
       <HeroModule
         title="Setyawanadi"
@@ -26,7 +26,7 @@ export default function Home() {
       />
 
       {/* MOBILE ONLY: Dashboard Widgets (Contact + Activity) */}
-      <div className="block lg:hidden space-y-6">
+      <div className="block lg:hidden space-y-2">
         <ContactCard />
         <ActivityFeed
           className="min-h-auto"
@@ -35,7 +35,7 @@ export default function Home() {
       </div>
 
       {/* ROW 2: Focus (1/3) + Tracker (2/3) */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-6">
         <FocusCard
           title="Current Focus"
           status="Active"
@@ -53,7 +53,7 @@ export default function Home() {
       </div>
 
       {/* ROW 3: Stack (1/3) + Visual Log (2/3) */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-6">
         <StackModule
           tags={["Next.js 14", "Tailwind CSS", "TypeScript", "Framer Motion"]}
           className="md:col-span-1 h-full"
