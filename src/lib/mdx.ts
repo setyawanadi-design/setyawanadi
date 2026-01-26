@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 
-const logsDirectory = path.join(process.cwd(), 'content/logs');
+const logsDirectory = path.join(process.cwd(), 'src/content/logs');
 
 export interface LogPost {
     slug: string;
