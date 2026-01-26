@@ -339,26 +339,31 @@ export default function DesignPage() {
                         </div>
 
                         {/* Extracted Components Demo */}
-                        <div className="space-y-6 border-2 border-dashed border-border/60 p-6 rounded-xl">
-                            <h4 className="text-micro font-mono text-meta uppercase tracking-widest mb-3">Extracted Components</h4>
+                        {/* Extracted Components Demo */}
+                        <div className="grid grid-cols-1 gap-8">
+                            <div className="space-y-2">
+                                <h4 className="text-micro font-mono text-meta uppercase tracking-widest mb-3">Project Header</h4>
+                                <ProjectHeader
+                                    id="PROJ_STAB_01"
+                                    date="Q3 2026"
+                                    location="LAHAT, SUMATRA"
+                                    completionPercentage={75}
+                                />
+                            </div>
 
-                            <ProjectHeader
-                                id="PROJ_STAB_01"
-                                date="Q3 2026"
-                                location="LAHAT, SUMATRA"
-                                completionPercentage={75}
-                            />
-
-                            <CodeBlock
-                                filename="DATA_PIPELINE.LOG"
-                                code={`{
+                            <div className="space-y-2">
+                                <h4 className="text-micro font-mono text-meta uppercase tracking-widest mb-3">Code Block</h4>
+                                <CodeBlock
+                                    filename="DATA_PIPELINE.LOG"
+                                    code={`{
   "node_id": "SUM_LAT_04",
   "status": "active",
   "latency": "14ms",
   "packets": "7,402",
   "protocol": "MESH_NET_V2"
 }`}
-                            />
+                                />
+                            </div>
                         </div>
 
                         {/* Log Search Demo */}

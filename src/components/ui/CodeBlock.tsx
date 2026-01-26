@@ -10,14 +10,14 @@ interface CodeBlockProps {
 
 export function CodeBlock({ filename, code, className }: CodeBlockProps) {
     return (
-        <Card className={`font-mono text-xs p-6 bg-neutral-50/50 ${className}`} variant="flat">
+        <Card className={`font-mono text-xs bg-neutral-50 ${className}`}>
             {filename && (
-                <div className="mb-4 text-accent uppercase tracking-wider text-micro font-bold">
+                <div className="mb-4 text-accent uppercase tracking-wider text-xs font-bold">
                     {filename}
                 </div>
             )}
-            <pre className="whitespace-pre-wrap text-meta font-mono">
-                <code>{code}</code>
+            <pre className="whitespace-pre-wrap font-mono !bg-transparent !p-0 !m-0">
+                <code className="text-meta">{code}</code>
             </pre>
         </Card>
     );

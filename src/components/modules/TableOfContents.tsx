@@ -3,24 +3,45 @@
 
 import React, { useEffect, useState } from "react";
 import { Card } from "@/components/ui/Card";
-import { ChevronRight } from "lucide-react";
-import { Bookmark } from "lucide-react";
+import { Grip } from "lucide-react";
 import { DashedLine } from "@/components/ui/DashedLine";
 
 interface TOCItem {
     id: string;
     label: string;
+    level?: number;
 }
 
-const SECTIONS: TOCItem[] = [
+const DESIGN_SECTIONS: TOCItem[] = [
     { id: "tokens", label: "01. Tokens" },
     { id: "elements", label: "02. Elements" },
     { id: "components", label: "03. Components" },
     { id: "modules", label: "04. Modules" },
 ];
 
-export function TableOfContents() {
+export function TableOfContents({ items, autoScan = false }: { items?: TOCItem[], autoScan?: boolean }) {
     const [activeSection, setActiveSection] = useState<string>("");
+    const [scannedItems, setScannedItems] = useState<TOCItem[]>([]);
+
+    const sections = items || (autoScan ? scannedItems : DESIGN_SECTIONS);
+
+    useEffect(() => {
+        if (autoScan) {
+            // Scan for H2 and H3 elements within the main content
+            const headings = Array.from(document.querySelectorAll('.prose h2, .prose h3'));
+            const newItems = headings.map((heading, index) => {
+                if (!heading.id) {
+                    heading.id = `heading-${index}`;
+                }
+                return {
+                    id: heading.id,
+                    label: heading.textContent || "Untitled",
+                    level: heading.tagName === 'H2' ? 2 : 3
+                };
+            });
+            setScannedItems(newItems);
+        }
+    }, [autoScan]);
 
     useEffect(() => {
         const observer = new IntersectionObserver(
@@ -36,13 +57,13 @@ export function TableOfContents() {
             }
         );
 
-        SECTIONS.forEach(({ id }) => {
+        sections.forEach(({ id }) => {
             const element = document.getElementById(id);
             if (element) observer.observe(element);
         });
 
         return () => observer.disconnect();
-    }, []);
+    }, [sections]);
 
     const scrollToSection = (id: string) => {
         const element = document.getElementById(id);
@@ -54,31 +75,33 @@ export function TableOfContents() {
         }
     };
 
+    if (sections.length === 0) return null;
+
     return (
-        <Card
-            variant="glass"
-            className="p-6 transition-all duration-300 hover:shadow-md hover:border-accent/50"
-        >
-            <div className="py-4 border-b border-border/40 relative">
-                <DashedLine className="absolute bottom-0 left-0 w-full" variant="receipt" />
-                <h4 className="font-mono text-xs uppercase tracking-widest text-meta/60 mb-1 px-4">
+        <Card className="p-6 group/card hover:border-accent transition-all duration-300">
+            <div className="flex justify-between items-center mb-4">
+                <h4 className="font-mono text-xs text-primary font-bold uppercase tracking-wider group-hover/card:text-accent transition-colors">
                     Contents
                 </h4>
+                <Grip className="w-3 h-3 text-meta/40 group-hover/card:text-accent transition-colors" />
             </div>
+            <DashedLine className="mb-4" variant="receipt" />
             <nav className="space-y-1">
-                {SECTIONS.map((section) => (
+                {sections.map((section) => (
                     <button
                         key={section.id}
                         onClick={() => scrollToSection(section.id)}
-                        className={`w-full flex items-center justify-between group p-2 rounded-md transition-all text-sm font-mono ${activeSection === section.id
-                            ? "bg-secondary text-primary font-medium translate-x-1"
-                            : "text-meta hover:text-primary hover:bg-secondary/50 hover:translate-x-1"
-                            }`}
+                        className={`w-full text-left font-mono text-[10px] uppercase tracking-wide transition-all p-2 rounded-md cursor-pointer group flex items-center ${activeSection === section.id
+                            ? "bg-accent/10 text-accent font-medium"
+                            : "text-meta hover:bg-accent/5 hover:text-primary"
+                            } ${section.level === 3 ? "pl-5 text-[9px]" : ""}`}
                     >
-                        <span>{section.label}</span>
                         {activeSection === section.id && (
-                            <ChevronRight className="w-4 h-4 text-accent animate-in fade-in slide-in-from-left-1" />
+                            <div className="w-1 h-1 bg-accent rounded-full mr-2" />
                         )}
+                        <span className="truncate block">
+                            {section.label}
+                        </span>
                     </button>
                 ))}
             </nav>

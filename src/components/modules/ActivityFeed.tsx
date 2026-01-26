@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from "next/link";
 import { Card } from "@/components/ui/Card";
 import { ChevronRight, RotateCcw, History, GitCommit, Play, Database, FileText } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -7,6 +8,7 @@ import { DashedLine } from "@/components/ui/DashedLine";
 interface ActivityItem {
     id: string;
     text: string;
+    href?: string;
 }
 
 interface ActivityFeedProps {
@@ -15,29 +17,45 @@ interface ActivityFeedProps {
 }
 
 export function ActivityFeed({ items, className }: ActivityFeedProps) {
+    const ItemWrapper = ({ item, children }: { item: ActivityItem, children: React.ReactNode }) => {
+        if (item.href) {
+            return (
+                <Link
+                    href={item.href}
+                    className="group flex items-start gap-4 p-3 rounded-md transition-all duration-200 cursor-pointer hover:bg-accent/5"
+                >
+                    {children}
+                </Link>
+            );
+        }
+        return (
+            <div
+                className="group flex items-start gap-4 p-3 rounded-md transition-all duration-200 cursor-default hover:bg-accent/5"
+            >
+                {children}
+            </div>
+        );
+    };
+
     return (
-        <Card className={`group/card flex flex-col min-h-80 transition-colors duration-300 hover:border-accent ${className}`}>
+        <Card className={`group/card flex flex-col min-h-80 transition-colors duration-300 hover:border-accent p-4 ${className}`}>
             {/* Header / Meta */}
-            <div className="flex items-center justify-between py-3 px-4 border-b border-border/40 relative">
-                <DashedLine className="absolute bottom-0 left-0 w-full" variant="receipt" />
+            <div className="flex items-center justify-between mb-3">
                 <h3 className="font-mono text-xs uppercase tracking-widest text-meta flex items-center gap-2">
-                    <History className="w-3.5 h-3.5" />
                     Recent Activity
                 </h3>
-                <RotateCcw className="w-3.5 h-3.5 text-meta group-hover/card:text-accent transition-colors" />
+                <History className="w-3.5 h-3.5 text-meta group-hover/card:text-accent transition-colors" />
             </div>
+            <DashedLine className="mb-4" variant="receipt" />
 
             <div className="flex-1 space-y-1 overflow-y-auto pr-2 mb-6">
                 {items.map((item) => (
-                    <div
-                        key={item.id}
-                        className="group flex items-start gap-4 p-3 rounded-md transition-all duration-200 cursor-default hover:bg-accent/5"
-                    >
+                    <ItemWrapper key={item.id} item={item}>
                         <ChevronRight className="w-4 h-4 mt-0.5 shrink-0 transition-colors text-accent/40 group-hover:text-accent" />
                         <span className="leading-relaxed font-mono text-xs md:text-sm font-medium transition-colors text-meta group-hover:text-primary">
                             {item.text}
                         </span>
-                    </div>
+                    </ItemWrapper>
                 ))}
             </div>
 

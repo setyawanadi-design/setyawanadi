@@ -1,0 +1,73 @@
+---
+title: "API Documentation: v3.0"
+date: "2026.09.15"
+description: "Reference manual for the new mesh network API endpoints."
+status: "BETA"
+category: "DEV"
+tags: ["API", "Spec"]
+---
+
+## Authentication
+
+All requests must signatures signed with your private key. The API does not accept plain tokens.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+
+<CodeBlock
+  filename="lib/auth.ts"
+  code={`const signRequest = (payload, privateKey) => {
+  const hash = createHash("sha256");
+  hash.update(JSON.stringify(payload));
+  return hash.digest("hex");
+}`}
+/>
+
+Ensure your local time is synced via NTP, as signatures are valid for only 60 seconds.
+
+## Node Discovery
+
+To find peers in the mesh, query the bootstrap node.
+
+<CodeBlock
+  filename="GET /v3/peers/discover"
+  code={`{
+  "peers": [
+    "192.168.1.4:8080",
+    "10.0.0.5:9090"
+  ],
+  "ttl": 300
+}`}
+/>
+
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+
+## Data Replication
+
+Data is replicated across the mesh using a gossip protocol.
+
+<CodeBlock
+  filename="config/gossip.yaml"
+  code={`gossip:
+  interval: 100ms
+  fanout: 3
+  max_hops: 12`}
+/>
+
+Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+## Error Handling
+
+Errors are returned as standard JSON objects.
+
+<Callout>
+  **Note:** Retry logic should use exponential backoff to avoid flooding the network during partitions.
+</Callout>
+
+
+<CodeBlock
+  filename="Error Response"
+  code={`{
+  "error": "PARTITION_DETECTED",
+  "retry_after": 5000
+}`}
+/>

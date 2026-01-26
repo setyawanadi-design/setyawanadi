@@ -66,3 +66,15 @@ We focused on consolidating technical debt and implementing the core Log Detail 
 - **Unified Design System**: Cleaned up the borders. I replaced the old `ReceiptBorder` and `TECH_DASH` mess with a single `<DashedLine />` component. Looking at the Headers, Footers, and Cards feels much more consistent now and its easier to maintain.
 - **Log Detail Page**: Shipped the `/logs/[slug]` dynamic route. It supports rigid "Mockup-style" layouts via flexible MDX metadata (Frontmatter). Supports conditional rendering for logs Hero Images, Architecture Code Blocks, and Progress Indicators (tested and verified with 4 content scenarios (Minimal to Full-Feature).
 - **UX Improvements**: `LogCard` is now clickable and fixed Next.js 16 async param handling for smoother navigation.
+
+### 2026.01.26 // Cards functionality & Visual Polish
+
+- **Unified dashes**: Consolidated everything into a single `<DashedLine />` component.
+- **The Log Detail Page**: Validated the `/logs/[slug]` architecture. It's now fully dynamic-reading from MDX files
+- **Active MDX**: Upgraded the rendering engine, I can put components (`CodeBlocks` and `Progress` bars) strictly inside my markdown files. as for now this is the right way to do it? flexible. documentation for now is not complete, it will be updated sooner
+- **Pinned Logs**: now we can pin posts to the top of the feed(mobile), and on the sidebar by marking `pinned: true` in the frontmatter.
+- **Visual Polish**:
+    - Made the navigation active states clearer (Blue & Bold).
+    - imrpoved Log Detail Page UI, now the content is more readable, organized, mobile friendly, and it has TOC(desktop only for now).
+    - 'recent activity' card tidied up. and functional to log the latest logs.
+- **Mobile Experience**: the sidebar approach didn't work on phones, i can't find the best way to implement as a sidebar in phone so Its best to built a dedicated mobile view for the Home and Logs pages. important info such as Contact, Pinned Logs, etc now appears right at the top on mobile view.

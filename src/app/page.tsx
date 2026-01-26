@@ -4,17 +4,35 @@ import { FocusCard } from "@/components/modules/FocusCard";
 import { VisualLog } from "@/components/modules/VisualLog";
 import { ProjectCard } from "@/components/modules/ProjectCard";
 import { StackModule } from "@/components/modules/StackModule";
+import { ContactCard } from "@/components/modules/ContactCard";
+import { ActivityFeed } from "@/components/modules/ActivityFeed";
+import { getLogPosts } from "@/lib/mdx";
 
 export default function Home() {
+  const recentLogs = getLogPosts().slice(0, 4);
+  const activityItems = recentLogs.map((log) => ({
+    id: log.slug,
+    text: `New Log: ${log.metadata.title}`,
+    href: `/logs/${log.slug}`
+  }));
+
   return (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
 
-      {/* ROW 1: Hero (Full Width) */}
       <HeroModule
         title="Setyawanadi"
         subtitle="Digital Workspace & Design System"
         badgeText="SYSTEM ONLINE"
       />
+
+      {/* MOBILE ONLY: Dashboard Widgets (Contact + Activity) */}
+      <div className="block lg:hidden space-y-6">
+        <ContactCard />
+        <ActivityFeed
+          className="min-h-auto"
+          items={activityItems}
+        />
+      </div>
 
       {/* ROW 2: Focus (1/3) + Tracker (2/3) */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

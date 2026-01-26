@@ -1,6 +1,7 @@
-import { getLogPosts } from "@/lib/mdx";
+import { getLogPosts, getPinnedLogs } from "@/lib/mdx";
 import { LogCard } from "@/components/modules/LogCard";
 import { LogSearch } from "@/components/modules/LogSearch";
+import { PinnedLogs } from "@/components/modules/PinnedLogs";
 
 
 export const metadata = {
@@ -10,6 +11,7 @@ export const metadata = {
 
 export default function LogsPage() {
     const logs = getLogPosts();
+    const pinnedLogs = getPinnedLogs();
 
     return (
         <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
@@ -18,6 +20,11 @@ export default function LogsPage() {
             {/* Search Module (Full Width in Main Col) */}
             <div className="w-full">
                 <LogSearch className="w-full" />
+            </div>
+
+            {/* MOBILE ONLY: Pinned Logs */}
+            <div className="block lg:hidden w-full">
+                <PinnedLogs items={pinnedLogs} />
             </div>
 
             {/* Logs Feed Grid */}
@@ -30,11 +37,8 @@ export default function LogsPage() {
                             title={log.metadata.title}
                             date={log.metadata.date}
                             category={log.metadata.tags?.[0]}
+                            tags={log.metadata.tags}
                             description={log.metadata.description}
-                            meta={{
-                                status: log.metadata.status,
-                                loc: log.metadata.category || "SYSTEM"
-                            }}
                             id={log.slug}
                         />
                     ))

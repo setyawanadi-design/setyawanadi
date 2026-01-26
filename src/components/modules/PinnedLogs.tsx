@@ -1,7 +1,14 @@
 import { LogCard } from "./LogCard";
 import { ShieldAlert } from "lucide-react";
+import type { LogPost } from "@/lib/mdx";
 
-export function PinnedLogs() {
+interface PinnedLogsProps {
+    items?: LogPost[];
+}
+
+export function PinnedLogs({ items = [] }: PinnedLogsProps) {
+    if (!items || items.length === 0) return null;
+
     return (
         <div className="space-y-3">
             <div className="flex justify-between items-center px-1 mb-2">
@@ -9,27 +16,16 @@ export function PinnedLogs() {
                 <ShieldAlert className="w-3 h-3 text-accent" />
             </div>
 
-            <LogCard
-                variant="compact"
-                title="Sumatra Mesh"
-                date="2026.08.14"
-                id="ID-442"
-                description="Regional network stabilization in Riau sector."
-            />
-            <LogCard
-                variant="compact"
-                title="Schema V2"
-                date="2026.07.22"
-                id="ID-391"
-                description="Core data structure migration for multi-tenant."
-            />
-            <LogCard
-                variant="compact"
-                title="Thermal Audit"
-                date="2026.06.30"
-                id="ID-215"
-                description="Peak load hardware review and cooling systems."
-            />
+            {items.map((log) => (
+                <LogCard
+                    key={log.slug}
+                    variant="compact"
+                    title={log.metadata.title}
+                    date={log.metadata.date}
+                    id={log.slug}
+                    description={log.metadata.description}
+                />
+            ))}
         </div>
     );
 }

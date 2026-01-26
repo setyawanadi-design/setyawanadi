@@ -1,5 +1,6 @@
 import { getLogBySlug, getLogPosts } from "@/lib/mdx";
 import { notFound } from "next/navigation";
+import { MDXRemote } from "next-mdx-remote/rsc";
 import { DashedLine } from "@/components/ui/DashedLine";
 import { Badge } from "@/components/ui/Badge";
 import { ArrowLeft } from "lucide-react";
@@ -8,6 +9,32 @@ import { Card } from "@/components/ui/Card";
 import { ProjectHeader } from "@/components/modules/ProjectHeader";
 import { CodeBlock } from "@/components/ui/CodeBlock";
 import { Progress } from "@/components/ui/Progress";
+
+// MDX Component Map
+const components = {
+    CodeBlock: (props: any) => <CodeBlock {...props} className="my-8" />,
+    Progress,
+    Badge,
+    DashedLine,
+    Card,
+    ProjectHeader,
+    // Custom wrappers
+    Callout: ({ children, className }: { children: React.ReactNode, className?: string }) => (
+        <div className={`p-4 border border-l-4 border-l-primary/50 bg-neutral-50 rounded-sm my-8 ${className || ""}`}>
+            {children}
+        </div>
+    ),
+    Grid: ({ children, className, style }: { children: React.ReactNode, className?: string, style?: React.CSSProperties }) => (
+        <div className={`grid ${className || "grid-cols-1 md:grid-cols-2 gap-4"}`} style={style}>
+            {children}
+        </div>
+    ),
+    Box: ({ children, className, style }: { children?: React.ReactNode, className?: string, style?: React.CSSProperties }) => (
+        <div className={className} style={style}>
+            {children}
+        </div>
+    )
+};
 
 // Generate static params for all logs
 export async function generateStaticParams() {
@@ -37,27 +64,26 @@ export default async function LogPostPage({ params }: { params: Promise<{ slug: 
     }
 
     return (
-        <div className="space-y-12 animate-in fade-in slide-in-from-bottom-4 duration-500 pb-24">
+        <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500 pb-24 pt-0">
 
-            {/* Header Block */}
-            <div className="space-y-8">
-                <div className="flex items-center gap-2">
-                    <Link href="/logs" className="group flex items-center gap-2 font-mono text-xs text-meta hover:text-primary transition-colors uppercase tracking-wider">
-                        <ArrowLeft className="w-3 h-3 transition-transform group-hover:-translate-x-1" />
-                        Back to Logs
-                    </Link>
+
+
+            {/* Main Content Card - p-0 to override default Card padding */}
+            <Card className="rounded-[12px] shadow-sm border border-border overflow-hidden p-0">
+                {/* 1. Header Section (Full Width, No Vertical Padding) */}
+                <div className="">
+                    <ProjectHeader
+                        id={`PROJ_${post.slug.toUpperCase()}_01`}
+                        date={post.metadata.date || "2026.Q3"}
+                        location="REMOTE"
+                        category={post.metadata.category}
+                        tags={post.metadata.tags}
+                    />
                 </div>
 
-                <ProjectHeader
-                    id={`PROJ_${post.slug.toUpperCase()}_01`}
-                    date={post.metadata.date || "2026.Q3"}
-                    location={post.metadata.category || "LAHAT, SUMATRA"}
-                    completionPercentage={75}
-                />
-
-                {/* Hero Image - Conditional */}
+                {/* 2. Hero Image Section (Full Bleed) */}
                 {post.metadata.hero_image && (
-                    <div className="w-full aspect-[2/1] bg-neutral-200 overflow-hidden relative grayscale">
+                    <div className="w-full aspect-[2/1] bg-neutral-200 overflow-hidden relative grayscale border-y border-border/40">
                         <div
                             className="absolute inset-0 bg-cover bg-center mix-blend-multiply"
                             style={{ backgroundImage: `url('${post.metadata.hero_image}')` }}
@@ -66,55 +92,25 @@ export default async function LogPostPage({ params }: { params: Promise<{ slug: 
                     </div>
                 )}
 
-                <div className="space-y-4 max-w-2xl">
-                    <h1 className="text-4xl md:text-5xl font-display font-bold leading-tight text-primary">
-                        {post.metadata.title}
-                    </h1>
-                    <p className="text-xl text-meta/80 font-light leading-relaxed">
-                        {post.metadata.description}
-                    </p>
-                </div>
-            </div>
+                {/* 3. Content Section (Padded) */}
+                <div className="px-5 pb-5 md:px-12 md:pb-12 pt-8 space-y-12">
+                    <div className="space-y-4 max-w-2xl">
+                        <h1 className="text-4xl md:text-5xl font-display font-bold leading-tight text-primary">
+                            {post.metadata.title}
+                        </h1>
+                        <p className="text-xl text-meta/80 font-light leading-relaxed">
+                            {post.metadata.description}
+                        </p>
+                    </div>
 
-            {/* Content Sections */}
-            <div className="space-y-16">
-
-                {/* Main Body Content */}
-                <div className="prose prose-sm md:prose-base prose-neutral dark:prose-invert max-w-3xl">
-                    <div className="whitespace-pre-wrap font-sans text-meta leading-relaxed">
-                        {post.content}
+                    {/* Main MDX Content */}
+                    <div className="prose prose-sm md:prose-base prose-neutral dark:prose-invert max-w-none">
+                        <div className="font-sans text-meta leading-relaxed">
+                            <MDXRemote source={post.content} components={components} />
+                        </div>
                     </div>
                 </div>
-
-                {/* Architecture / Complexity Section - Conditional */}
-                {post.metadata.arch_code && (
-                    <section className="space-y-6 animate-in fade-in slide-in-from-bottom-8 duration-700 delay-200">
-                        <DashedLine variant="tech" className="mb-8" />
-                        <h2 className="text-2xl font-bold text-primary">System Architecture</h2>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-                            <CodeBlock
-                                filename="ARCH_DUMP.LOG"
-                                className="bg-neutral-50"
-                                code={post.metadata.arch_code}
-                            />
-                            <div className="space-y-8 py-2">
-                                <p className="text-meta leading-relaxed">
-                                    The architecture snapshot represents the state at the time of this log entry.
-                                    Variables indicate system load and protocol handshake status.
-                                </p>
-                                {post.metadata.progress_value && (
-                                    <div className="space-y-2">
-                                        <Progress value={Number(post.metadata.progress_value)} />
-                                        <div className="flex justify-between font-mono text-xs text-meta/60 uppercase tracking-wider">
-                                            <span>{post.metadata.progress_label || "Progress"}: {post.metadata.progress_value}%</span>
-                                        </div>
-                                    </div>
-                                )}
-                            </div>
-                        </div>
-                    </section>
-                )}
-            </div>
+            </Card>
         </div>
     );
 }

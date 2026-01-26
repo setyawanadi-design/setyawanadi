@@ -1,12 +1,17 @@
+"use client";
+
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { DashedLine } from '@/components/ui/DashedLine';
 import { SystemStatus } from '@/components/shell/SystemStatus';
+import { cn } from "@/lib/utils";
 
 export function Header() {
+    const pathname = usePathname();
+
     return (
         <header
             className="fixed top-0 left-0 w-full h-16 bg-background z-50 flex items-center justify-between px-6"
-
         >
             {/* Bottom Border (Tech) */}
             <DashedLine className="absolute bottom-0 left-0 w-full" variant="receipt" />
@@ -15,15 +20,21 @@ export function Header() {
                 <Link href="/">Adi<span className="text-accent text-3xl leading-none">.</span></Link>
             </div>
             <nav className="flex items-center gap-6">
-                {['logs'].map((item) => (
-                    <Link
-                        key={item}
-                        href={`/${item}`}
-                        className="text-sm font-mono font-medium text-primary hover:text-accent transition-colors no-underline"
-                    >
-                        [{item}]
-                    </Link>
-                ))}
+                {['logs'].map((item) => {
+                    const isActive = pathname === `/${item}` || pathname?.startsWith(`/${item}/`);
+                    return (
+                        <Link
+                            key={item}
+                            href={`/${item}`}
+                            className={cn(
+                                "text-sm font-mono font-medium transition-colors no-underline",
+                                isActive ? "text-accent font-bold" : "text-primary hover:text-accent"
+                            )}
+                        >
+                            [{item}]
+                        </Link>
+                    );
+                })}
             </nav>
         </header>
     );

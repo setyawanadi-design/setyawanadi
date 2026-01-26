@@ -3,7 +3,7 @@ import React from "react";
 import { cn } from "@/lib/utils";
 
 interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
-    variant?: "pill" | "outline" | "status" | "dot";
+    variant?: "pill" | "outline" | "status" | "dot" | "default";
     statusColor?: "active" | "inactive" | "warning" | "accent";
 }
 
@@ -27,6 +27,9 @@ export function Badge({
 
                 // Dot Variant (System Status)
                 variant === "dot" && "gap-2 text-meta bg-transparent px-0",
+
+                // Default Variant (Solid Color)
+                variant === "default" && "rounded-full bg-accent text-white border border-accent",
 
                 className
             )}

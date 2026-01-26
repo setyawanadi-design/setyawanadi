@@ -16,8 +16,14 @@ export interface LogMetadata {
     description?: string;
     status?: string;
     tags?: string[];
+    pinned?: boolean;
     hero_image?: string;
     [key: string]: any;
+}
+
+export function getPinnedLogs(): LogPost[] {
+    const allLogs = getLogPosts();
+    return allLogs.filter(log => log.metadata.pinned === true);
 }
 
 export function getLogPosts(): LogPost[] {

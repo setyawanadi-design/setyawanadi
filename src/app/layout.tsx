@@ -26,11 +26,18 @@ export const metadata: Metadata = {
   description: "Personal Workspace",
 };
 
+import { getPinnedLogs, getLogPosts } from "@/lib/mdx";
+
+// ... [Metadata export stays same]
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const pinnedLogs = getPinnedLogs();
+  const recentLogs = getLogPosts().slice(0, 4);
+
   return (
     <html lang="en" suppressHydrationWarning>
       <body
@@ -47,8 +54,8 @@ export default function RootLayout({
             </main>
 
             {/* Zone B: Sidebar */}
-            <aside className="hidden lg:block sticky top-24 h-[calc(100vh-8rem)]">
-              <Sidebar />
+            <aside className="hidden lg:block sticky top-20 h-[calc(100vh-5rem)] self-start">
+              <Sidebar pinnedLogs={pinnedLogs} recentLogs={recentLogs} />
             </aside>
           </div>
         </div>
