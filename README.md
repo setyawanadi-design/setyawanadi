@@ -78,3 +78,10 @@ We focused on consolidating technical debt and implementing the core Log Detail 
     - imrpoved Log Detail Page UI, now the content is more readable, organized, mobile friendly, and it has TOC(desktop only for now).
     - 'recent activity' card tidied up. and functional to log the latest logs.
 - **Mobile Experience**: the sidebar approach didn't work on phones, i can't find the best way to implement as a sidebar in phone so Its best to built a dedicated mobile view for the Home and Logs pages. important info such as Contact, Pinned Logs, etc now appears right at the top on mobile view.
+
+### 2026.01.28 // Homepage Refactor & Peek Project Modal
+Major architecture refactor to make the homepage dynamic and implemented a robust Project status system.
+
+- **Dynamic Cards**: Migrated hardcoded content to a dynamic JSON/MDX system
+- **Unified Project Cards**: Merged "Focus" and "Project" cards into a single cohesive UI. "System Status" and progress bars being pulled directly from MDX checklists.
+- **"Peek Project" Modal**:  text-based `[DONE]` checkbox indicators, and a clean timeline view. (imagine a terminal)
