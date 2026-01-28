@@ -17,8 +17,13 @@ export async function Footer() {
                     LAST UPDATED: {latestDate}
                 </span>
             </div>
-            <div className="font-mono text-micro tracking-wider text-meta uppercase">
-                setyawanadi
+            <div className="flex gap-4 font-mono text-micro tracking-wider text-meta uppercase">
+                <a href="https://github.com/setyawanadi-design" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">
+                    GitHub
+                </a>
+                <a href="https://instagram.com/doovries" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">
+                    Instagram
+                </a>
             </div>
         </footer >
     );

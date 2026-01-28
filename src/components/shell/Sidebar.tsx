@@ -56,7 +56,7 @@ export function Sidebar({ pinnedLogs = [], recentLogs = [] }: { pinnedLogs?: Log
                         { label: "REFLECTIONS", count: 5 },
                         { label: "ARCHIVE", count: 24 },
                     ]} />
-                    <PinnedLogs items={pinnedLogs} />
+                    <PinnedLogs items={pinnedLogs} className="md:grid-cols-1 gap-3" variant="compact" />
                 </div>
             )}
 

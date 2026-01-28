@@ -17,9 +17,11 @@ import { LogCard } from "@/components/modules/LogCard";
 import { LogCategories } from "@/components/modules/LogCategories";
 import { LogStats } from "@/components/modules/LogStats";
 import { PinnedLogs } from "@/components/modules/PinnedLogs";
-import { FocusCard } from "@/components/modules/FocusCard";
+import { SystemStats } from "@/components/modules/SystemStats";
 import { CodeBlock } from "@/components/ui/CodeBlock";
 import { DashedLine } from "@/components/ui/DashedLine";
+import { ModalDemo } from "@/components/modules/ModalDemo";
+import { Checkbox } from "@/components/ui/Checkbox";
 
 
 export const metadata = {
@@ -197,6 +199,24 @@ export default function DesignPage() {
                         </div>
 
                         <div className="space-y-4 md:col-span-2">
+                            <h3 className="text-sm font-mono text-meta uppercase">Checkboxes</h3>
+                            <div className="flex items-center gap-6 p-4 border border-dashed border-border rounded-lg">
+                                <div className="flex items-center gap-2">
+                                    <Checkbox id="chk-default" />
+                                    <label htmlFor="chk-default" className="text-sm">Default</label>
+                                </div>
+                                <div className="flex items-center gap-2">
+                                    <Checkbox id="chk-checked" checked readOnly />
+                                    <label htmlFor="chk-checked" className="text-sm">Checked</label>
+                                </div>
+                                <div className="flex items-center gap-2">
+                                    <Checkbox id="chk-disabled" disabled checked />
+                                    <label htmlFor="chk-disabled" className="text-sm">Disabled</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="space-y-4 md:col-span-2">
                             <h3 className="text-sm font-mono text-meta uppercase">Progress</h3>
                             <div className="max-w-md space-y-2">
                                 <Progress value={25} />
@@ -213,6 +233,11 @@ export default function DesignPage() {
                         <DashedLine className="absolute bottom-0 left-0 w-full" variant="receipt" />
                         <span className="font-mono text-accent">03.</span>
                         <h2 className="text-xl font-bold uppercase tracking-widest">Components</h2>
+                    </div>
+
+                    <div className="space-y-4">
+                        <h3 className="text-sm font-mono text-meta uppercase">Modal / Dialog</h3>
+                        <ModalDemo />
                     </div>
 
                     <div className="space-y-4">
@@ -265,22 +290,6 @@ export default function DesignPage() {
                             />
                         </div>
 
-                        {/* New Focus Card Demo */}
-                        <div className="space-y-4">
-                            <h3 className="text-sm font-mono text-meta uppercase">Status & Focus</h3>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <FocusCard
-                                    title="Current Focus"
-                                    status="Active"
-                                    description="Developing the new Home Page Grid Layout and finalizing Component Architecture."
-                                />
-                                <FocusCard
-                                    title="Paused Task"
-                                    status="Paused"
-                                    description="Legacy system migration pending audit results."
-                                />
-                            </div>
-                        </div>
                     </div>
 
                     {/* Data & Log Group */}

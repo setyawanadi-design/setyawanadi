@@ -1,15 +1,17 @@
 
 import { HeroModule } from "@/components/modules/HeroModule";
-import { FocusCard } from "@/components/modules/FocusCard";
 import { VisualLog } from "@/components/modules/VisualLog";
 import { ProjectCard } from "@/components/modules/ProjectCard";
 import { StackModule } from "@/components/modules/StackModule";
 import { ContactCard } from "@/components/modules/ContactCard";
 import { ActivityFeed } from "@/components/modules/ActivityFeed";
-import { getLogPosts } from "@/lib/mdx";
+import { getLogPosts, getHomeData, getPinnedLogs } from "@/lib/mdx";
+import { PinnedLogs } from "@/components/modules/PinnedLogs";
 
 export default function Home() {
   const recentLogs = getLogPosts().slice(0, 4);
+  const pinnedLogs = getPinnedLogs();
+  const data = getHomeData();
   const activityItems = recentLogs.map((log) => ({
     id: log.slug,
     text: `New Log: ${log.metadata.title}`,
@@ -34,36 +36,43 @@ export default function Home() {
         />
       </div>
 
-      {/* ROW 2: Focus (1/3) + Tracker (2/3) */}
+      {/* ROW 2: Focus & Project Merged (Full Width) */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-6">
-        <FocusCard
-          title="Current Focus"
-          status="Active"
-          description="Assembling the Core Home Grid and verifying Component Architecture."
-          className="md:col-span-1 h-full"
-        />
         <ProjectCard
-          title="Project Stabilization"
-          description="Ensuring all modules match the strict 'Zero-Clutter' design philosophy."
-          progress={80}
-          status="80%"
-          category="[logs] TRACKER // ARCHITECTURE"
-          className="md:col-span-2 h-full"
+          title={data?.project.title || "Project"}
+          slug={data?.project.id}
+          description={data?.project.description || ""}
+          progress={data?.project.progress}
+          status={data?.project.status}
+          category={data?.project.category}
+          // Focus Props
+          focusStatus={data?.focus.status}
+          focusDescription={data?.focus.description}
+          checklist={data?.project.checklist}
+          className="md:col-span-3 h-full"
         />
       </div>
 
-      {/* ROW 3: Stack (1/3) + Visual Log (2/3) */}
+      {/* ROW 3: Visual Log (2/3) + Stack (1/3) */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-6">
-        <StackModule
-          tags={["Next.js 14", "Tailwind CSS", "TypeScript", "Framer Motion"]}
-          className="md:col-span-1 h-full"
-        />
         <VisualLog
-          id="LOG_IMG_01"
-          year="2026"
-          imageSrc="" // Placeholder logic will handle this
+          id={data?.visualLog.id || "LOG_ERR"}
+          year={data?.visualLog.year || "2026"}
+          imageSrc={data?.visualLog.imageSrc}
+          label={data?.visualLog.label}
           className="md:col-span-2 h-full"
         />
+        <StackModule
+          title={data?.stack.title}
+          subtitle={data?.stack.subtitle}
+          tags={data?.stack.tags || []}
+          className="md:col-span-1 h-full"
+        />
+      </div>
+
+      {/* ROW 4: Pinned Logs (Full Width) */}
+      <div className="md:col-span-3">
+        <PinnedLogs items={pinnedLogs} showHeader={false} />
       </div>
 
     </div>

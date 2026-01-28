@@ -3,16 +3,17 @@ import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { DashedLine } from "@/components/ui/DashedLine";
 import { Badge } from "@/components/ui/Badge";
-import { ArrowLeft } from "lucide-react";
-import Link from "next/link";
+import remarkGfm from "remark-gfm";
 import { Card } from "@/components/ui/Card";
 import { ProjectHeader } from "@/components/modules/ProjectHeader";
 import { CodeBlock } from "@/components/ui/CodeBlock";
 import { Progress } from "@/components/ui/Progress";
+import { cn } from "@/lib/utils";
+import { BrutalistCheckbox } from "@/components/ui/BrutalistCheckbox";
 
 // MDX Component Map
 const components = {
-    CodeBlock: (props: any) => <CodeBlock {...props} className="my-8" />,
+    CodeBlock: (props: React.ComponentProps<typeof CodeBlock>) => <CodeBlock {...props} className="my-8" />,
     Progress,
     Badge,
     DashedLine,
@@ -33,7 +34,22 @@ const components = {
         <div className={className} style={style}>
             {children}
         </div>
-    )
+    ),
+    // Override unordered list to impose brutalist spacing/font
+    ul: ({ className, ...props }: React.HTMLAttributes<HTMLUListElement>) => (
+        <ul className={cn("my-6 space-y-3 pl-0 list-none", className)} {...props} />
+    ),
+    // Override list item for alignment
+    li: ({ className, ...props }: React.LiHTMLAttributes<HTMLLIElement>) => (
+        <li className={cn("flex items-start font-mono text-sm leading-relaxed text-primary/90", className)} {...props} />
+    ),
+    // Map checkbox input
+    input: (props: React.InputHTMLAttributes<HTMLInputElement>) => {
+        if (props.type === "checkbox") {
+            return <BrutalistCheckbox {...props} />;
+        }
+        return <input {...props} />;
+    },
 };
 
 // Generate static params for all logs
@@ -106,7 +122,16 @@ export default async function LogPostPage({ params }: { params: Promise<{ slug: 
                     {/* Main MDX Content */}
                     <div className="prose prose-sm md:prose-base prose-neutral dark:prose-invert max-w-none">
                         <div className="font-sans text-meta leading-relaxed">
-                            <MDXRemote source={post.content} components={components} />
+                            <MDXRemote
+                                source={post.content}
+                                components={components}
+                                options={{
+                                    parseFrontmatter: true,
+                                    mdxOptions: {
+                                        remarkPlugins: [remarkGfm],
+                                    },
+                                }}
+                            />
                         </div>
                     </div>
                 </div>

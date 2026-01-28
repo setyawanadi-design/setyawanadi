@@ -17,7 +17,7 @@ export function StackModule({
     className
 }: StackModuleProps) {
     return (
-        <Card className={className}>
+        <Card className={className} variant="interactive">
             <div className="h-full flex flex-col justify-between">
                 <div>
                     <div className="text-3xl mb-4 text-gray-300">◎</div>

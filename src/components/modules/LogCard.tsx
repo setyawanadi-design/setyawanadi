@@ -73,33 +73,31 @@ export function LogCard({
 
     // ... [Compact Variant can stay as is or be updated if needed] ...
     if (variant === "compact") {
-        if (variant === "compact") {
-            const compactContent = (
-                <Card variant="interactive" className={cn("group flex flex-col p-4 gap-2 bg-card", className)}>
-                    <h4 className="font-bold text-sm leading-tight group-hover:text-accent transition-colors">
-                        {title}
-                    </h4>
-                    <div className="flex items-center gap-2 font-mono text-micro text-meta/50">
-                        <span>{date}</span>
-                        {id && <span>//{id}</span>}
-                    </div>
-                    {description && (
-                        <p className="text-xs text-meta truncate mt-1">
-                            {description}
-                        </p>
-                    )}
-                </Card>
-            );
+        const compactContent = (
+            <Card variant="interactive" className={cn("group flex flex-col p-4 gap-2 bg-card", className)}>
+                <h4 className="font-bold text-sm leading-tight group-hover:text-accent transition-colors">
+                    {title}
+                </h4>
+                <div className="flex items-center gap-2 font-mono text-micro text-meta/50">
+                    <span>{date}</span>
+                    {id && <span>//{id}</span>}
+                </div>
+                {description && (
+                    <p className="text-xs text-meta truncate mt-1">
+                        {description}
+                    </p>
+                )}
+            </Card>
+        );
 
-            if (id) {
-                return (
-                    <Link href={`/logs/${id}`} className="block">
-                        {compactContent}
-                    </Link>
-                );
-            }
-            return compactContent;
+        if (id) {
+            return (
+                <Link href={`/logs/${id}`} className="block">
+                    {compactContent}
+                </Link>
+            );
         }
+        return compactContent;
     }
 
     // VARIANT: STANDARD (Grid)

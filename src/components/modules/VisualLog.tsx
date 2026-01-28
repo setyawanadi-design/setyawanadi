@@ -6,13 +6,16 @@ import { Eye } from "lucide-react";
 interface VisualLogProps {
     id: string;
     year: string;
+    label?: string;
     imageSrc?: string;
     className?: string;
 }
 
-export function VisualLog({ id, year, imageSrc, className }: VisualLogProps) {
+import Link from "next/link";
+
+export function VisualLog({ id, year, label = "Visual_Log", imageSrc, className }: VisualLogProps) {
     return (
-        <Card className={`relative overflow-hidden group min-h-[200px] border-none ${className}`} variant="flat">
+        <Card className={`relative overflow-hidden group min-h-[200px] hover:border-border ${className}`} variant="interactive">
             {/* Background Image / Placeholder */}
             {imageSrc ? (
                 // eslint-disable-next-line @next/next/no-img-element
@@ -35,13 +38,16 @@ export function VisualLog({ id, year, imageSrc, className }: VisualLogProps) {
             {/* Overlay Gradient */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-90" />
 
+            {/* Main Link Overlay */}
+            <Link href={`/logs/${id}`} className="absolute inset-0 z-10" aria-label={`View log ${id}`} />
+
             {/* Content Layer */}
-            <div className="absolute inset-0 p-6 flex flex-col justify-end">
+            <div className="absolute inset-0 p-6 flex flex-col justify-end z-20 pointer-events-none">
                 <div className="flex items-end justify-between">
                     <div>
                         <div className="flex items-center gap-2 mb-1">
                             <div className="w-1.5 h-1.5 rounded-full bg-accent" />
-                            <span className="font-mono text-micro uppercase text-white/70">Visual_Log</span>
+                            <span className="font-mono text-micro uppercase text-white/70">{label}</span>
                         </div>
                         <h3 className="font-mono text-lg text-white font-bold">
                             ID: {id} <span className="text-white/40">//</span> {year}
@@ -49,9 +55,16 @@ export function VisualLog({ id, year, imageSrc, className }: VisualLogProps) {
                     </div>
 
                     {/* Action Button */}
-                    <button className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20 hover:bg-white hover:text-black transition-all duration-300 group-hover:scale-110">
-                        <Eye className="w-4 h-4" />
-                    </button>
+                    {imageSrc && (
+                        <a
+                            href={imageSrc}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20 hover:bg-white hover:text-black transition-all duration-300 group-hover:scale-110 pointer-events-auto relative z-30"
+                        >
+                            <Eye className="w-4 h-4" />
+                        </a>
+                    )}
                 </div>
             </div>
         </Card>
