@@ -39,7 +39,7 @@ export function VisualLog({ id, year, label = "Visual_Log", imageSrc, className 
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-90" />
 
             {/* Main Link Overlay */}
-            <Link href={`/logs/${id}`} className="absolute inset-0 z-10" aria-label={`View log ${id}`} />
+            <Link href={`/${id}`} className="absolute inset-0 z-10" aria-label={`View log ${id}`} />
 
             {/* Content Layer */}
             <div className="absolute inset-0 p-6 flex flex-col justify-end z-20 pointer-events-none">
