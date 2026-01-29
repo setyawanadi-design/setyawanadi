@@ -18,7 +18,7 @@ export function ProjectHeader({ id, date, location, tags, category, className }:
             className={`relative w-full py-4 font-mono text-micro uppercase tracking-wider text-meta ${className}`}
         >
             {/* Content Container with standard padding */}
-            <div className="w-full px-5 md:px-12 flex items-center justify-between">
+            <div className="w-full px-4 md:px-6 flex items-center justify-between">
                 <div className="flex gap-4">
                     <span>ID: {id}</span>
                     <span className="text-border">{'//'}</span>

@@ -1,6 +1,7 @@
 // import React from 'react';
 import { Badge } from "@/components/ui/Badge";
 import { DashedLine } from "@/components/ui/DashedLine";
+import { InteractiveHoverTitle } from "@/components/ui/InteractiveHoverTitle";
 
 interface HeroModuleProps {
     title?: string;
@@ -21,9 +22,10 @@ export function HeroModule({
             <div className="flex justify-between items-end">
                 <div className="max-w-3xl">
                     <Badge variant="soft" className="mb-6">{badgeText}</Badge>
-                    <h1 className="text-5xl md:text-7xl font-display font-bold mb-6 tracking-tight text-primary">
-                        {title}
-                    </h1>
+                    <InteractiveHoverTitle
+                        title={title}
+                        className="text-5xl md:text-7xl font-display font-bold mb-6 tracking-tight text-primary"
+                    />
                     <p className="text-lg md:text-xl text-meta leading-relaxed max-w-3xl">
                         {subtitle}
                     </p>

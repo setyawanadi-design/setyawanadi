@@ -46,7 +46,7 @@ export default function RootLayout({
         <Header />
 
         {/* Main Layout - Universal Grid */}
-        <div className="flex-1 pt-20 pb-12 px-4 md:px-4 max-w-[1440px] mx-auto w-full">
+        <div className="flex-1 pt-20 pb-12 px-2 md:px-4 max-w-[1440px] mx-auto w-full">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_280px] gap-6 h-full">
             {/* Zone A: Main Stage */}
             <main className="min-w-0">

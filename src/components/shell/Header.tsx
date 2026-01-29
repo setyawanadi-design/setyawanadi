@@ -17,7 +17,7 @@ export function Header() {
             <DashedLine className="absolute bottom-0 left-0 w-full" variant="receipt" />
             <div className="text-xl font-display font-bold text-primary flex items-center">
                 <SystemStatus />
-                <Link href="/">Adi<span className="text-accent text-3xl leading-none">.</span></Link>
+                <Link href="/">Setyawanadi<span className="text-accent text-3xl leading-none">.</span></Link>
             </div>
             <nav className="flex items-center gap-6">
                 {/* Navigation Links (Currently Empty) */}
