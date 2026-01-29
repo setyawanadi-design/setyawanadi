@@ -16,6 +16,7 @@ interface ModalProps {
 
 export function Modal({ isOpen, onClose, title, children, className }: ModalProps) {
     const [mounted, setMounted] = useState(false);
+    const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
         setMounted(true);
@@ -23,31 +24,43 @@ export function Modal({ isOpen, onClose, title, children, className }: ModalProp
 
     useEffect(() => {
         if (isOpen) {
+            setIsVisible(true);
+            // Calculate scrollbar width
+            const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+            document.body.style.paddingRight = `${scrollbarWidth}px`;
             document.body.style.overflow = "hidden";
         } else {
+            const timer = setTimeout(() => setIsVisible(false), 200); // Match duration-200
+            document.body.style.paddingRight = "0px";
             document.body.style.overflow = "unset";
+            return () => clearTimeout(timer);
         }
         return () => {
+            document.body.style.paddingRight = "0px";
             document.body.style.overflow = "unset";
         }
     }, [isOpen]);
 
     if (!mounted) return null;
-    if (!isOpen) return null;
+    if (!isVisible) return null;
 
     // Use portal to render outside the DOM hierarchy
     return createPortal(
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6">
             {/* Backdrop */}
             <div
-                className="absolute inset-0 bg-background/80 backdrop-blur-sm transition-opacity animate-in fade-in duration-200"
+                className={cn(
+                    "absolute inset-0 bg-background/80 backdrop-blur-sm transition-opacity duration-200",
+                    isOpen ? "animate-in fade-in" : "animate-out fade-out"
+                )}
                 onClick={onClose}
             />
 
             {/* Content */}
             <Card
                 className={cn(
-                    "relative w-full max-w-lg max-h-[85vh] overflow-y-auto shadow-lg animate-in fade-in zoom-in-95 duration-200 p-0 border-border",
+                    "relative w-full max-w-lg max-h-[85vh] overflow-y-auto shadow-lg duration-200 p-0 border-border",
+                    isOpen ? "animate-in fade-in zoom-in-95" : "animate-out fade-out zoom-out-95 fill-mode-forwards",
                     className
                 )}
                 variant="default"

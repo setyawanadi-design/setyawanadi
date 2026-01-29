@@ -27,6 +27,7 @@ export interface LogMetadata {
         label: string;
         completed: boolean;
     }[];
+    headers?: string[];
     [key: string]: any;
 }
 
@@ -55,6 +56,7 @@ export function getLogPosts(): LogPost[] {
         // Calculate progress
         const progress = analyzeChecklist(content);
         const checklist = getChecklistItems(content);
+        const headers = getHeaders(content);
 
         return {
             slug,
@@ -62,6 +64,7 @@ export function getLogPosts(): LogPost[] {
                 ...data,
                 progress,
                 checklist,
+                headers,
             } as LogMetadata,
             content,
         };
@@ -157,6 +160,18 @@ export function getChecklistItems(content: string) {
         });
     }
     return checklist;
+}
+
+export function getHeaders(content: string) {
+    // Match ## Header or ### Header
+    const headerRegex = /^(#{2,3}) (.*)$/gm;
+    const headers: string[] = [];
+    let match;
+    while ((match = headerRegex.exec(content)) !== null) {
+        // Clean up: remove markdown syntax from header text if any (simple)
+        headers.push(match[2].trim());
+    }
+    return headers;
 }
 
 export function calculateProgress(content: string): number {

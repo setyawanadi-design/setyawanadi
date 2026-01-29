@@ -55,7 +55,8 @@ export default function Home() {
             meta={{
               status: log.metadata.status,
               progress: log.metadata.progress,
-              checklist: log.metadata.checklist
+              checklist: log.metadata.checklist,
+              headers: log.metadata.headers
             }}
             className="h-full md:col-span-1"
           />
@@ -84,7 +85,8 @@ export default function Home() {
             meta={{
               status: log.metadata.status,
               progress: log.metadata.progress,
-              checklist: log.metadata.checklist
+              checklist: log.metadata.checklist,
+              headers: log.metadata.headers
             }}
             className="h-full md:col-span-1"
           />
