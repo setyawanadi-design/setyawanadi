@@ -23,7 +23,7 @@ export default function Home() {
   }));
 
   return (
-    <div className="space-y-2 md:space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+    <div className="space-y-2 md:space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500 px-1 md:px-0">
 
       <HeroModule
         title={data?.hero.title || "Setyawanadi"}

@@ -91,7 +91,7 @@ export default async function LogPostPage({ params }: { params: Promise<{ slug: 
                     <ProjectHeader
                         id={`PROJ_${post.slug.toUpperCase()}_01`}
                         date={post.metadata.date || "2026.Q3"}
-                        location="REMOTE"
+                        location={post.metadata.location}
                         category={post.metadata.category}
                         tags={post.metadata.tags}
                     />
