@@ -1,0 +1,360 @@
+---
+title: "The Authoring Manual"
+date: "2026.12.31"
+description: "The complete technical reference for the Studio Layout System. Covers basic typography to advanced bento grids."
+status: "Archived"
+category: "MANUAL"
+tags: ["System", "Reference", "Grid"]
+hero_image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2000&auto=format&fit=crop"
+---
+
+## Introduction
+
+This document is the **Single Source of Truth** for authoring content in the Studio. It is designed to be read as a tutorial and used as a copy-paste reference.
+
+**Table of Contents:**
+1.  [Frontmatter & Metadata](#1-frontmatter--metadata)
+2.  [Typography & Basics](#2-typography--basics)
+3.  [The Component Library](#3-the-component-library)
+4.  [The Layout Engine](#4-the-layout-engine-grids--boxes)
+5.  [Advanced Patterns (Bento)](#5-advanced-patterns-bento-grids)
+6.  [Technical Writing](#6-technical-writing)
+
+<DashedLine className="my-8" />
+
+## 1. Frontmatter & Metadata
+
+Every `.mdx` file must start with a YAML frontmatter block. This controls how the post appears in the feed and headers.
+
+<CodeBlock
+    filename="usage-frontmatter.mdx"
+    code={`---
+title: "Your Post Title"
+date: "2026.12.31"       
+description: "A short summary for the feed card."
+status: "Active"           # Options: DRAFT, WIP, REVIEW, DONE, SHIP
+category: "CODE"         # Options: CODE, DESIGN, LOG, SYSTEM, LIFE
+tags: ["Next.js", "MDX"] 
+hero_image: "https://..." # Optional
+pinned: false            # Optional
+---`}
+/>
+
+<DashedLine variant="tech" />
+
+## 2. Typography & Basics
+
+We use the standard Markdown syntax, refined by our design system.
+
+### Text Hierarchy
+*   `##` (H2) for major sections.
+*   `###` (H3) for subsections.
+*   `**bold**` for highlights.
+*   `*italic*` for emphasis.
+
+### Lists
+
+**Ordered List**
+1.  First Item
+2.  Second Item
+3.  Third Item
+
+**Unordered List**
+*   Item A
+*   Item B
+*   Item C
+
+**Nested List**
+1.  Parent Item
+    *   Child Item
+    *   Child Item
+2.  Parent Item
+
+<CodeBlock
+    filename="usage-lists"
+    code={`### Ordered
+1. First
+2. Second
+
+### Unordered
+* Item A
+* Item B
+
+### Nested
+1. Parent
+   * Child
+   * Child`}
+/>
+
+### Images
+Standard markdown images render with full width and rounded corners by default.
+
+**Standard Image**
+![Placeholder](https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2000&auto=format&fit=crop)
+
+<CodeBlock
+    filename="usage-images"
+    code={`![Your Alt Text](https://...)`}
+/>
+
+**Framed Image (Box)**
+For a more controlled aesthetic, wrap standard images in a `Box`.
+
+<Box className="p-2 bg-neutral-100 rounded-lg">
+    ![Framed Image](https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2000&auto=format&fit=crop)
+</Box>
+
+<CodeBlock
+    filename="usage-image-frame"
+    code={`<Box className="p-2 bg-neutral-100 rounded-lg">
+    ![Alt Text](https://...)
+</Box>`}
+/>
+
+<DashedLine variant="tech" />
+
+## 3. The Component Library
+
+These are the "Atoms" available globally in MDX. No import required.
+
+
+
+### DashedLine `<DashedLine>`
+Horizontal divisors. Use `className="my-8"` to add breathing room.
+
+<div className="space-y-4 my-6">
+    <div>
+        <span className="text-xs font-mono text-meta">Default (Receipt)</span>
+        <DashedLine className="my-2" />
+    </div>
+    <div>
+        <span className="text-xs font-mono text-meta">Tech Variant</span>
+        <DashedLine variant="tech" className="my-2" />
+    </div>
+</div>
+
+<CodeBlock
+    filename="usage-lines.mdx"
+    code={`{/* Standard Divider */}
+<DashedLine className="my-8" />
+
+{/* Tech Variant (Fine) */}
+<DashedLine variant="tech" />`}
+/>
+
+### Progress `<Progress>`
+A simple percentage bar.
+
+<Grid className="items-center gap-4 my-6">
+    <Box><Progress value={25} /></Box>
+    <Box><Progress value={75} /></Box>
+</Grid>
+
+<CodeBlock
+    filename="usage-progress"
+    code={`<Progress value={25} />
+<Progress value={75} />`}
+/>
+
+### ProjectHeader `<ProjectHeader>`
+The metadata block usually found at the top of logs.
+
+<ProjectHeader
+    id="DEMO_001"
+    date="2026.01.01"
+    location="REMOTE"
+    category="DEMO"
+    tags={["Docs", "Example"]}
+    className="my-6"
+/>
+
+<CodeBlock
+    filename="usage-header"
+    code={`<ProjectHeader
+    id="DEMO_001"
+    date="2026.01.01"
+    location="REMOTE"
+    category="DEMO"
+    tags={["Docs", "Example"]}
+/>`}
+/>
+
+<DashedLine variant="receipt" />
+
+## 4. The Layout Engine (Grids & Boxes)
+
+The system uses `CSS Grid` powered by Tailwind.
+
+### The Basic Grid
+By default, `<Grid>` creates a **2-column** layout.
+
+<Grid className="my-6">
+    <Box className="bg-neutral-100 p-4 rounded">
+        **Column 1**
+
+        <p>Content goes here.</p>
+    </Box>
+    <Box className="bg-neutral-100 p-4 rounded">
+        **Column 2**
+
+        <p>Content goes here.</p>
+    </Box>
+</Grid>
+
+<CodeBlock
+    filename="usage-grid-basic"
+    code={`<Grid>
+    <Box className="bg-neutral-100 p-4 rounded">
+        **Column 1**
+        Content...
+    </Box>
+    <Box className="bg-neutral-100 p-4 rounded">
+        **Column 2**
+        Content...
+    </Box>
+</Grid>`}
+/>
+
+### Controlling Columns
+You can override the columns using Tailwind classes: `grid-cols-1`, `md:grid-cols-3`.
+
+<CodeBlock
+    filename="usage-grid-cols"
+    code={`<Grid className="grid-cols-1 md:grid-cols-3 gap-4">
+  <Box>1</Box>
+  <Box>2</Box>
+  <Box>3</Box>
+</Grid>`}
+/>
+
+### The Box `<Box>`
+A generic container. Use `style` for background images.
+
+<Grid className="grid-cols-2 gap-4 my-8 h-48">
+    <Box 
+        className="relative rounded-lg bg-neutral-200 overflow-hidden"
+        style={{
+             backgroundImage: "url('https://images.unsplash.com/photo-1605106702734-205df224ecce?q=80&w=1000&auto=format&fit=crop')",
+             backgroundSize: "cover",
+            backgroundPosition: "center"
+        }}
+    >
+        <div className="absolute bottom-2 left-2 bg-black/60 text-white px-2 py-1 rounded text-[10px] font-mono">
+            IMG.01
+        </div>
+    </Box>
+    <Box className="flex items-center justify-center bg-neutral-100 rounded-lg">
+        <span className="text-meta">Standard Box Content</span>
+    </Box>
+</Grid>
+
+<CodeBlock
+    filename="usage-box-image"
+    code={`<Box 
+    className="relative rounded-lg h-48"
+    style={{
+         backgroundImage: "url('https://...')",
+         backgroundSize: "cover",
+         backgroundPosition: "center"
+    }}
+>
+    {/* Caption Overlay */}
+    <div className="absolute bottom-2 left-2 bg-black/60 text-white px-2 py-1 rounded text-[10px] font-mono">
+        IMG.01
+    </div>
+</Box>`}
+/>
+
+<DashedLine variant="receipt" />
+
+## 5. Advanced Patterns (Bento Grids)
+
+The "Bento" look is achieved by spanning rows and columns.
+
+**Key Requirements:**
+1.  Define a fixed row height logic (e.g., `auto-rows-[100px]`).
+2.  Use `col-span-X` and `row-span-Y` on the Boxes.
+
+<Grid className="grid-cols-4 gap-2 auto-rows-[100px] my-6">
+    <Box className="col-span-2 row-span-2 bg-neutral-800 rounded-lg text-white p-4 font-bold flex items-end">
+        2x2 MAIN
+    </Box>
+    <Box className="col-span-2 row-span-1 bg-neutral-200 rounded-lg p-4 font-mono text-xs">
+        2x1 WIDE
+    </Box>
+    <Box className="col-span-1 row-span-1 bg-neutral-100 rounded-lg flex items-center justify-center">1x1</Box>
+    <Box className="col-span-1 row-span-1 bg-neutral-100 rounded-lg flex items-center justify-center">1x1</Box>
+</Grid>
+
+<CodeBlock
+    filename="usage-bento"
+    code={`<Grid className="grid-cols-4 auto-rows-[100px] gap-2">
+  {/* Large Square */}
+  <Box className="col-span-2 row-span-2 bg-neutral-800 rounded-lg p-4" />
+  
+  {/* Wide Bar */}
+  <Box className="col-span-2 row-span-1 bg-neutral-200 rounded-lg p-4" />
+  
+  {/* Small Squares */}
+  <Box className="col-span-1 row-span-1 bg-neutral-100 rounded-lg" />
+  <Box className="col-span-1 row-span-1 bg-neutral-100 rounded-lg" />
+</Grid>`}
+/>
+
+<DashedLine variant="receipt" />
+
+## 6. Technical Writing
+
+### Code Blocks
+Use strictly for code. Supports syntax highlighting.
+
+<CodeBlock
+    filename="usage-code-block"
+    code={`<CodeBlock
+    filename="src/core.rs"
+    code={\`fn main() {
+    println!("Hello World");
+}\`}
+/>`}
+/>
+
+### Callouts
+Use for notes, warnings, or context that needs to stand out.
+
+<Callout>
+    **Design Note:** Avoid using Callouts for standard text. They are meant to interrupt the flow.
+</Callout>
+
+<CodeBlock
+    filename="usage-callout"
+    code={`<Callout>
+    **Design Note:** Avoid using Callouts for standard text.
+</Callout>`}
+/>
+
+<DashedLine variant="receipt" />
+
+## 7. Troubleshooting & Gotchas
+
+### Hydration Errors
+If you see errors like `Hydration failed` or `Home cannot be a descendant of p`, it means you placed a Block element (like `<div>`, `<Grid>`, or `<Box>`) inside a paragraph.
+
+**The Fix:** Always leave a **blank line** between text and components.
+
+<Grid className="grid-cols-2 gap-4 my-6">
+    <Box className="bg-red-50 p-4 rounded border border-red-200">
+        **❌ INCORRECT**
+        <span className="text-xs font-mono block mt-2 text-red-600">
+            Some text
+            &lt;div&gt;Block content&lt;/div&gt;
+        </span>
+    </Box>
+    <Box className="bg-green-50 p-4 rounded border border-green-200">
+        **✅ CORRECT**
+        <span className="text-xs font-mono block mt-2 text-green-600">
+            Some text
+            <br/><br/>
+            &lt;div&gt;Block content&lt;/div&gt;
+        </span>
+    </Box>
+</Grid>

@@ -1,0 +1,34 @@
+{
+    "hero": {
+        "title": "Setyawanadi",
+        "subtitle": "This is where I keep track of what I'm working on, what I'm learning, and what I have in mind. Part portfolio, part brain dump, part work-in-progress, and Some of it might be a cake recipe. Welcome!",
+        "badgeText": "Busy"
+    },
+    "focus": {
+        "title": "Loading...",
+        "status": "Active",
+        "description": "Initializing system..."
+    },
+    "project": {
+        "title": "Loading...",
+        "description": "",
+        "progress": 0,
+        "status": "0%",
+        "category": "System"
+    },
+    "stack": {
+        "title": "System Architecture",
+        "subtitle": "Core Technologies",
+        "tags": [
+            "Next.js",
+            "React",
+            "Tailwind",
+            "MDX"
+        ]
+    },
+    "visualLog": {
+        "id": "init",
+        "year": "2026",
+        "imageSrc": ""
+    }
+}

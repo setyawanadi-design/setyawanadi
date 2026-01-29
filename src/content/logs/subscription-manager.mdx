@@ -1,0 +1,46 @@
+---
+title: "Subscription Manager"
+date: "2026.01.28"
+description: "Building a comprehensive system to track recurring payments and analyze spending habits."
+status: "Focus"
+category: "Development"
+pinned: true
+hero_image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=2000&auto=format&fit=crop"
+tags: ["Next.js", "Finance", "System Architecture"]
+---
+
+## Project Overview
+
+We are building a robust subscription tracking system. The goal is to provide visibility into monthly recurring costs and identify unused services.
+
+<DashedLine className="my-8" />
+
+### Implementation Checklist
+
+The following items track the core features required for the MVP launch.
+
+- [x] **Database Schema**: Define user and subscription models.
+- [x] **Authentication**: Implement secure login flow.
+- [x] **Dashboard UI**: Create main view with total monthly cost.
+- [ ] **Subscription Form**: Add ability to create/edit subscriptions.
+- [ ] **Analytics Module**: Visualize spending categories over time.
+- [ ] **Email Notifications**: Alert users 3 days before renewal.
+
+<DashedLine className="my-8" />
+
+### Technical Specs
+
+<CodeBlock
+  filename="schema.prisma"
+  code={`model Subscription {
+  id        String   @id @default(cuid())
+  name      String
+  amount    Float
+  currency  String   @default("USD")
+  cycle     String   @default("MONTHLY") // MONTHLY, YEARLY
+  nextDate  DateTime
+  category  String
+}`}
+/>
+
+We are using Prisma for the ORM to ensure type consistency across the backend and frontend layers.

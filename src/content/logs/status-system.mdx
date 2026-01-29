@@ -1,0 +1,61 @@
+---
+title: "Design System: Status Pills"
+date: "2026.01.28"
+description: "Documentation of the newly implemented Status Pill system for Log Cards, including color coding and animation states."
+status: "focus"
+category: "Design System"
+tags: ["Documentation", "UI", "Status"]
+---
+
+# Status Pill System
+
+We have implemented a dynamic status pill system to visually categorize Log Cards. Each status has a distinct color and animation profile.
+
+## Supported Statuses
+
+The system handles case-insensitive input (e.g., "Active", "active", "ACTIVE").
+
+### 1. FOCUS
+**Color:** Emerald (Green)
+**Animation:** Ping (Halo Effect)
+**Usage:** High priority item currently being worked on.
+```yaml
+status: "focus"
+```
+
+### 2. ACTIVE / IN_PROGRESS
+**Color:** Blue
+**Animation:** Ping (Halo Effect)
+**Usage:** Standard active task.
+```yaml
+status: "active"
+```
+
+### 3. PENDING
+**Color:** Amber (Orange)
+**Animation:** Ping (Halo Effect)
+**Usage:** Task waiting for review or external blocker.
+```yaml
+status: "pending"
+```
+
+### 4. PAUSED
+**Color:** Red
+**Animation:** None (Static Dot)
+**Usage:** Task temporarily halted.
+```yaml
+status: "paused"
+```
+
+### 5. ARCHIVED
+**Color:** Neutral (Gray)
+**Animation:** None (Static Dot)
+**Usage:** Old or deprecated items kept for record.
+```yaml
+status: "archived"
+```
+
+## Implementation Details
+
+The `LogCard` component parses the `meta.status` field from the MDX frontmatter.
+If the status is missing or unrecognized, it defaults to a neutral style with the raw text label.

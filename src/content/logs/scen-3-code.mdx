@@ -1,0 +1,25 @@
+---
+title: "Protocol Handshake"
+date: "2026.08.10"
+description: "Establishing secure handshake protocols for the mesh network."
+category: "NETWORK"
+tags: ["Security", "Protocol"]
+hero_image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=2000&auto=format&fit=crop"
+---
+
+## Security Layer
+
+The handshake protocol ensures that no rogue nodes can join the mesh without a signed certificate from the central authority. We have implemented a rotating key mechanism that refreshes every hour.
+
+<CodeBlock
+  filename="ARCH_DUMP.LOG"
+  className="bg-neutral-50 my-6"
+  code={`{
+  "handshake_id": "HS_99_ALPHA",
+  "cypher": "AES-256",
+  "ttl": 3600,
+  "status": "NEGOTIATED"
+}`}
+/>
+
+We are currently monitoring the latency impact of the new cipher suite.
