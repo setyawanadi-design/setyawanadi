@@ -33,6 +33,11 @@ export function PinnedLogs({ items = [], showHeader = true, className, variant =
                         id={log.slug}
                         description={log.metadata.description}
                         tags={log.metadata.tags}
+                        meta={{
+                            status: log.metadata.status,
+                            progress: log.metadata.progress,
+                            checklist: log.metadata.checklist
+                        }}
                         className="h-full"
                     />
                 ))}

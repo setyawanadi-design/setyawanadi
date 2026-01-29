@@ -6,7 +6,7 @@ import { Progress } from "@/components/ui/Progress";
 
 // Modules
 import { HeroModule } from "@/components/modules/HeroModule";
-import { ProjectCard } from "@/components/modules/ProjectCard";
+// import { ProjectCard } from "@/components/modules/ProjectCard";
 import { StackModule } from "@/components/modules/StackModule";
 import { ActivityFeed } from "@/components/modules/ActivityFeed";
 import { VisualLog } from "@/components/modules/VisualLog";
@@ -192,9 +192,8 @@ export default function DesignPage() {
                             <div className="flex flex-wrap gap-3">
                                 <Badge variant="pill">Pill</Badge>
                                 <Badge variant="outline">Outline</Badge>
-                                <Badge variant="dot" statusColor="active">Active</Badge>
-                                <Badge variant="dot" statusColor="warning">Warning</Badge>
-                                <Badge variant="dot" statusColor="accent">Accent</Badge>
+                                <Badge variant="live" statusColor="active">Live</Badge>
+                                <Badge variant="dot" statusColor="active">Dot</Badge>
                             </div>
                         </div>
 
@@ -281,13 +280,14 @@ export default function DesignPage() {
                                 tags={['React', 'Tailwind', 'Next.js']}
                                 className="col-span-1 h-full"
                             />
-                            <ProjectCard
+                            {/* ProjectCard Removed */}
+                            {/* <ProjectCard
                                 title="Project Stabilization"
                                 description="This represents a complex feature module. It consumes columns dynamically."
                                 progress={75}
                                 status="75%"
                                 className="col-span-1 lg:col-span-2"
-                            />
+                            /> */}
                         </div>
 
                     </div>

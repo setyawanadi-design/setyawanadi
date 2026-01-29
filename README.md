@@ -85,3 +85,12 @@ Major architecture refactor to make the homepage dynamic and implemented a robus
 - **Dynamic Cards**: Migrated hardcoded content to a dynamic JSON/MDX system
 - **Unified Project Cards**: Merged "Focus" and "Project" cards into a single cohesive UI. "System Status" and progress bars being pulled directly from MDX checklists.
 - **"Peek Project" Modal**:  text-based `[DONE]` checkbox indicators, and a clean timeline view. (imagine a terminal)
+
+### 2026.01.30 // Zero-Clutter Refactor & Dynamic Systems
+We did a massive cleanup to align with the "Zero-Clutter" philosophy. No more generic cards, no more deep nesting.
+
+- **Structure Flattened**: I moved all logs to the root level (`/[slug]`). The `/logs` directory is gone. URLs are shorter and cleaner.
+- **Flow State**: The Home Page grid is now intelligent. It uses a "dense" flow where cards automatically fill gaps. I also moved the Pinned Logs to the Sidebar, so the main feed is purely for content flow.
+- **Dynamic Hero**: I can now edit the site Title, Subtitle, and Status Badge directly from `src/content/home.json`. No more hardcoded strings in the component.
+- **Native Layouts**: Refactored the Log Detail page to loose the "Card" wrapper. It's now a clean, full-width article layout with "Tech" separators. simpler, faster, honest.
+- **Cleanup**: Fixed the ugly scrollbars (hidden now), removed orphan components (`ProjectCard`), and polished the mobile typography.

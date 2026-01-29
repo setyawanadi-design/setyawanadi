@@ -18,12 +18,26 @@ export interface LogMetadata {
     tags?: string[];
     pinned?: boolean;
     hero_image?: string;
+    progress?: {
+        total: number;
+        completed: number;
+        percentage: number;
+    };
+    checklist?: {
+        label: string;
+        completed: boolean;
+    }[];
     [key: string]: any;
 }
 
 export function getPinnedLogs(): LogPost[] {
     const allLogs = getLogPosts();
     return allLogs.filter(log => log.metadata.pinned === true);
+}
+
+export function getFocusedLogs(): LogPost[] {
+    const allLogs = getLogPosts();
+    return allLogs.filter(log => log.metadata.status?.toLowerCase() === "focus");
 }
 
 export function getLogPosts(): LogPost[] {
@@ -38,9 +52,17 @@ export function getLogPosts(): LogPost[] {
         const fileContents = fs.readFileSync(fullPath, 'utf8');
         const { data, content } = matter(fileContents);
 
+        // Calculate progress
+        const progress = analyzeChecklist(content);
+        const checklist = getChecklistItems(content);
+
         return {
             slug,
-            metadata: data as LogMetadata,
+            metadata: {
+                ...data,
+                progress,
+                checklist,
+            } as LogMetadata,
             content,
         };
     });
@@ -61,9 +83,15 @@ export function getLogBySlug(slug: string): LogPost | null {
         const fileContents = fs.readFileSync(fullPath, 'utf8');
         const { data, content } = matter(fileContents);
 
+        // Calculate progress
+        const progress = analyzeChecklist(content);
+
         return {
             slug,
-            metadata: data as LogMetadata,
+            metadata: {
+                ...data,
+                progress,
+            } as LogMetadata,
             content,
         };
     } catch {
@@ -71,9 +99,12 @@ export function getLogBySlug(slug: string): LogPost | null {
     }
 }
 
-
-
 export interface HomeData {
+    hero: {
+        title: string;
+        subtitle: string;
+        badgeText: string;
+    };
     focus: {
         title: string;
         status: "Active" | "Paused" | "Completed";
@@ -104,13 +135,32 @@ export interface HomeData {
     };
 }
 
-export function calculateProgress(content: string): number {
+export function analyzeChecklist(content: string) {
     const todos = (content.match(/- \[ \]/g) || []).length;
     const dones = (content.match(/- \[x\]/g) || []).length;
     const total = todos + dones;
+    return {
+        total,
+        completed: dones,
+        percentage: total === 0 ? 0 : Math.round((dones / total) * 100)
+    };
+}
 
-    if (total === 0) return 0;
-    return Math.round((dones / total) * 100);
+export function getChecklistItems(content: string) {
+    const checklistRegex = /^[-*] \[(x| )\] (.*)$/gm;
+    const checklist: { label: string; completed: boolean }[] = [];
+    let match;
+    while ((match = checklistRegex.exec(content)) !== null) {
+        checklist.push({
+            completed: match[1] === 'x',
+            label: match[2].trim()
+        });
+    }
+    return checklist;
+}
+
+export function calculateProgress(content: string): number {
+    return analyzeChecklist(content).percentage;
 }
 
 export function getHomeData(): HomeData | null {

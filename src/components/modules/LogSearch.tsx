@@ -41,12 +41,12 @@ export function LogSearch({ className }: LogSearchProps) {
             </div>
 
             {/* Divider + Search */}
-            <div className="flex items-center gap-3 pl-4 border-l border-border/50">
+            <div className="flex items-center gap-2 pl-4 border-l border-border/40 h-8 self-center">
                 <Search className="w-3.5 h-3.5 text-meta shrink-0" />
                 <input
                     type="text"
                     placeholder="SEARCH_LOGS..."
-                    className="bg-transparent border-none outline-none font-mono text-micro md:text-xs text-primary placeholder:text-meta/40 w-24 md:w-32 uppercase tracking-wide"
+                    className="bg-transparent border-none outline-none font-mono text-xs text-primary placeholder:text-meta/40 w-24 md:w-32 uppercase tracking-wide"
                 />
             </div>
         </Card>

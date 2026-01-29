@@ -13,19 +13,19 @@ export function Sidebar({ pinnedLogs = [], recentLogs = [] }: { pinnedLogs?: Log
     const pathname = usePathname();
     const isDesignPage = pathname === "/design";
     const isHomePage = pathname === "/";
-    const isLogsRoot = pathname === "/logs";
-    const isLogDetail = pathname?.startsWith("/logs/") && pathname !== "/logs";
-    const isLogsPage = isLogsRoot; // "isLogsPage" in the lower block refers to the general section, but I used it for the categories block. I will update usage.
+    const isLogsRoot = false; // /logs no longer exists
+    // If it's not home and not design, it's a log detail page (for now)
+    const isLogDetail = !isHomePage && !isDesignPage;
 
     // Map logs to Activity Feed format
     const activityItems = recentLogs.map((log) => ({
         id: log.slug,
         text: `New Log: ${log.metadata.title}`,
-        href: `/logs/${log.slug}`
+        href: `/${log.slug}`
     }));
 
     return (
-        <aside className="h-full flex flex-col gap-6 overflow-y-auto pb-4 no-scrollbar">
+        <aside className="h-full flex flex-col gap-6 overflow-y-auto pb-24 no-scrollbar">
             {/* Design System Navigation */}
             {isDesignPage && (
                 <div className="sticky top-0">
@@ -43,22 +43,11 @@ export function Sidebar({ pinnedLogs = [], recentLogs = [] }: { pinnedLogs?: Log
                         ]}
                     />
                     <ContactCard />
-                </div>
-            )}
-
-            {/* Logs Page Sidebar Widgets */}
-            {isLogsPage && !isLogDetail && (
-                <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-500">
-                    <ContactCard />
-                    <LogCategories items={[
-                        { label: "FIELD_REPORTS", count: 12 },
-                        { label: "SYSTEM_LOGS", count: 8 },
-                        { label: "REFLECTIONS", count: 5 },
-                        { label: "ARCHIVE", count: 24 },
-                    ]} />
                     <PinnedLogs items={pinnedLogs} className="md:grid-cols-1 gap-3" variant="compact" />
                 </div>
             )}
+
+
 
             {/* Log Detail Page: Table of Contents */}
             {isLogDetail && (

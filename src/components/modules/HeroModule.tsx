@@ -1,38 +1,36 @@
-
-import React from 'react';
-import { Card } from "@/components/ui/Card";
+// import React from 'react';
 import { Badge } from "@/components/ui/Badge";
-import { Button } from "@/components/ui/Button";
+import { DashedLine } from "@/components/ui/DashedLine";
 
 interface HeroModuleProps {
     title?: string;
     subtitle?: string;
     badgeText?: string;
-    ctaText?: string;
-    ctaLink?: string;
 }
 
 export function HeroModule({
-    title = "Hello. I'm Card.",
-    subtitle = "I am the fundamental building block. I come in many shapes, but I am always the same component.",
-    badgeText = "Master Atom",
-    ctaText = "Explore Documentation",
-    ctaLink = "#"
+    title = "Setyawanadi",
+    subtitle = "Digital Workspace & Design System",
+    badgeText = "System Online",
 }: HeroModuleProps) {
     return (
-        <Card variant="hero" className="col-span-full">
-            <div className="flex justify-between items-start">
-                <div>
-                    <Badge variant="pill" className="mb-4">{badgeText}</Badge>
-                    <h2 className="text-4xl font-bold mb-4">{title}</h2>
-                    <p className="text-xl text-meta max-w-lg mb-6">
+        <div className="pb-8 mb-8 pt-8 relative col-span-full animate-in fade-in slide-in-from-bottom-2 duration-700">
+            {/* Bottom Separator */}
+            <DashedLine className="absolute bottom-0 left-0 w-full" variant="tech" />
+
+            <div className="flex justify-between items-end">
+                <div className="max-w-3xl">
+                    <Badge variant="soft" className="mb-6">{badgeText}</Badge>
+                    <h1 className="text-5xl md:text-7xl font-display font-bold mb-6 tracking-tight text-primary">
+                        {title}
+                    </h1>
+                    <p className="text-lg md:text-xl text-meta leading-relaxed max-w-3xl">
                         {subtitle}
                     </p>
-                    <Button variant="link" href={ctaLink}>{ctaText}</Button>
                 </div>
-                {/* Simulated Image Placeholder */}
-                {/* Decorative Visual */}
-                <div className="relative w-48 h-48 hidden md:block">
+
+                {/* Decorative Visual (Restored) */}
+                <div className="relative w-32 h-32 md:w-48 md:h-48 hidden md:block mb-4 mr-4 opacity-80">
                     <div className="absolute inset-0 bg-gradient-to-tr from-accent/20 to-transparent rounded-full blur-2xl" />
                     <div className="absolute inset-4 border border-accent/20 rounded-full" />
                     <div className="absolute inset-8 border border-dashed border-accent/40 rounded-full animate-[spin_10s_linear_infinite]" />
@@ -41,6 +39,6 @@ export function HeroModule({
                     </div>
                 </div>
             </div>
-        </Card>
+        </div>
     );
 }

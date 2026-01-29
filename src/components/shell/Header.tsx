@@ -20,21 +20,7 @@ export function Header() {
                 <Link href="/">Adi<span className="text-accent text-3xl leading-none">.</span></Link>
             </div>
             <nav className="flex items-center gap-6">
-                {['logs'].map((item) => {
-                    const isActive = pathname === `/${item}` || pathname?.startsWith(`/${item}/`);
-                    return (
-                        <Link
-                            key={item}
-                            href={`/${item}`}
-                            className={cn(
-                                "text-sm font-mono font-medium transition-colors no-underline",
-                                isActive ? "text-accent font-bold" : "text-primary hover:text-accent"
-                            )}
-                        >
-                            [{item}]
-                        </Link>
-                    );
-                })}
+                {/* Navigation Links (Currently Empty) */}
             </nav>
         </header>
     );
