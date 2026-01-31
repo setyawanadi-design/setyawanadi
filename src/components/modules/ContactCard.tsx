@@ -18,7 +18,7 @@ import Link from "next/link";
 export function ContactCard({
     title = "Send me a message",
     label = "CONTACT",
-    href = "mailto:setyawanadi@hotmail.com?subject=Hey found your contact from your site or something",
+    href = "mailto:setyawanadi@hotmail.com?subject=Hello, I found your contact from your site",
     className
 }: ContactCardProps) {
     return (
