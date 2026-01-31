@@ -226,6 +226,8 @@ export function LogCard({
                 onClose={() => setIsModalOpen(false)}
                 title={title}
                 id={id}
+                tags={tags}
+                category={category}
                 meta={meta}
                 date={date}
                 description={description}

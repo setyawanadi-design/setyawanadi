@@ -1,5 +1,5 @@
 ---
-title: "Writing MDX for post here"
+title: "Writing MDX for post"
 date: "2026.01.31"
 description: "If you clone the repo, this is the manual you need to know how to write your post, how to structure and style your content."
 status: "archived"
@@ -32,7 +32,7 @@ Every post starts with a settings block at the very top. You only **REALLY** nee
 
 ### The Nice-to-Haves
 *   **hero_image**: A link to a picture for the top of the page.
-*   **tags**: Keywords like `["Excel", "Python", "AI", "Games", "Movies", "Books"]`.
+*   **tags**: Keywords like `["Excel", "Python", "AI", "Games", "Movies", "Books"]`. always use `[` and `]` to wrap the tags.
 
 ### System Stuff (Advanced)
 *   **status**: `Focus`, `Active`, `Paused`, or `Archived`. This adds a colored badge to the card. Set to `Focus` if you want to share and highlight the post on top.
@@ -63,6 +63,8 @@ pinned: false
 
 Just type. If you want a new paragraph, hit **Enter twice**.
 
+<Grid>
+<div>
 **Type this:**
 
 ```text
@@ -70,11 +72,15 @@ First paragraph.
 
 Second paragraph.
 ```
-
+</div>
+<div>
 **You get this:**
+
 First paragraph.
 
 Second paragraph.
+</div>
+</Grid>
 
 
 
@@ -82,14 +88,20 @@ Second paragraph.
 
 Wrap words with `**` for **bold** or `*` for *italic*.
 
+<Grid>
+<div>
 **Type this:**
 
 ```text
 I like **Bold** text and *Italic* text.
 ```
-
+</div>
+<div>
 **You get this:**
+
 I like **Bold** text and *Italic* text.
+</div>
+</Grid>
 
 
 
@@ -97,17 +109,22 @@ I like **Bold** text and *Italic* text.
 
 Use `##` for big section titles. Use `###` for smaller subsections.
 
+<Grid>
+<div>
 **Type this:**
 
 ```text
 ## Big Section Title
 ### Smaller Subsection
 ```
-
+</div>
+<div>
 **You get this:**
 
 <div className="text-2xl font-bold mt-8 mb-4">Big Section Title</div>
 <div className="text-xl font-bold mt-6 mb-3">Smaller Subsection</div>
+</div>
+</Grid>
 
 
 
@@ -116,6 +133,8 @@ Use `##` for big section titles. Use `###` for smaller subsections.
 #### Bulleted List
 Start each line with `*` and a space.
 
+<Grid>
+<div>
 **Type this:**
 
 ```text
@@ -123,15 +142,21 @@ Start each line with `*` and a space.
 * Eggs
 * Bread
 ```
-
+</div>
+<div>
 **You get this:**
+
 * Milk
 * Eggs
 * Bread
+</div>
+</Grid>
 
 #### Numbered List
 Start each line with a number, a period, and a space.
 
+<Grid>
+<div>
 **Type this:**
 
 ```text
@@ -139,15 +164,21 @@ Start each line with a number, a period, and a space.
 2. Second step
 3. Third step
 ```
-
+</div>
+<div>
 **You get this:**
+
 1. First step
 2. Second step
 3. Third step
+</div>
+</Grid>
 
 #### Nested List (The Combo)
 Add **four spaces** before the sub-items to indent them.
 
+<Grid>
+<div>
 **Type this:**
 
 ```text
@@ -158,29 +189,39 @@ Add **four spaces** before the sub-items to indent them.
     1. Step 2a
     2. Step 2b
 ```
-
+</div>
+<div>
 **You get this:**
+
 1. Main Item
     * Sub-item A
     * Sub-item B
 2. Next Item
     1. Step 2a
     2. Step 2b
+</div>
+</Grid>
 
 
 
 #### Checklists (The Progress Bar)
 The system tracks these for the "Progress" bar on your card.
 
+<Grid>
+<div>
 **Type this:**
 ```text
 - [ ] Todo Item
 - [x] Done Item
 ```
-
+</div>
+<div>
 **You get this:**
+
 - [ ] Todo Item
 - [x] Done Item
+</div>
+</Grid>
 
 
 
@@ -188,17 +229,23 @@ The system tracks these for the "Progress" bar on your card.
 
 Need to shout something important?
 
+<Grid>
+<div>
 **Type this:**
 ````jsx
 <Callout>
     **Note:** Don't forget to push your code!
 </Callout>
 ````
-
+</div>
+<div>
 **You get this:**
+
 <Callout>
     **Note:** Don't forget to push your code!
 </Callout>
+</div>
+</Grid>
 
 <DashedLine className="my-8" />
 
@@ -208,15 +255,20 @@ Need to shout something important?
 
 Just paste an image URL inside `![Description](URL)`.
 
+<Grid>
+<div>
 **Type this:**
 
 ```text
 ![Mountain View](https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800)
 ```
-
+</div>
+<div>
 **You get this:**
 
 ![Mountain View](https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800)
+</div>
+</Grid>
 
 <DashedLine variant="tech" className="my-8" />
 
@@ -224,18 +276,23 @@ Just paste an image URL inside `![Description](URL)`.
 
 Wrap your image in a `<Box>` to give it a background and padding.
 
+<Grid>
+<div>
 **Type this:**
 ````jsx
 <Box className="p-2 bg-neutral-100 rounded-lg">
     ![Framed Image](https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800)
 </Box>
 ````
-
+</div>
+<div>
 **You get this:**
 
 <Box className="p-2 bg-neutral-100 rounded-lg">
     ![Framed Image](https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800)
 </Box>
+</div>
+</Grid>
 
 <DashedLine className="my-8" />
 
@@ -247,6 +304,8 @@ Need to put things side by side? Use `<Grid>` and `<Box>`.
 
 Each `<Box>` becomes a column.
 
+<Grid>
+<div>
 **Type this:**
 ````jsx
 <Grid>
@@ -260,7 +319,8 @@ Each `<Box>` becomes a column.
     </Box>
 </Grid>
 ````
-
+</div>
+<div>
 **You get this:**
 
 <Grid>
@@ -272,6 +332,8 @@ Each `<Box>` becomes a column.
         **Right Side**
         Write your text here...
     </Box>
+</Grid>
+</div>
 </Grid>
 
 
@@ -280,6 +342,8 @@ Each `<Box>` becomes a column.
 
 Add `className="grid-cols-1 md:grid-cols-3"` to make three columns.
 
+<Grid>
+<div>
 **Type this:**
 ````jsx
 <Grid className="grid-cols-1 md:grid-cols-3">
@@ -288,13 +352,16 @@ Add `className="grid-cols-1 md:grid-cols-3"` to make three columns.
     <Box className="bg-neutral-100 p-4">Column 3</Box>
 </Grid>
 ````
-
+</div>
+<div>
 **You get this:**
 
 <Grid className="grid-cols-1 md:grid-cols-3">
     <Box className="bg-neutral-100 p-4">Column 1</Box>
     <Box className="bg-neutral-100 p-4">Column 2</Box>
     <Box className="bg-neutral-100 p-4">Column 3</Box>
+</Grid>
+</div>
 </Grid>
 
 
@@ -305,6 +372,8 @@ The `<Gallery />` component takes your images and arranges them beautifully. **Y
 
 #### 3 Images (Bento Style)
 
+<Grid>
+<div>
 **Type this:**
 
 ````jsx
@@ -314,7 +383,8 @@ The `<Gallery />` component takes your images and arranges them beautifully. **Y
     "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=800"
 ]} />
 ````
-
+</div>
+<div>
 **You get this:**
 
 <Gallery images={[
@@ -322,9 +392,13 @@ The `<Gallery />` component takes your images and arranges them beautifully. **Y
     "https://images.unsplash.com/photo-1595225476474-87563907a212?w=800",
     "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=800"
 ]} />
+</div>
+</Grid>
 
 #### 5 Images (Mosaic)
 
+<Grid>
+<div>
 **Type this:**
 
 ````jsx
@@ -336,7 +410,8 @@ The `<Gallery />` component takes your images and arranges them beautifully. **Y
     "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800"
 ]} />
 ````
-
+</div>
+<div>
 **You get this:**
 
 <Gallery images={[
@@ -346,6 +421,8 @@ The `<Gallery />` component takes your images and arranges them beautifully. **Y
     "https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?w=800",
     "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800"
 ]} />
+</div>
+</Grid>
 
 
 <DashedLine className="my-8" />
@@ -358,14 +435,19 @@ Need to separate sections? Use `<DashedLine />`.
 
 The basic divider for clean separation.
 
+<Grid>
+<div>
 **Type this:**
 ````jsx
 <DashedLine />
 ````
-
+</div>
+<div>
 **You get this:**
 
 <DashedLine />
+</div>
+</Grid>
 
 
 
@@ -373,14 +455,19 @@ The basic divider for clean separation.
 
 Add a pattern for a tech vibe.
 
+<Grid>
+<div>
 **Type this:**
 ````jsx
 <DashedLine variant="tech" />
 ````
-
+</div>
+<div>
 **You get this:**
 
 <DashedLine variant="tech" />
+</div>
+</Grid>
 
 <DashedLine className="my-8" />
 
@@ -388,6 +475,8 @@ Add a pattern for a tech vibe.
 
 Want to show code snippets? Use **three backticks** (the key under Esc).
 
+<Grid>
+<div>
 **Type this:**
 
 ````rust
@@ -397,13 +486,17 @@ fn main() {
 }
 ```
 ````
-
+</div>
+<div>
 **You get this:**
+
 ```rust
 fn main() {
     println!("It works!");
 }
 ```
+</div>
+</Grid>
 
 You can replace `rust` with `python`, `javascript`, `jsx`, or whatever language you're using.
 
@@ -413,6 +506,8 @@ You can replace `rust` with `python`, `javascript`, `jsx`, or whatever language 
 
 Want to show which file the code belongs to?
 
+<Grid>
+<div>
 **Type this:**
 
 ````rust
@@ -424,7 +519,8 @@ fn main() {
 ```
 </CodeBlock>
 ````
-
+</div>
+<div>
 **You get this:**
 
 <CodeBlock filename="main.rs">
@@ -434,6 +530,8 @@ fn main() {
 }
 ```
 </CodeBlock>
+</div>
+</Grid>
 
 <DashedLine variant="receipt" />
 

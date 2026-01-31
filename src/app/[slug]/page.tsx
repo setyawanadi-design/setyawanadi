@@ -14,7 +14,7 @@ import { Gallery } from "@/components/ui/Gallery";
 
 // MDX Component Map
 const components = {
-    CodeBlock: (props: React.ComponentProps<typeof CodeBlock>) => <CodeBlock {...props} className="mb-8" />,
+    CodeBlock: (props: React.ComponentProps<typeof CodeBlock>) => <CodeBlock {...props} className="mb-8 w-full md:w-1/2" />,
     Progress,
     Badge,
     DashedLine,
@@ -108,7 +108,7 @@ export default async function LogPostPage({ params }: { params: Promise<{ slug: 
                 )}
 
                 {/* 3. Content Section (Padded) */}
-                <div className="px-4 pb-5 md:px-6 md:pb-12 pt-8 space-y-12">
+                <div className="px-4 pb-5 md:px-12 md:pb-12 pt-8 space-y-12">
                     <div className="space-y-4 max-w-2xl">
                         <h1 className="text-4xl md:text-5xl font-display font-bold leading-tight text-primary">
                             {post.metadata.title}

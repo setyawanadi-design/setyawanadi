@@ -30,7 +30,7 @@ export function Card({
                 variant === "flat" && "bg-transparent border-none p-0",
 
                 // Interactive Stance (Hover effects)
-                variant === "interactive" && "bg-card border border-border hover:border-accent hover:shadow-sm hover:-translate-y-0.5 cursor-pointer",
+                variant === "interactive" && "bg-card border border-border hover:border-accent hover:shadow-sm hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] active:border-accent/50 cursor-pointer",
 
                 // Base Padding (can be overridden)
                 variant !== "flat" && variant !== "hero" && "p-6",

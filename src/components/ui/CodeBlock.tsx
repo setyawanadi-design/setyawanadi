@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { cn } from "@/lib/utils";
 import { Card } from "@/components/ui/Card";
 
 interface CodeBlockProps {
@@ -16,7 +17,7 @@ export function CodeBlock({ filename, code, className, children }: CodeBlockProp
     );
 
     return (
-        <Card className={`font-mono text-xs bg-neutral-50 mb-8 ${className || ''}`}>
+        <Card className={cn("code-block-card font-mono text-xs bg-neutral-50 mb-8", className)}>
             {filename && (
                 <div className="mb-4 text-accent uppercase tracking-wider text-xs font-bold">
                     {filename}

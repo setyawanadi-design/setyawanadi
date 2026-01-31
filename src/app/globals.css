@@ -88,3 +88,10 @@ body {
   margin-top: 1.5rem !important;
   margin-bottom: 0.75rem !important;
 }
+
+/* Code Block Sizing Logic */
+/* Only constrain width if it's a DIRECT child of the prose container */
+/* This prevents nested code blocks (inside grids) from shrinking twice */
+.prose > .code-block-card {
+  @apply w-full md:w-1/2;
+}

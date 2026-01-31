@@ -52,6 +52,7 @@ export default function Home() {
             id={log.slug}
             description={log.metadata.description}
             tags={log.metadata.tags}
+            category={log.metadata.category}
             meta={{
               status: log.metadata.status,
               progress: log.metadata.progress,
@@ -82,6 +83,7 @@ export default function Home() {
             id={log.slug}
             description={log.metadata.description}
             tags={log.metadata.tags}
+            category={log.metadata.category}
             meta={{
               status: log.metadata.status,
               progress: log.metadata.progress,

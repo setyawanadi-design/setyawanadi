@@ -6,12 +6,15 @@ import { Modal } from "@/components/ui/Modal";
 import { Progress } from "@/components/ui/Progress";
 import { cn } from "@/lib/utils";
 import { Share2 } from "lucide-react";
+import { Badge } from "@/components/ui/Badge";
 
 interface LogPeekProps {
     isOpen: boolean;
     onClose: () => void;
     title: string;
     id?: string;
+    tags?: string[]; // Added tags prop
+    category?: string; // Added category prop
     meta?: {
         status?: string;
         progress?: {
@@ -34,6 +37,8 @@ export function LogPeek({
     onClose,
     title,
     id,
+    tags, // Destructure tags
+    category, // Added category
     meta,
     description,
 }: LogPeekProps) {
@@ -154,6 +159,22 @@ export function LogPeek({
                         <p className="text-sm text-meta leading-relaxed">
                             {description}
                         </p>
+                    </div>
+                )}
+
+                {/* Tags & Category Section */}
+                {(category || (tags && tags.length > 0)) && (
+                    <div className="flex flex-wrap gap-2 mb-6 items-center">
+                        {category && (
+                            <Badge variant="default" className="text-xs px-2 py-0.5 h-auto rounded-full">
+                                {category}
+                            </Badge>
+                        )}
+                        {tags?.map((tag) => (
+                            <Badge key={tag} variant="soft" className="text-xs">
+                                {tag}
+                            </Badge>
+                        ))}
                     </div>
                 )}
 
