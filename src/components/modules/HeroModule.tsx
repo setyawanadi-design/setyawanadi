@@ -21,7 +21,7 @@ export function HeroModule({
 
             <div className="flex justify-between items-end">
                 <div className="max-w-3xl">
-                    <Badge variant="soft" className="mb-6">{badgeText}</Badge>
+                    <Badge variant="dot" statusColor="busy" className="mb-6">{badgeText}</Badge>
                     <InteractiveHoverTitle
                         title={title}
                         className="text-5xl md:text-7xl font-display font-bold mb-6 tracking-tight text-primary"

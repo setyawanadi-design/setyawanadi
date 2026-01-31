@@ -26,6 +26,7 @@ interface LogPeekProps {
         headers?: string[];
     };
     date?: string; // Optional context if needed
+    description?: string;
 }
 
 export function LogPeek({
@@ -34,6 +35,7 @@ export function LogPeek({
     title,
     id,
     meta,
+    description,
 }: LogPeekProps) {
     // Logic: Map status to Live Pill configuration
     // 3 MONTH ARCHIVE RULE not needed here for display, passed status or calculated in parent is enough, 
@@ -49,7 +51,7 @@ export function LogPeek({
         e.preventDefault();
         e.stopPropagation();
         if (typeof window !== "undefined" && id) {
-            const url = `${window.location.origin}/logs/${id}`;
+            const url = `${window.location.origin}/${id}`;
             navigator.clipboard.writeText(url);
             setCopied(true);
             setTimeout(() => setCopied(false), 2000);
@@ -97,7 +99,7 @@ export function LogPeek({
                 <div className="pb-4 mb-4 relative">
                     <div className="flex items-center justify-between">
                         <h2 className="text-sm font-mono uppercase tracking-widest text-primary font-bold">
-                            SYSTEM_REPORT // {title.toUpperCase()}
+                            {title.toUpperCase()}
                         </h2>
                         <Button
                             variant="ghost"
@@ -146,6 +148,14 @@ export function LogPeek({
                         </div>
                     )}
                 </div>
+
+                {description && (
+                    <div className="mb-6">
+                        <p className="text-sm text-meta leading-relaxed">
+                            {description}
+                        </p>
+                    </div>
+                )}
 
                 {/* 3. Timeline / Topics Section (Scrollable) */}
                 <div className="mb-0 flex-1 min-h-0 overflow-hidden flex flex-col">

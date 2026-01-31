@@ -13,23 +13,23 @@ interface ContactCardProps {
 }
 
 export function ContactCard({
-    title = "Start a collaboration",
+    title = "Send me a message",
     label = "CONTACT",
     href = "/contact",
     className
 }: ContactCardProps) {
     return (
-        <div className={cn("block group shadow-none cursor-pointer", className)}>
-            <Card className="bg-accent border-accent text-white hover:bg-[#006FDE] transition-all duration-300 flex items-center justify-between p-4 shadow-none cursor-pointer">
-                <div>
+        <div className={cn("block group cursor-pointer", className)}>
+            <Card className="bg-accent border-accent text-white transition-all duration-300 flex items-center gap-2 p-4 cursor-pointer shadow-lg -translate-y-1 hover:shadow-none hover:translate-y-0">
+                <div className="flex-1">
                     <span className="font-mono text-micro uppercase tracking-wider text-white/80 font-bold mb-1 block">
                         {label}
                     </span>
-                    <h3 className="text-lg font-bold text-white">
+                    <h3 className="text-lg font-medium text-white">
                         {title}
                     </h3>
                 </div>
-                <ArrowRight className="w-5 h-5 text-white transform transition-transform duration-300 group-hover:translate-x-1" />
+                <ArrowRight className="w-5 h-5 text-white transform transition-transform duration-300 group-hover:-translate-x-1" />
             </Card>
         </div>
     );

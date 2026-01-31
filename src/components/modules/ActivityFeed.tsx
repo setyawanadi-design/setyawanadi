@@ -46,7 +46,7 @@ export function ActivityFeed({ items, className }: ActivityFeedProps) {
                 </h3>
                 <History className="w-3.5 h-3.5 text-meta group-hover/card:text-accent transition-colors" />
             </div>
-            <DashedLine className="mb-4" variant="receipt" />
+            <DashedLine className="mb-4" variant="tech" />
 
             <div className="flex-1 space-y-1 overflow-y-auto pr-2 mb-6">
                 {items.map((item) => (
@@ -61,7 +61,7 @@ export function ActivityFeed({ items, className }: ActivityFeedProps) {
 
             {/* Footer / Status */}
             <div className="py-3 px-4 bg-meta/5 border-t border-border/40 relative">
-                <DashedLine className="absolute top-0 left-0 w-full" variant="receipt" />
+                <DashedLine className="absolute top-0 left-0 w-full" variant="tech" />
                 <div className="flex items-center justify-between font-mono text-micro text-meta/60">
                     <span className="font-mono text-micro uppercase tracking-wider text-meta group-hover/card:text-accent transition-colors font-medium">
                         Live Log Feed

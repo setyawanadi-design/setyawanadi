@@ -85,7 +85,7 @@ export function TableOfContents({ items, autoScan = false }: { items?: TOCItem[]
                 </h4>
                 <Grip className="w-3 h-3 text-meta/40 group-hover/card:text-accent transition-colors" />
             </div>
-            <DashedLine className="mb-4" variant="receipt" />
+            <DashedLine className="mb-4" variant="tech" />
             <nav className="space-y-1">
                 {sections.map((section) => (
                     <button

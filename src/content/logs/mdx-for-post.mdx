@@ -1,0 +1,450 @@
+---
+title: "Writing MDX for post here"
+date: "2026.01.31"
+description: "If you clone the repo, this is the manual you need to know how to write your post, how to structure and style your content."
+status: "archived"
+pinned: true
+progress: false
+category: "Development"
+tags: ["System", "Reference", "Grid"]
+hero_image: "https://images.unsplash.com/reserve/LJIZlzHgQ7WPSh5KVTCB_Typewriter.jpg?q=80&w=696&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+---
+
+
+## Introduction
+
+Welcome! This is your guide to writing posts for the Studio.
+
+**You don't need to be a programmer.** If you can write an email, you can write a post here.
+
+This system uses something called **Markdown**. It's just a way to style text using simple symbols like `*` or `#`. Think of it like using bold or italics in a text message—except you type the formatting instead of clicking buttons.
+
+<DashedLine className="my-8" />
+
+## 1. The Post Settings (Frontmatter)
+
+Every post starts with a settings block at the very top. You only **REALLY** need the first three.
+
+### The Must-Haves
+*   **title**: The title of your post.
+*   **date**: When you wrote it (format: `YYYY.MM.DD`).
+*   **description**: A short summary that shows up on the card.
+
+### The Nice-to-Haves
+*   **hero_image**: A link to a picture for the top of the page.
+*   **tags**: Keywords like `["Excel", "Python", "AI", "Games", "Movies", "Books"]`.
+
+### System Stuff (Advanced)
+*   **status**: `Focus`, `Active`, `Paused`, or `Archived`. This adds a colored badge to the card. Set to `Focus` if you want to share and highlight the post on top.
+*   **pinned**: Set to `true` if you want this post to show up on the sidebar.
+*   **progress**: Set to `false` if you have checklist and want to hide progress bar. Set to `true` if you have checklists and want to share your progress.
+*   **category**: I typically stick to `Development`, `Design`, `Life`, `Notes`, or `Thoughts`, but you're free to make your own. Just try to keep the list short so things stay organized.
+
+**Copy and paste this template:**
+
+````text
+---
+title: "My Amazing Post"
+date: "2026.01.30"
+description: "A short summary that appears on the home page."
+status: "Active"
+category: "LOG"
+tags: ["Daily", "Update"]
+hero_image: "https://images.unsplash.com/..."
+pinned: false
+---
+````
+
+<DashedLine className="my-8" />
+
+## 2. Writing Basics
+
+### Paragraphs
+
+Just type. If you want a new paragraph, hit **Enter twice**.
+
+**Type this:**
+
+```text
+First paragraph.
+
+Second paragraph.
+```
+
+**You get this:**
+First paragraph.
+
+Second paragraph.
+
+
+
+### Making Text Bold or Italic
+
+Wrap words with `**` for **bold** or `*` for *italic*.
+
+**Type this:**
+
+```text
+I like **Bold** text and *Italic* text.
+```
+
+**You get this:**
+I like **Bold** text and *Italic* text.
+
+
+
+### Headings (Titles)
+
+Use `##` for big section titles. Use `###` for smaller subsections.
+
+**Type this:**
+
+```text
+## Big Section Title
+### Smaller Subsection
+```
+
+**You get this:**
+
+<div className="text-2xl font-bold mt-8 mb-4">Big Section Title</div>
+<div className="text-xl font-bold mt-6 mb-3">Smaller Subsection</div>
+
+
+
+### Lists
+
+#### Bulleted List
+Start each line with `*` and a space.
+
+**Type this:**
+
+```text
+* Milk
+* Eggs
+* Bread
+```
+
+**You get this:**
+* Milk
+* Eggs
+* Bread
+
+#### Numbered List
+Start each line with a number, a period, and a space.
+
+**Type this:**
+
+```text
+1. First step
+2. Second step
+3. Third step
+```
+
+**You get this:**
+1. First step
+2. Second step
+3. Third step
+
+#### Nested List (The Combo)
+Add **four spaces** before the sub-items to indent them.
+
+**Type this:**
+
+```text
+1. Main Item
+    * Sub-item A
+    * Sub-item B
+2. Next Item
+    1. Step 2a
+    2. Step 2b
+```
+
+**You get this:**
+1. Main Item
+    * Sub-item A
+    * Sub-item B
+2. Next Item
+    1. Step 2a
+    2. Step 2b
+
+
+
+#### Checklists (The Progress Bar)
+The system tracks these for the "Progress" bar on your card.
+
+**Type this:**
+```text
+- [ ] Todo Item
+- [x] Done Item
+```
+
+**You get this:**
+- [ ] Todo Item
+- [x] Done Item
+
+
+
+### Highlights (Callouts)
+
+Need to shout something important?
+
+**Type this:**
+````jsx
+<Callout>
+    **Note:** Don't forget to push your code!
+</Callout>
+````
+
+**You get this:**
+<Callout>
+    **Note:** Don't forget to push your code!
+</Callout>
+
+<DashedLine className="my-8" />
+
+## 3. Adding Images
+
+### The Easy Way
+
+Just paste an image URL inside `![Description](URL)`.
+
+**Type this:**
+
+```text
+![Mountain View](https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800)
+```
+
+**You get this:**
+
+![Mountain View](https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800)
+
+<DashedLine variant="tech" className="my-8" />
+
+### The Styled Way (With a Frame)
+
+Wrap your image in a `<Box>` to give it a background and padding.
+
+**Type this:**
+````jsx
+<Box className="p-2 bg-neutral-100 rounded-lg">
+    ![Framed Image](https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800)
+</Box>
+````
+
+**You get this:**
+
+<Box className="p-2 bg-neutral-100 rounded-lg">
+    ![Framed Image](https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800)
+</Box>
+
+<DashedLine className="my-8" />
+
+## 4. Layouts (The Grid)
+
+Need to put things side by side? Use `<Grid>` and `<Box>`.
+
+### Two Columns (Side by Side)
+
+Each `<Box>` becomes a column.
+
+**Type this:**
+````jsx
+<Grid>
+    <Box className="bg-neutral-100 p-4 rounded">
+        **Left Side**
+        Write your text here...
+    </Box>
+    <Box className="bg-neutral-100 p-4 rounded">
+        **Right Side**
+        Write your text here...
+    </Box>
+</Grid>
+````
+
+**You get this:**
+
+<Grid>
+    <Box className="bg-neutral-100 p-4 rounded">
+        **Left Side**
+        Write your text here...
+    </Box>
+    <Box className="bg-neutral-100 p-4 rounded">
+        **Right Side**
+        Write your text here...
+    </Box>
+</Grid>
+
+
+
+### Three Columns
+
+Add `className="grid-cols-1 md:grid-cols-3"` to make three columns.
+
+**Type this:**
+````jsx
+<Grid className="grid-cols-1 md:grid-cols-3">
+    <Box className="bg-neutral-100 p-4">Column 1</Box>
+    <Box className="bg-neutral-100 p-4">Column 2</Box>
+    <Box className="bg-neutral-100 p-4">Column 3</Box>
+</Grid>
+````
+
+**You get this:**
+
+<Grid className="grid-cols-1 md:grid-cols-3">
+    <Box className="bg-neutral-100 p-4">Column 1</Box>
+    <Box className="bg-neutral-100 p-4">Column 2</Box>
+    <Box className="bg-neutral-100 p-4">Column 3</Box>
+</Grid>
+
+
+
+### Smart Gallery (Auto-Bento)
+
+The `<Gallery />` component takes your images and arranges them beautifully. **You don't do the math.** Just give it a list of URLs.
+
+#### 3 Images (Bento Style)
+
+**Type this:**
+
+````jsx
+<Gallery images={[
+    "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?w=800",
+    "https://images.unsplash.com/photo-1595225476474-87563907a212?w=800",
+    "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=800"
+]} />
+````
+
+**You get this:**
+
+<Gallery images={[
+    "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?w=800",
+    "https://images.unsplash.com/photo-1595225476474-87563907a212?w=800",
+    "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=800"
+]} />
+
+#### 5 Images (Mosaic)
+
+**Type this:**
+
+````jsx
+<Gallery images={[
+    "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?w=800",
+    "https://images.unsplash.com/photo-1595225476474-87563907a212?w=800",
+    "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=800",
+    "https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?w=800",
+    "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800"
+]} />
+````
+
+**You get this:**
+
+<Gallery images={[
+    "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?w=800",
+    "https://images.unsplash.com/photo-1595225476474-87563907a212?w=800",
+    "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=800",
+    "https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?w=800",
+    "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800"
+]} />
+
+
+<DashedLine className="my-8" />
+
+## 5. Dividers
+
+Need to separate sections? Use `<DashedLine />`.
+
+### Standard Divider
+
+The basic divider for clean separation.
+
+**Type this:**
+````jsx
+<DashedLine />
+````
+
+**You get this:**
+
+<DashedLine />
+
+
+
+### Technical Divider (With Pattern)
+
+Add a pattern for a tech vibe.
+
+**Type this:**
+````jsx
+<DashedLine variant="tech" />
+````
+
+**You get this:**
+
+<DashedLine variant="tech" />
+
+<DashedLine className="my-8" />
+
+## 6. Showing Code
+
+Want to show code snippets? Use **three backticks** (the key under Esc).
+
+**Type this:**
+
+````rust
+```rust
+fn main() {
+    println!("It works!");
+}
+```
+````
+
+**You get this:**
+```rust
+fn main() {
+    println!("It works!");
+}
+```
+
+You can replace `rust` with `python`, `javascript`, `jsx`, or whatever language you're using.
+
+
+
+### Adding a File Name
+
+Want to show which file the code belongs to?
+
+**Type this:**
+
+````rust
+<CodeBlock filename="main.rs">
+```rust
+fn main() {
+    println!("Hello World");
+}
+```
+</CodeBlock>
+````
+
+**You get this:**
+
+<CodeBlock filename="main.rs">
+```rust
+fn main() {
+    println!("Hello World");
+}
+```
+</CodeBlock>
+
+<DashedLine variant="receipt" />
+
+## 7. Tips & Tricks
+
+*   **Hydration Errors?** If the page crashes, it's usually because you put a Block component (like `<Grid>` or `<Box>`) inside a paragraph. **Always leave a blank line** before and after your layout components.
+*   **Need a Progress Bar?** Use `<Progress value={50} />` to show a 50% bar.
+*   **Images Not Loading?** Double-check your URL starts with `https://` and ends with an image extension like `.jpg` or `.png`.
+
+<DashedLine className="my-8" />
+
+## That's It
+
+You're ready. Start writing. If you feel like you messed up, just refresh and try again. The system will tell us what went wrong.

@@ -7,10 +7,9 @@ export async function Footer() {
 
     return (
         <footer
-            className="sticky bottom-0 w-full h-10 bg-background flex items-center justify-between px-6 z-40"
+            className="sticky bottom-0 w-full h-10 bg-background flex items-center justify-between px-6 z-40 border-t border-border"
         >
-            {/* Top Border */}
-            <DashedLine className="absolute top-0 left-0 w-full" variant="receipt" />
+            {/* Top Border (Replaced with standard border-t) */}
             <div className="flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
                 <span className="font-mono text-micro tracking-wider text-meta uppercase">

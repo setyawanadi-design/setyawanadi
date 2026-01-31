@@ -1,0 +1,80 @@
+---
+title: "MDX System Logic"
+date: "2026.01.31"
+description: "The hidden rules and logic that power the Studio's content system."
+status: "archived"
+progress: false
+category: "System"
+tags: ["Documentation", "Rules", "Logic"]
+pinned: true
+---
+
+This document explains the automated logic and strict design rules that govern the Studio's content.
+
+<DashedLine variant="receipt" className="my-8" />
+
+## 1. Auto-Progress (The Magic Bar)
+
+You **don't** need to set up progress bars manually. The system does it for you.
+
+### How It Works
+*   The system scans your post for checkboxes.
+*   Finds any `- [ ]` (todo) or `- [x]` (done)?
+*   It calculates the percentage and shows a progress bar on the card. Automatically.
+*   **You don't configure anything.** Just write your checklist.
+
+**Example:**
+- [ ] Write the code
+- [x] Test the code
+- [ ] Deploy to prod
+
+*(The system is reading these right now and calculating this post's progress)*
+
+<DashedLine variant="receipt" className="my-8" />
+
+## 2. Divider Hierarchy (The Design Law)
+
+To keep things clean, we follow a strict divider hierarchy. Don't use random dividers everywhere.
+
+### Major Sections (H2)
+Use the **Receipt Variant**. This is your structural separator.
+
+```jsx
+<DashedLine variant="receipt" />
+```
+
+### Subsections (H3)
+Use **Whitespace**. No divider. Let the typography breathe.
+
+### Widgets & Sidebars
+Use the **Tech Variant**. This is for framed UI elements like the Activity Feed.
+
+```jsx
+<DashedLine variant="tech" />
+```
+
+<DashedLine variant="receipt" className="my-8" />
+
+## 3. Status Badges
+
+The `status` field in your frontmatter controls the badge color and position.
+
+*   **Focus**: Adds a "Focus" badge. **Effect**: Puts the post at the very top of the Home Feed. Use this for your current main objective.
+*   **Active**: Green "Active" badge. For ongoing work.
+*   **Paused**: Yellow "Paused" badge. For work on hold.
+*   **Archived**: Grey badge. For completed or old logs.
+*   **Busy**: Red "Busy" badge. For critical status.
+
+<DashedLine variant="receipt" className="my-8" />
+
+## 4. Special Fields
+
+### The Pinned Field
+Set `pinned: true` and the post shows up in the "Pinned Logs" sidebar widget for quick access.
+
+### The Progress Field (Reader Mode)
+*   **`progress: false`**: Use this to enable **Reader Mode**.
+    *   **Effect 1**: Hides the Progress Bar on the card.
+    *   **Effect 2**: Switches the Modal View from "Task List" to "Table of Contents".
+    *   **Use Case**: Essays, Documentation, or simple lists you don't want tracked.
+*   **`progress: true`**: Forces the bar to show (Manual Override).

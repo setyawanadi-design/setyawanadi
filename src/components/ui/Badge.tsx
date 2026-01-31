@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 
 interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
     variant?: "pill" | "outline" | "status" | "dot" | "default" | "live" | "soft";
-    statusColor?: "active" | "inactive" | "warning" | "accent";
+    statusColor?: "active" | "inactive" | "warning" | "accent" | "busy";
 }
 
 export function Badge({
@@ -29,7 +29,7 @@ export function Badge({
                 variant === "outline" && "rounded-full border border-border text-primary bg-transparent",
 
                 // Dot Variant (System Status)
-                variant === "dot" && "gap-2 text-meta bg-transparent px-0",
+                variant === "dot" && "gap-2 text-meta bg-transparent border border-border rounded-full px-2.5",
 
                 // Default Variant (Solid Color)
                 variant === "default" && "rounded-full bg-accent text-white border border-accent",
@@ -52,6 +52,7 @@ export function Badge({
                     statusColor === "inactive" && "bg-meta",
                     statusColor === "warning" && "bg-yellow-500",
                     statusColor === "accent" && "bg-accent",
+                    statusColor === "busy" && "bg-rose-500",
                 )} />
             )}
 

@@ -30,16 +30,22 @@ export function Modal({ isOpen, onClose, title, children, className }: ModalProp
             document.body.style.paddingRight = `${scrollbarWidth}px`;
             document.body.style.overflow = "hidden";
         } else {
-            const timer = setTimeout(() => setIsVisible(false), 200); // Match duration-200
-            document.body.style.paddingRight = "0px";
-            document.body.style.overflow = "unset";
+            const timer = setTimeout(() => {
+                setIsVisible(false);
+                document.body.style.paddingRight = "0px";
+                document.body.style.overflow = "unset";
+            }, 200); // Match duration-200
             return () => clearTimeout(timer);
         }
+    }, [isOpen]);
+
+    // Separate cleanup to handle unmount regardless of state
+    useEffect(() => {
         return () => {
             document.body.style.paddingRight = "0px";
             document.body.style.overflow = "unset";
         }
-    }, [isOpen]);
+    }, []);
 
     if (!mounted) return null;
     if (!isVisible) return null;

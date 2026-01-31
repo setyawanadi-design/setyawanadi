@@ -21,7 +21,7 @@ import { SystemStats } from "@/components/modules/SystemStats";
 import { CodeBlock } from "@/components/ui/CodeBlock";
 import { DashedLine } from "@/components/ui/DashedLine";
 import { ModalDemo } from "@/components/modules/ModalDemo";
-import { Checkbox } from "@/components/ui/Checkbox";
+import { BrutalistCheckbox } from "@/components/ui/BrutalistCheckbox";
 
 
 export const metadata = {
@@ -162,7 +162,14 @@ export default function DesignPage() {
                                 <DashedLine variant="receipt" />
                                 <div className="flex justify-between text-xs font-mono">
                                     <span>Receipt Border</span>
-                                    <span className="text-meta">Wider / Darker</span>
+                                    <span className="text-meta">Wider</span>
+                                </div>
+                            </div>
+                            <div className="space-y-2">
+                                <DashedLine variant="tech" />
+                                <div className="flex justify-between text-xs font-mono">
+                                    <span>Tech Border</span>
+                                    <span className="text-meta">Tighter / Headers</span>
                                 </div>
                             </div>
                         </div>
@@ -198,19 +205,15 @@ export default function DesignPage() {
                         </div>
 
                         <div className="space-y-4 md:col-span-2">
-                            <h3 className="text-sm font-mono text-meta uppercase">Checkboxes</h3>
+                            <h3 className="text-sm font-mono text-meta uppercase">Checkboxes (Brutalist)</h3>
                             <div className="flex items-center gap-6 p-4 border border-dashed border-border rounded-lg">
                                 <div className="flex items-center gap-2">
-                                    <Checkbox id="chk-default" />
-                                    <label htmlFor="chk-default" className="text-sm">Default</label>
+                                    <BrutalistCheckbox id="chk-default" />
+                                    <label htmlFor="chk-default" className="text-sm font-mono text-meta">Pending</label>
                                 </div>
                                 <div className="flex items-center gap-2">
-                                    <Checkbox id="chk-checked" checked readOnly />
-                                    <label htmlFor="chk-checked" className="text-sm">Checked</label>
-                                </div>
-                                <div className="flex items-center gap-2">
-                                    <Checkbox id="chk-disabled" disabled checked />
-                                    <label htmlFor="chk-disabled" className="text-sm">Disabled</label>
+                                    <BrutalistCheckbox id="chk-checked" checked readOnly />
+                                    <label htmlFor="chk-checked" className="text-sm font-mono text-meta">Done</label>
                                 </div>
                             </div>
                         </div>

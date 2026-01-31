@@ -53,9 +53,10 @@ export function getLogPosts(): LogPost[] {
         const fileContents = fs.readFileSync(fullPath, 'utf8');
         const { data, content } = matter(fileContents);
 
-        // Calculate progress
-        const progress = analyzeChecklist(content);
-        const checklist = getChecklistItems(content);
+        // Calculate progress (Use auto-calc UNLESS explicitly disabled in frontmatter)
+        const progress = data.progress === false ? undefined : analyzeChecklist(content);
+        // Only generate checklist if progress is NOT disabled
+        const checklist = data.progress === false ? [] : getChecklistItems(content);
         const headers = getHeaders(content);
 
         return {
@@ -86,14 +87,16 @@ export function getLogBySlug(slug: string): LogPost | null {
         const fileContents = fs.readFileSync(fullPath, 'utf8');
         const { data, content } = matter(fileContents);
 
-        // Calculate progress
-        const progress = analyzeChecklist(content);
+        // Calculate progress (Use auto-calc UNLESS explicitly disabled in frontmatter)
+        const progress = data.progress === false ? undefined : analyzeChecklist(content);
+        const checklist = data.progress === false ? [] : getChecklistItems(content);
 
         return {
             slug,
             metadata: {
                 ...data,
                 progress,
+                checklist,
             } as LogMetadata,
             content,
         };
@@ -163,11 +166,14 @@ export function getChecklistItems(content: string) {
 }
 
 export function getHeaders(content: string) {
-    // Match ## Header or ### Header
-    const headerRegex = /^(#{2,3}) (.*)$/gm;
+    // 1. Remove code blocks to avoid matching headers inside code examples
+    const contentWithoutCode = content.replace(/```[\s\S]*?```/gm, '');
+
+    // Match ## Header (H2 only)
+    const headerRegex = /^(#{2}) (.*)$/gm;
     const headers: string[] = [];
     let match;
-    while ((match = headerRegex.exec(content)) !== null) {
+    while ((match = headerRegex.exec(contentWithoutCode)) !== null) {
         // Clean up: remove markdown syntax from header text if any (simple)
         headers.push(match[2].trim());
     }

@@ -107,7 +107,7 @@ export function LogCard({
 
         if (id) {
             return (
-                <Link href={`/logs/${id}`} className="block">
+                <Link href={`/${id}`} className="block">
                     {compactContent}
                 </Link>
             );
@@ -151,7 +151,7 @@ export function LogCard({
         e.preventDefault();
         e.stopPropagation();
         if (typeof window !== "undefined" && id) {
-            const url = `${window.location.origin}/logs/${id}`;
+            const url = `${window.location.origin}/${id}`;
             navigator.clipboard.writeText(url);
             setCopied(true);
             setTimeout(() => setCopied(false), 2000);
@@ -228,6 +228,7 @@ export function LogCard({
                 id={id}
                 meta={meta}
                 date={date}
+                description={description}
             />
         </>
     );

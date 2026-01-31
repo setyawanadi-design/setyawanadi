@@ -10,15 +10,17 @@ import { CodeBlock } from "@/components/ui/CodeBlock";
 import { Progress } from "@/components/ui/Progress";
 import { cn } from "@/lib/utils";
 import { BrutalistCheckbox } from "@/components/ui/BrutalistCheckbox";
+import { Gallery } from "@/components/ui/Gallery";
 
 // MDX Component Map
 const components = {
-    CodeBlock: (props: React.ComponentProps<typeof CodeBlock>) => <CodeBlock {...props} className="my-8" />,
+    CodeBlock: (props: React.ComponentProps<typeof CodeBlock>) => <CodeBlock {...props} className="mb-8" />,
     Progress,
     Badge,
     DashedLine,
     Card,
     ProjectHeader,
+    Gallery, // [NEW]
     // Custom wrappers
     Callout: ({ children, className }: { children: React.ReactNode, className?: string }) => (
         <div className={`p-4 border border-l-4 border-l-primary/50 bg-neutral-50 rounded-sm my-8 ${className || ""}`}>
@@ -35,14 +37,7 @@ const components = {
             {children}
         </div>
     ),
-    // Override unordered list to impose brutalist spacing/font
-    ul: ({ className, ...props }: React.HTMLAttributes<HTMLUListElement>) => (
-        <ul className={cn("my-6 space-y-3 pl-0 list-none", className)} {...props} />
-    ),
-    // Override list item for alignment
-    li: ({ className, ...props }: React.LiHTMLAttributes<HTMLLIElement>) => (
-        <li className={cn("flex items-start font-mono text-sm leading-relaxed text-primary/90", className)} {...props} />
-    ),
+
     // Map checkbox input
     input: (props: React.InputHTMLAttributes<HTMLInputElement>) => {
         if (props.type === "checkbox") {
@@ -50,6 +45,10 @@ const components = {
         }
         return <input {...props} />;
     },
+    // Map standard markdown code blocks (pre) to CodeBlock component
+    pre: ({ children, ...props }: React.HTMLAttributes<HTMLPreElement>) => (
+        <CodeBlock {...props} className="mb-8">{children}</CodeBlock>
+    ),
 };
 
 // Generate static params for all logs

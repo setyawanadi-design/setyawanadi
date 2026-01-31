@@ -11,10 +11,9 @@ export function Header() {
 
     return (
         <header
-            className="fixed top-0 left-0 w-full h-16 bg-background z-50 flex items-center justify-between px-6"
+            className="fixed top-0 left-0 w-full h-16 bg-background z-50 flex items-center justify-between px-6 border-b border-border"
         >
-            {/* Bottom Border (Tech) */}
-            <DashedLine className="absolute bottom-0 left-0 w-full" variant="receipt" />
+            {/* Bottom Border (Replaced with standard border-b) */}
             <div className="text-xl font-display font-bold text-primary flex items-center">
                 <SystemStatus />
                 <Link href="/">Setyawanadi<span className="text-accent text-3xl leading-none">.</span></Link>

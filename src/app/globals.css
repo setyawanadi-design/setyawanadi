@@ -59,3 +59,32 @@ body {
   color: var(--color-primary);
   font-family: var(--font-sans);
 }
+
+/* Typography Overrides */
+.prose :where(h1, h2, h3, h4) {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* H2: Highlight Style (Like a black marker) */
+.prose h2 {
+  background-color: var(--color-primary);
+  color: var(--color-card) !important;
+  display: block;
+  width: fit-content;
+  padding: 0.25rem 0.5rem;
+  transform: rotate(-1deg);
+  margin-top: 2rem !important;
+  margin-bottom: 1rem !important;
+}
+
+/* H3: Underline Style */
+.prose h3 {
+  border-bottom: 2px solid rgba(17, 17, 17, 0.2);
+  padding-bottom: 0.25rem;
+  display: block;
+  width: fit-content;
+  margin-top: 1.5rem !important;
+  margin-bottom: 0.75rem !important;
+}
