@@ -2,7 +2,7 @@
 import React from "react";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import { ArrowRightIcon } from "@heroicons/react/24/solid";
+import { ArrowRight } from "lucide-react";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     variant?: "solid" | "ghost" | "link";
@@ -40,8 +40,8 @@ export function Button({
     const content = (
         <>
             {children}
-            {variant === "link" && <ArrowRightIcon className="h-4 w-4" />}
-            {variant === "solid" && <ArrowRightIcon className="h-4 w-4 opacity-70" />}
+            {variant === "link" && <ArrowRight className="h-4 w-4" />}
+            {variant === "solid" && <ArrowRight className="h-4 w-4 opacity-70" />}
         </>
     );
 

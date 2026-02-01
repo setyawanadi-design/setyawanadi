@@ -25,16 +25,16 @@ This system uses something called **Markdown**. It's just a way to style text us
 
 Every post starts with a settings block at the very top. You only **REALLY** need the first three.
 
-### The Must-Haves
+### 1.1 The Must-Haves
 *   **title**: The title of your post.
 *   **date**: When you wrote it (format: `YYYY.MM.DD`).
 *   **description**: A short summary that shows up on the card.
 
-### The Nice-to-Haves
+### 1.2 The Nice-to-Haves
 *   **hero_image**: A link to a picture for the top of the page.
 *   **tags**: Keywords like `["Excel", "Python", "AI", "Games", "Movies", "Books"]`. always use `[` and `]` to wrap the tags.
 
-### System Stuff (Advanced)
+### 1.3 System Stuff (Advanced)
 *   **status**: `Focus`, `Active`, `Paused`, or `Archived`. This adds a colored badge to the card. Set to `Focus` if you want to share and highlight the post on top.
 *   **pinned**: Set to `true` if you want this post to show up on the sidebar.
 *   **progress**: Set to `false` if you have checklist and want to hide progress bar. Set to `true` if you have checklists and want to share your progress.
@@ -59,7 +59,7 @@ pinned: false
 
 ## 2. Writing Basics
 
-### Paragraphs
+### 2.1 Paragraphs
 
 Just type. If you want a new paragraph, hit **Enter twice**.
 
@@ -84,7 +84,7 @@ Second paragraph.
 
 
 
-### Making Text Bold or Italic
+### 2.2 Making Text Bold or Italic
 
 Wrap words with `**` for **bold** or `*` for *italic*.
 
@@ -105,7 +105,7 @@ I like **Bold** text and *Italic* text.
 
 
 
-### Headings (Titles)
+### 2.3 Headings (Titles)
 
 Use `##` for big section titles. Use `###` for smaller subsections.
 
@@ -128,9 +128,9 @@ Use `##` for big section titles. Use `###` for smaller subsections.
 
 
 
-### Lists
+### 2.4 Lists
 
-#### Bulleted List
+#### 2.4.1 Bulleted List
 Start each line with `*` and a space.
 
 <Grid>
@@ -152,7 +152,7 @@ Start each line with `*` and a space.
 </div>
 </Grid>
 
-#### Numbered List
+#### 2.4.2 Numbered List
 Start each line with a number, a period, and a space.
 
 <Grid>
@@ -174,7 +174,7 @@ Start each line with a number, a period, and a space.
 </div>
 </Grid>
 
-#### Nested List (The Combo)
+#### 2.4.3 Nested List (The Combo)
 Add **four spaces** before the sub-items to indent them.
 
 <Grid>
@@ -204,7 +204,7 @@ Add **four spaces** before the sub-items to indent them.
 
 
 
-#### Checklists (The Progress Bar)
+#### 2.4.4 Checklists (The Progress Bar)
 The system tracks these for the "Progress" bar on your card.
 
 <Grid>
@@ -225,7 +225,7 @@ The system tracks these for the "Progress" bar on your card.
 
 
 
-### Highlights (Callouts)
+### 2.5 Highlights (Callouts)
 
 Need to shout something important?
 
@@ -251,7 +251,7 @@ Need to shout something important?
 
 ## 3. Adding Images
 
-### The Easy Way
+### 3.1 The Easy Way
 
 Just paste an image URL inside `![Description](URL)`.
 
@@ -272,7 +272,7 @@ Just paste an image URL inside `![Description](URL)`.
 
 <DashedLine variant="tech" className="my-8" />
 
-### The Styled Way (With a Frame)
+### 3.2 The Styled Way (With a Frame)
 
 Wrap your image in a `<Box>` to give it a background and padding.
 
@@ -300,7 +300,7 @@ Wrap your image in a `<Box>` to give it a background and padding.
 
 Need to put things side by side? Use `<Grid>` and `<Box>`.
 
-### Two Columns (Side by Side)
+### 4.1 Two Columns (Side by Side)
 
 Each `<Box>` becomes a column.
 
@@ -338,7 +338,7 @@ Each `<Box>` becomes a column.
 
 
 
-### Three Columns
+### 4.2 Three Columns
 
 Add `className="grid-cols-1 md:grid-cols-3"` to make three columns.
 
@@ -366,11 +366,11 @@ Add `className="grid-cols-1 md:grid-cols-3"` to make three columns.
 
 
 
-### Smart Gallery (Auto-Bento)
+### 4.3 Smart Gallery (Auto-Bento)
 
 The `<Gallery />` component takes your images and arranges them beautifully. **You don't do the math.** Just give it a list of URLs.
 
-#### 3 Images (Bento Style)
+#### 4.3.1 3 Images (Bento Style)
 
 <Grid>
 <div>
@@ -395,7 +395,7 @@ The `<Gallery />` component takes your images and arranges them beautifully. **Y
 </div>
 </Grid>
 
-#### 5 Images (Mosaic)
+#### 4.3.2 5 Images (Mosaic)
 
 <Grid>
 <div>
@@ -431,7 +431,7 @@ The `<Gallery />` component takes your images and arranges them beautifully. **Y
 
 Need to separate sections? Use `<DashedLine />`.
 
-### Standard Divider
+### 5.1 Standard Divider
 
 The basic divider for clean separation.
 
@@ -451,7 +451,7 @@ The basic divider for clean separation.
 
 
 
-### Technical Divider (With Pattern)
+### 5.2 Technical Divider (With Pattern)
 
 Add a pattern for a tech vibe.
 
@@ -473,7 +473,8 @@ Add a pattern for a tech vibe.
 
 ## 6. Showing Code
 
-Want to show code snippets? Use **three backticks** (the key under Esc).
+### 6.1 The Easy Way (Backticks)
+**Use this for quick snippets.** The system handles the box for you.
 
 <Grid>
 <div>
@@ -498,38 +499,33 @@ fn main() {
 </div>
 </Grid>
 
-You can replace `rust` with `python`, `javascript`, `jsx`, or whatever language you're using.
+### 6.2 The Technical Way (With Filename)
+**Use this for documentation.** It allows you to add a filename and prevents "double-boxing" issues.
 
-
-
-### Adding a File Name
-
-Want to show which file the code belongs to?
+**Note:** You must pass the code as a string property `code={...}`. Do not put backticks inside the component.
 
 <Grid>
 <div>
 **Type this:**
 
-````rust
-<CodeBlock filename="main.rs">
-```rust
-fn main() {
+```jsx
+<CodeBlock
+    filename="src/core.rs"
+    code={`fn main() {
     println!("Hello World");
-}
+}`}
+/>
 ```
-</CodeBlock>
-````
 </div>
 <div>
 **You get this:**
 
-<CodeBlock filename="main.rs">
-```rust
-fn main() {
+<CodeBlock
+    filename="src/core.rs"
+    code={`fn main() {
     println!("Hello World");
-}
-```
-</CodeBlock>
+}`}
+/>
 </div>
 </Grid>
 
@@ -545,4 +541,4 @@ fn main() {
 
 ## That's It
 
-You're ready. Start writing. If you feel like you messed up, just refresh and try again. The system will tell us what went wrong.
+You're ready to start writing. If you feel like you messed up, just refresh and try again. The system will tell us what went wrong.

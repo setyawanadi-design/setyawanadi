@@ -18,7 +18,7 @@ export default function Home() {
 
   const activityItems = recentLogs.map((log) => ({
     id: log.slug,
-    text: `New Log: ${log.metadata.title}`,
+    text: `${log.metadata.date} : ${log.metadata.title}`,
     href: `/${log.slug}`
   }));
 

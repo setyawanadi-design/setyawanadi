@@ -84,7 +84,7 @@ export default async function LogPostPage({ params }: { params: Promise<{ slug: 
 
 
             {/* Main Content Card - p-0 to override default Card padding */}
-            <Card className="rounded-[12px] shadow-sm border border-border overflow-hidden p-0">
+            <Card className="rounded-[12px] border border-border overflow-hidden p-0">
                 {/* 1. Header Section (Full Width, No Vertical Padding) */}
                 <div className="">
                     <ProjectHeader
