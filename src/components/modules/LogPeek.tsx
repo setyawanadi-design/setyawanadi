@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/Button";
 import { Modal } from "@/components/ui/Modal";
 import { Progress } from "@/components/ui/Progress";
 import { cn } from "@/lib/utils";
-import { Share2 } from "lucide-react";
+import { Share2, ChevronRight } from "lucide-react";
 import { Badge } from "@/components/ui/Badge";
 
 interface LogPeekProps {
@@ -218,7 +218,7 @@ export function LogPeek({
                         ) : meta?.headers && meta.headers.length > 0 ? (
                             meta.headers.map((header, idx) => (
                                 <div key={idx} className="flex gap-3 text-sm font-mono text-meta">
-                                    <span className="text-meta/40 shrink-0">##</span>
+                                    <ChevronRight className="w-3.5 h-3.5 text-meta/40 shrink-0 mt-0.5" />
                                     <span>{header}</span>
                                 </div>
                             ))

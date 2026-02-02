@@ -80,15 +80,15 @@ export default async function LogPostPage({ params }: { params: Promise<{ slug: 
     }
 
     return (
-        <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500 pb-24 pt-8">
+        <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500 pb-24 pt-2 md:pt-8">
 
             {/* Breadcrumbs Navigation */}
-            <div className="mb-4">
+            <div className="mb-0 md:mb-4 px-4 md:px-0">
                 <Breadcrumbs />
             </div>
 
             {/* Main Content Card - p-0 to override default Card padding */}
-            <Card className="rounded-card border border-border overflow-hidden p-0">
+            <Card className="rounded-[12px] border border-border overflow-hidden p-0">
                 {/* 1. Header Section (Full Width, No Vertical Padding) */}
                 <div className="">
                     <ProjectHeader
@@ -102,12 +102,12 @@ export default async function LogPostPage({ params }: { params: Promise<{ slug: 
 
                 {/* 2. Hero Image Section (Full Bleed) */}
                 {post.metadata.hero_image && (
-                    <div className="w-full aspect-2/1 bg-neutral-200 overflow-hidden relative grayscale border-y border-border/40">
+                    <div className="w-full aspect-[2/1] bg-neutral-200 overflow-hidden relative grayscale border-y border-border/40">
                         <div
                             className="absolute inset-0 bg-cover bg-center mix-blend-multiply"
                             style={{ backgroundImage: `url('${post.metadata.hero_image}')` }}
                         />
-                        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-linear-to-t from-background to-transparent opacity-20" />
+                        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-background to-transparent opacity-20" />
                     </div>
                 )}
 

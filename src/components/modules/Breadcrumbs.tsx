@@ -13,7 +13,7 @@ export function Breadcrumbs() {
     if (segments.length === 0) return null;
 
     return (
-        <nav aria-label="Breadcrumb" className="flex items-center space-x-2 font-mono text-micro text-meta/60 mb-6">
+        <nav aria-label="Breadcrumb" className="flex items-center space-x-2 font-mono text-micro text-meta/60 mb-2 md:mb-6">
             <Link href="/" className="hover:text-primary transition-colors flex items-center gap-1">
                 <Home className="w-3 h-3" />
                 <span>root</span>
