@@ -34,7 +34,7 @@ export function Modal({ isOpen, onClose, title, children, className }: ModalProp
                 setIsVisible(false);
                 document.body.style.paddingRight = "0px";
                 document.body.style.overflow = "unset";
-            }, 200); // Match duration-200
+            }, 210); // Match duration-200 + buffer
             return () => clearTimeout(timer);
         }
     }, [isOpen]);
@@ -56,8 +56,8 @@ export function Modal({ isOpen, onClose, title, children, className }: ModalProp
             {/* Backdrop */}
             <div
                 className={cn(
-                    "absolute inset-0 bg-background/80 backdrop-blur-sm transition-opacity duration-200",
-                    isOpen ? "animate-in fade-in" : "animate-out fade-out"
+                    "absolute inset-0 bg-background/80 backdrop-blur-sm duration-200",
+                    isOpen ? "animate-in fade-in" : "animate-out fade-out fill-mode-forwards"
                 )}
                 onClick={onClose}
             />
@@ -92,10 +92,8 @@ export function Modal({ isOpen, onClose, title, children, className }: ModalProp
                     null
                 )}
 
-                {/* Body */}
-                <div className="p-6">
-                    {children}
-                </div>
+                {/* Body - Removed default p-6 to allow full bleed layouts. Children must handle padding. */}
+                {children}
             </Card>
         </div>,
         document.body

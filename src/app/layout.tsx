@@ -4,6 +4,7 @@ import "./globals.css";
 import { Header } from "@/components/shell/Header";
 import { Footer } from "@/components/shell/Footer";
 import { Sidebar } from "@/components/shell/Sidebar";
+import { BackToTop } from "@/components/modules/BackToTop";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -46,20 +47,22 @@ export default function RootLayout({
         <Header />
 
         {/* Main Layout - Universal Grid */}
-        <div className="flex-1 pt-20 pb-12 px-4 md:px-4 max-w-[1440px] mx-auto w-full">
+        <div className="flex-1 pt-16 px-4 md:px-4 max-w-[1440px] mx-auto w-full">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_280px] gap-6 h-full">
             {/* Zone A: Main Stage */}
-            <main className="min-w-0">
+            <main className="min-w-0 pb-12">
               {children}
             </main>
 
             {/* Zone B: Sidebar */}
-            <aside className="hidden lg:block sticky top-20 h-[calc(100vh-5rem)] self-start">
+            {/* Sticky at top-16 (64px). Height = Viewport - Header (64px). Fits perfectly. */}
+            <aside className="hidden lg:block sticky top-16 h-[calc(100vh-4rem)]">
               <Sidebar pinnedLogs={pinnedLogs} recentLogs={recentLogs} />
             </aside>
           </div>
         </div>
 
+        <BackToTop />
         <Footer />
       </body>
     </html>

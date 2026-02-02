@@ -51,7 +51,7 @@ export function LogCard({
     // ... [Featured Variant Code Omitted for Brevity - Keeping distinct] ... 
     if (variant === "featured") {
         return (
-            <Card className={cn("group relative p-6 md:p-8 flex flex-col md:flex-row gap-8 items-start justify-between min-h-80 bg-card border border-border hover:border-accent transition-colors", className)}>
+            <Card className={cn("group relative p-6 md:p-8 flex flex-col md:flex-row gap-8 items-start justify-between min-h-80 bg-card border border-border hover:border-accent hover:shadow-lg hover:shadow-accent/5 hover:scale-[1.01] transition-all duration-300", className)}>
                 <div className="flex-1 flex flex-col h-full z-10">
                     <div className="space-y-4 mb-4">
                         <h2 className="text-3xl md:text-4xl font-display font-bold leading-tight group-hover:text-primary transition-colors">
@@ -88,17 +88,18 @@ export function LogCard({
 
     // ... [Compact Variant can stay as is or be updated if needed] ...
     if (variant === "compact") {
+        if (title.includes("Subscription")) console.log("DEBUG COMPACT:", { title, date, id, description });
         const compactContent = (
             <Card variant="interactive" className={cn("group flex flex-col p-4 gap-2 bg-card", className)}>
                 <h4 className="font-bold text-sm leading-tight group-hover:text-accent transition-colors">
                     {title}
                 </h4>
-                <div className="flex items-center gap-2 font-mono text-micro text-meta/50">
+                <div className="flex items-center gap-2 font-mono text-micro text-meta opacity-50">
                     <span>{date}</span>
                     {id && <span>//{id}</span>}
                 </div>
                 {description && (
-                    <p className="text-xs text-meta truncate mt-1">
+                    <p className="text-xs text-meta line-clamp-1 mt-1">
                         {description}
                     </p>
                 )}

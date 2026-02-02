@@ -17,7 +17,7 @@ export function ModalDemo() {
                 title="Design System Modal"
                 className="max-w-md"
             >
-                <div className="space-y-4">
+                <div className="space-y-4 p-6">
                     <p className="text-meta">
                         This is a standard modal container used across the system.
                         It handles backdrop blur, scroll locking, and animations automatically.

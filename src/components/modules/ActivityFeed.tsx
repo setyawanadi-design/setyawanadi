@@ -9,6 +9,7 @@ interface ActivityItem {
     id: string;
     text: string;
     href?: string;
+    isActive?: boolean;
 }
 
 interface ActivityFeedProps {
@@ -18,11 +19,13 @@ interface ActivityFeedProps {
 
 export function ActivityFeed({ items, className }: ActivityFeedProps) {
     const ItemWrapper = ({ item, children }: { item: ActivityItem, children: React.ReactNode }) => {
+        const activeClass = item.isActive ? "bg-accent/5 border-l-2 border-accent pl-3 text-primary" : "hover:bg-accent/5 border-l-2 border-transparent pl-3";
+
         if (item.href) {
             return (
                 <Link
                     href={item.href}
-                    className="group flex items-start gap-4 p-3 rounded-md transition-all duration-200 cursor-pointer hover:bg-accent/5"
+                    className={cn("group flex items-center gap-3 py-2 pr-2 rounded-r-md transition-all duration-200 cursor-pointer", activeClass)}
                 >
                     {children}
                 </Link>
@@ -30,7 +33,7 @@ export function ActivityFeed({ items, className }: ActivityFeedProps) {
         }
         return (
             <div
-                className="group flex items-start gap-4 p-3 rounded-md transition-all duration-200 cursor-default hover:bg-accent/5"
+                className={cn("group flex items-center gap-3 py-2 pr-2 rounded-r-md transition-all duration-200 cursor-default", activeClass)}
             >
                 {children}
             </div>

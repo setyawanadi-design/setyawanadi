@@ -38,7 +38,6 @@ export function PinnedLogs({ items = [], showHeader = true, className, variant =
                             progress: log.metadata.progress,
                             checklist: log.metadata.checklist
                         }}
-                        className="h-full"
                     />
                 ))}
             </div>

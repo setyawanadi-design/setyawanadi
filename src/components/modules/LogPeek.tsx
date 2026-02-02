@@ -97,12 +97,14 @@ export function LogPeek({
         <Modal
             isOpen={isOpen}
             onClose={onClose}
-            className="max-w-2xl overflow-hidden border border-border"
+            className="max-w-2xl border border-border"
         >
-            <div>
-                {/* 1. Custom Header */}
-                <div className="pb-4 mb-4 relative">
-                    <div className="flex items-center justify-between">
+            <div className="flex flex-col max-h-[85vh]">
+                {/* 1. FIXED TOP SECTION (Header + Metadata) */}
+                <div className="shrink-0 bg-card z-30 border-b border-dashed border-border/50">
+
+                    {/* Header */}
+                    <div className="px-6 pt-6 pb-4 flex items-center justify-between border-b border-border mb-4">
                         <h2 className="text-sm font-mono uppercase tracking-widest text-primary font-bold">
                             {title.toUpperCase()}
                         </h2>
@@ -118,136 +120,138 @@ export function LogPeek({
                             CLOSE
                         </Button>
                     </div>
-                    <div className="absolute bottom-0 left-0 w-[calc(100%+3rem)] -mx-6 border-b border-border" />
-                </div>
 
-                {/* 2. Status Section */}
-                <div className="mb-8">
-                    <div className="flex justify-between items-end mb-2">
-                        <div className="flex items-center gap-2">
-                            <span className={cn(
-                                "text-xs font-mono font-bold uppercase",
-                                statusConfig.color === "active" ? "text-emerald-500" :
-                                    statusConfig.color === "warning" ? "text-amber-500" :
-                                        statusConfig.color === "accent" ? "text-blue-500" :
-                                            "text-blue-500" // Fallback
-                            )}>
-                                STATUS: {statusConfig.label}
-                            </span>
+                    {/* Status Section */}
+                    <div className="px-6 mb-6">
+                        <div className="flex justify-between items-end mb-2">
+                            <div className="flex items-center gap-2">
+                                <span className={cn(
+                                    "text-xs font-mono font-bold uppercase",
+                                    statusConfig.color === "active" ? "text-emerald-500" :
+                                        statusConfig.color === "warning" ? "text-amber-500" :
+                                            statusConfig.color === "accent" ? "text-blue-500" :
+                                                "text-blue-500"
+                                )}>
+                                    STATUS: {statusConfig.label}
+                                </span>
+                            </div>
+                            {meta?.progress && meta.progress.total > 0 && (
+                                <span className="text-xs font-mono text-meta">{meta.progress.percentage}% COMPLETE</span>
+                            )}
                         </div>
                         {meta?.progress && meta.progress.total > 0 && (
-                            <span className="text-xs font-mono text-meta">{meta.progress.percentage}% COMPLETE</span>
+                            <div className="h-1.5 w-full bg-border/30 rounded-full overflow-hidden">
+                                <div
+                                    className={cn(
+                                        "h-full transition-all duration-500 ease-out",
+                                        statusConfig.color === "active" ? "bg-emerald-500" :
+                                            statusConfig.color === "warning" ? "bg-amber-500" :
+                                                "bg-blue-500"
+                                    )}
+                                    style={{ width: `${meta.progress.percentage}%` }}
+                                />
+                            </div>
                         )}
                     </div>
-                    {meta?.progress && meta.progress.total > 0 && (
-                        <div className="h-1.5 w-full bg-border/30 rounded-full overflow-hidden">
-                            <div
-                                className={cn(
-                                    "h-full transition-all duration-500 ease-out",
-                                    statusConfig.color === "active" ? "bg-emerald-500" :
-                                        statusConfig.color === "warning" ? "bg-amber-500" :
-                                            "bg-blue-500"
-                                )}
-                                style={{ width: `${meta.progress.percentage}%` }}
-                            />
+
+                    {/* Description */}
+                    {description && (
+                        <div className="px-6 mb-4">
+                            <p className="text-sm text-meta leading-relaxed line-clamp-3">
+                                {description}
+                            </p>
                         </div>
                     )}
-                </div>
 
-                {description && (
-                    <div className="mb-6">
-                        <p className="text-sm text-meta leading-relaxed">
-                            {description}
-                        </p>
-                    </div>
-                )}
-
-                {/* Tags & Category Section */}
-                {(category || (tags && tags.length > 0)) && (
-                    <div className="flex flex-wrap gap-2 mb-6 items-center">
-                        {category && (
-                            <Badge variant="default" className="text-xs px-2 py-0.5 h-auto rounded-full">
-                                {category}
-                            </Badge>
-                        )}
-                        {tags?.map((tag) => (
-                            <Badge key={tag} variant="soft" className="text-xs">
-                                {tag}
-                            </Badge>
-                        ))}
-                    </div>
-                )}
-
-                {/* 3. Timeline / Topics Section (Scrollable) */}
-                <div className="mb-0 flex-1 min-h-0 overflow-hidden flex flex-col">
-                    {meta?.checklist && meta.checklist.length > 0 ? (
-                        <>
-                            <div className="text-[10px] font-mono text-meta/60 uppercase tracking-widest mb-4 shrink-0">MILESTONE TIMELINE</div>
-                            <div className="space-y-3 pl-1 overflow-y-auto max-h-[40vh] pr-2">
-                                {meta.checklist.map((item, idx) => (
-                                    <div key={idx} className="flex gap-3 text-sm font-mono">
-                                        <span className={cn(
-                                            "shrink-0",
-                                            item.completed ? "text-emerald-500" : "text-meta/40"
-                                        )}>
-                                            [{item.completed ? "DONE" : "PENDING"}]
-                                        </span>
-                                        <span className={cn(
-                                            "leading-relaxed",
-                                            item.completed ? "text-primary" : "text-meta"
-                                        )}>
-                                            {item.label}
-                                        </span>
-                                    </div>
-                                ))}
-                            </div>
-                        </>
-                    ) : (
-                        <>
-                            <div className="text-[10px] font-mono text-meta/60 uppercase tracking-widest mb-4 shrink-0">TOPICS COVERED</div>
-                            {meta?.headers && meta.headers.length > 0 ? (
-                                <div className="space-y-2 pl-1 overflow-y-auto max-h-[40vh] pr-2">
-                                    {meta.headers.map((header, idx) => (
-                                        <div key={idx} className="flex gap-3 text-sm font-mono text-meta">
-                                            <span className="text-meta/40 shrink-0">##</span>
-                                            <span>{header}</span>
-                                        </div>
-                                    ))}
-                                </div>
-                            ) : (
-                                <p className="text-meta text-sm italic font-mono display-block py-4">No detailed milestones logged.</p>
+                    {/* Tags */}
+                    {(category || (tags && tags.length > 0)) && (
+                        <div className="flex flex-wrap gap-2 mb-6 items-center px-6">
+                            {category && (
+                                <Badge variant="default" className="text-xs px-2 py-0.5 h-auto rounded-full">
+                                    {category}
+                                </Badge>
                             )}
-                        </>
+                            {tags?.map((tag) => (
+                                <Badge key={tag} variant="soft" className="text-xs">
+                                    {tag}
+                                </Badge>
+                            ))}
+                        </div>
                     )}
+
+                    {/* Timeline Header (Sticky) */}
+                    <div className="px-6 pb-2">
+                        <div className="text-[10px] font-mono text-meta/60 uppercase tracking-widest">
+                            {meta?.checklist && meta.checklist.length > 0 ? "MILESTONE TIMELINE" : "TOPICS COVERED"}
+                        </div>
+                    </div>
                 </div>
 
-                {/* 4. Action Footer */}
-                <div className="pt-4 relative mt-4">
-                    <div className="absolute top-0 left-0 w-[calc(100%+3rem)] -mx-6 border-t border-border" />
-                    <div className="flex justify-end gap-3 items-center">
-                        <Button
-                            variant="ghost"
-                            size="xs"
-                            onClick={handleShare}
-                            className={cn("text-meta hover:text-primary", copied && "text-emerald-500")}
-                        >
-                            {copied ? "COPIED!" : (
-                                <>
-                                    SHARE_ENTRY
-                                    <Share2 className="w-3 h-3 ml-1" />
-                                </>
-                            )}
-                        </Button>
-
-                        <Button
-                            variant="link"
-                            size="xs"
-                            href={`/${id || '#'}`}
-                            className="text-blue-500 hover:text-blue-600"
-                        >
-                            VIEW_FULL_LOG
-                        </Button>
+                {/* 2. SCROLLABLE MIDDLE SECTION (Timeline Items Only) */}
+                <div className="flex-1 min-h-0 overflow-y-auto no-scrollbar bg-neutral-50/50">
+                    <div className="px-6 py-4 space-y-3">
+                        {meta?.checklist && meta.checklist.length > 0 ? (
+                            meta.checklist.map((item, idx) => (
+                                <div key={idx} className="flex gap-3 text-sm font-mono">
+                                    <span className={cn(
+                                        "shrink-0 text-[10px] pt-0.5 uppercase whitespace-pre",
+                                        item.completed ? "text-emerald-500" : "text-meta/40"
+                                    )}>
+                                        {item.completed ? `[DONE]\u00A0\u00A0\u00A0\u00A0-` : `[PENDING]\u00A0-`}
+                                    </span>
+                                    <span className={cn(
+                                        "leading-relaxed",
+                                        item.completed ? "text-primary" : "text-meta"
+                                    )}>
+                                        {item.label.split(/(\*\*.*?\*\*)/).map((part, i) =>
+                                            part.startsWith("**") && part.endsWith("**") ? (
+                                                <strong key={i} className="font-bold text-primary">
+                                                    {part.slice(2, -2)}
+                                                </strong>
+                                            ) : (
+                                                part
+                                            )
+                                        )}
+                                    </span>
+                                </div>
+                            ))
+                        ) : meta?.headers && meta.headers.length > 0 ? (
+                            meta.headers.map((header, idx) => (
+                                <div key={idx} className="flex gap-3 text-sm font-mono text-meta">
+                                    <span className="text-meta/40 shrink-0">##</span>
+                                    <span>{header}</span>
+                                </div>
+                            ))
+                        ) : (
+                            <p className="text-meta text-sm italic font-mono">No detailed milestones logged.</p>
+                        )}
                     </div>
+                </div>
+
+                {/* 3. FIXED BOTTOM SECTION (Footer) */}
+                <div className="shrink-0 px-6 py-4 bg-card border-t border-border z-20 flex justify-end gap-3 items-center">
+                    <Button
+                        variant="ghost"
+                        size="xs"
+                        onClick={handleShare}
+                        className={cn("text-meta hover:text-primary", copied && "text-emerald-500")}
+                    >
+                        {copied ? "COPIED!" : (
+                            <>
+                                SHARE_ENTRY
+                                <Share2 className="w-3 h-3 ml-1" />
+                            </>
+                        )}
+                    </Button>
+
+                    <Button
+                        variant="link"
+                        size="xs"
+                        href={`/${id || '#'}`}
+                        className="text-blue-500 hover:text-blue-600"
+                    >
+                        VIEW_FULL_LOG
+                    </Button>
                 </div>
             </div>
         </Modal>

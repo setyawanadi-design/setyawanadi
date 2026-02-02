@@ -21,11 +21,15 @@ export function Sidebar({ pinnedLogs = [], recentLogs = [] }: { pinnedLogs?: Log
     const activityItems = recentLogs.map((log) => ({
         id: log.slug,
         text: `${log.metadata.date} : ${log.metadata.title}`,
-        href: `/${log.slug}`
+        href: `/${log.slug}`,
+        isActive: pathname === `/${log.slug}`
     }));
 
     return (
-        <aside className="h-full flex flex-col gap-6 overflow-y-auto pb-24 no-scrollbar">
+        <nav className="h-full flex flex-col gap-6 overflow-y-auto no-scrollbar pb-64">
+            {/* Top Spacer: 8px + 24px (gap) = 32px. Matches HeroModule pt-8. */}
+            <div className="w-full shrink-0 min-h-2" />
+
             {/* Design System Navigation */}
             {isDesignPage && (
                 <div className="sticky top-0">
@@ -57,6 +61,6 @@ export function Sidebar({ pinnedLogs = [], recentLogs = [] }: { pinnedLogs?: Log
             )}
 
 
-        </aside>
+        </nav>
     );
 }

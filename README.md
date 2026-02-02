@@ -94,3 +94,10 @@ We did a massive cleanup to align with the "Zero-Clutter" philosophy. No more ge
 - **Dynamic Hero**: Site Title, Subtitle, and Status Badge directly from `src/content/home.json`. No more hardcoded strings in the component.
 - **Native Layouts**: Refactored Log Detail page to loose the "Card" wrapper. It's now a clean, full-width article layout with dashed separators.
 - **Cleanup**: Removed orphan components (`ProjectCard`), and polished the mobile typography.
+
+### 2026.02.02 // Sidebar Layout & Overlay Polish
+Fixed the persistent "Sidebar Cut-off" and other issues to achieve a "native app" feel.
+
+- **True Overlay Architecture**: The Sidebar now sits physically *behind* both the Header (`z-50`) and Footer (`z-40`).
+- **Precise Alignment**: Calibrated layouts to exactly `64px` (Header height). Content now slides seamlessly behind the Header with zero invisible gap.
+- **Breathing Room**: Implemented internal spacers so content won't feels "jammed" against the UI bars initially, but still vanishes perfectly when scrolled.
