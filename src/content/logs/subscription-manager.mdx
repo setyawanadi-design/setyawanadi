@@ -1,46 +1,51 @@
 ---
-title: "Subscription Manager"
+title: "Subscription Manager Application"
 date: "2026.01.28"
 description: "Building a comprehensive system to track recurring payments and analyze spending habits."
 status: "Focus"
 category: "Development"
 pinned: true
 hero_image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=2000&auto=format&fit=crop"
-tags: ["Next.js", "Finance", "System Architecture"]
+tags: ["Flutter", "Design", "System Architecture"]
 ---
 
 ## Project Overview
+Let’s be real, having dozens of subscriptions is a nightmare to manage. We’re obligated to pay every month, but even worse, we’re often paying for "ghost" services apps we haven’t opened in weeks but are still quietly draining our bank account. It’s not just about the money; it’s the mental load of not knowing exactly how much we need to keep in our account for the next bill.
 
-We are building a robust subscription tracking system. The goal is to provide visibility into monthly recurring costs and identify unused services.
+## The Problem: Subscription Inflation Crisis
+Managing an extensive volume of recurring digital commitments has transitioned from a convenience to a significant cognitive and financial burden. [Users often find themselves obligated to monthly payments for "ghost" services—applications and platforms that remain unused for weeks but continue to deplete financial resources](https://medium.com/@kbajaj.marketing/the-ghost-of-subscriptions-past-why-youre-paying-for-stuff-you-no-longer-use-e45e78ac0052). This creates a "Mental Load" where the primary stressor isn't just the total cost, but the uncertainty of cash flow and the inability to predict exactly how much capital must remain in an account for upcoming, automated "surprise" bills.
 
-<DashedLine className="my-8" />
 
-### Implementation Checklist
+## Roadmap
 
-The following items track the core features required for the MVP launch.
+### Phase 1: Foundation (Design & Specs)
+We started by establishing the architectural rules and visual language.
 
-- [x] **Database Schema**: Define user and subscription models.
-- [x] **Authentication**: Implement secure login flow.
-- [x] **Dashboard UI**: Create main view with total monthly cost.
-- [ ] **Subscription Form**: Add ability to create/edit subscriptions.
-- [ ] **Analytics Module**: Visualize spending categories over time.
-- [ ] **Email Notifications**: Alert users 3 days before renewal.
+- [x] Map out system requirements and user flows.
+- [x] Create low-fidelity sketches for the core interface.
+- [x] Design high-fidelity UI components and mockups.
+- [x] Build interactive flows to validate UX.
 
-<DashedLine className="my-8" />
+### Phase 2: Implementation (Core)
+Building the engine database, auth, and the primary dashboard.
+
+- [ ] Database Schema Define user and subscription models.
+- [ ] Implementing secure login flow.
+- [ ] Dashboard UI with main view and total monthly cost.
+- [ ] Subscription Form to Add ability to create/edit subscriptions.
+- [ ] Analytics Module Visualize spending categories over time.
+- [ ] Email Notifications that Alert users 3 days before renewal.
 
 ### Technical Specs
 
 <CodeBlock
-  filename="schema.prisma"
-  code={`model Subscription {
-  id        String   @id @default(cuid())
-  name      String
-  amount    Float
-  currency  String   @default("USD")
-  cycle     String   @default("MONTHLY") // MONTHLY, YEARLY
-  nextDate  DateTime
-  category  String
+  filename="Subscription Manager"
+  code={`Tech Stack {
+  Framework     : Flutter        
+  State-mgmt    : Riverpod 3.0      
+  Backend/DB    : Supabase
+  Notifications : OneSignal
+  Local Data    : SQLite
+  Analytics     : PostHog
 }`}
 />
-
-We are using Prisma for the ORM to ensure type consistency across the backend and frontend layers.

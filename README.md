@@ -95,7 +95,7 @@ We did a massive cleanup to align with the "Zero-Clutter" philosophy. No more ge
 - **Native Layouts**: Refactored Log Detail page to loose the "Card" wrapper. It's now a clean, full-width article layout with dashed separators.
 - **Cleanup**: Removed orphan components (`ProjectCard`), and polished the mobile typography.
 
-### 2026.02.02 // Sidebar Layout & Overlay Polish
+### 2026.02.02 // Sidebar Layout & UI Fixes
 Fixed the persistent "Sidebar Cut-off" and other issues to achieve a "native app" feel.
 
 - **True Overlay Architecture**: The Sidebar now sits physically *behind* both the Header (`z-50`) and Footer (`z-40`).

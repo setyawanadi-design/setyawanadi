@@ -50,6 +50,28 @@ const components = {
     pre: ({ children, ...props }: React.HTMLAttributes<HTMLPreElement>) => (
         <CodeBlock {...props} className="mb-8">{children}</CodeBlock>
     ),
+    // Automate H2 Dividers
+    h2: ({ children, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
+        <h2 {...props} className="!flex items-center gap-4 !mt-24 !mb-6 w-full group">
+            <span className="text-xl md:text-2xl font-display font-bold bg-primary text-card px-2 py-1 -rotate-1 shadow-xs shrink-0 inline-block">
+                {children}
+            </span>
+            <div className="flex-1 opacity-50 relative top-[2px]">
+                <DashedLine variant="tech" />
+            </div>
+        </h2>
+    ),
+    // Style Inline Links
+    a: ({ children, ...props }: React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
+        <a
+            {...props}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-medium text-primary border-b border-accent/50 hover:border-accent hover:bg-accent/10 transition-all duration-200 decoration-0 no-underline px-0.5 rounded-sm"
+        >
+            {children}
+        </a>
+    ),
 };
 
 // Generate static params for all logs
@@ -80,7 +102,7 @@ export default async function LogPostPage({ params }: { params: Promise<{ slug: 
     }
 
     return (
-        <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500 pb-24 pt-2 md:pt-8">
+        <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500 pb-8 pt-2 md:pt-8">
 
             {/* Breadcrumbs Navigation */}
             <div className="mb-0 md:mb-4 px-4 md:px-0">
@@ -139,6 +161,14 @@ export default async function LogPostPage({ params }: { params: Promise<{ slug: 
                     </div>
                 </div>
             </Card>
+
+            {/* End Marker */}
+            {/* End Marker */}
+            <div className="w-full flex justify-center pb-8 mt-24">
+                <span className="font-mono text-[10px] text-meta/30 font-bold uppercase tracking-widest">
+                    [the end]
+                </span>
+            </div>
         </div>
     );
 }

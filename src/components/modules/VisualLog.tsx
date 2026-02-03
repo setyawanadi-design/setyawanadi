@@ -15,7 +15,7 @@ import Link from "next/link";
 
 export function VisualLog({ id, year, label = "Visual_Log", imageSrc, className }: VisualLogProps) {
     return (
-        <Card className={`relative overflow-hidden group min-h-[200px] hover:border-border ${className}`} variant="interactive">
+        <Card className={`relative overflow-hidden group min-h-[200px] hover:border-border active:scale-[0.97] transition-transform duration-200 ${className}`} variant="interactive">
             {/* Background Image / Placeholder */}
             {imageSrc ? (
                 // eslint-disable-next-line @next/next/no-img-element

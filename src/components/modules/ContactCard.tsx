@@ -22,7 +22,7 @@ export function ContactCard({
     className
 }: ContactCardProps) {
     return (
-        <Link href={href} className={cn("block group cursor-pointer active:scale-[0.98] transition-transform duration-100", className)}>
+        <Link href={href} className={cn("block group cursor-pointer active:scale-[0.97] transition-transform duration-200", className)}>
             <Card className="bg-accent border-accent text-white transition-all duration-300 flex items-center gap-2 p-4 cursor-pointer shadow-lg -translate-y-1 hover:shadow-none hover:translate-y-0 active:translate-y-0 active:shadow-none">
                 <div className="flex-1">
                     <span className="font-mono text-micro uppercase tracking-wider text-white/80 font-bold mb-1 block">

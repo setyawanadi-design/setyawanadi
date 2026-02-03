@@ -19,7 +19,6 @@ Welcome! This is your guide to writing posts for the Studio.
 
 This system uses something called **Markdown**. It's just a way to style text using simple symbols like `*` or `#`. Think of it like using bold or italics in a text message—except you type the formatting instead of clicking buttons.
 
-<DashedLine className="my-8" />
 
 ## 1. The Post Settings (Frontmatter)
 
@@ -55,7 +54,6 @@ pinned: false
 ---
 ````
 
-<DashedLine className="my-8" />
 
 ## 2. Writing Basics
 
@@ -247,7 +245,6 @@ Need to shout something important?
 </div>
 </Grid>
 
-<DashedLine className="my-8" />
 
 ## 3. Adding Images
 
@@ -270,7 +267,6 @@ Just paste an image URL inside `![Description](URL)`.
 </div>
 </Grid>
 
-<DashedLine variant="tech" className="my-8" />
 
 ### 3.2 The Styled Way (With a Frame)
 
@@ -294,7 +290,6 @@ Wrap your image in a `<Box>` to give it a background and padding.
 </div>
 </Grid>
 
-<DashedLine className="my-8" />
 
 ## 4. Layouts (The Grid)
 
@@ -337,7 +332,6 @@ Each `<Box>` becomes a column.
 </Grid>
 
 
-
 ### 4.2 Three Columns
 
 Add `className="grid-cols-1 md:grid-cols-3"` to make three columns.
@@ -363,7 +357,6 @@ Add `className="grid-cols-1 md:grid-cols-3"` to make three columns.
 </Grid>
 </div>
 </Grid>
-
 
 
 ### 4.3 Smart Gallery (Auto-Bento)
@@ -425,11 +418,9 @@ The `<Gallery />` component takes your images and arranges them beautifully. **Y
 </Grid>
 
 
-<DashedLine className="my-8" />
-
 ## 5. Dividers
 
-Need to separate sections? Use `<DashedLine />`.
+Use `<DashedLine />` if you want to add dashed line. We have 2 variants
 
 ### 5.1 Standard Divider
 
@@ -450,7 +441,6 @@ The basic divider for clean separation.
 </Grid>
 
 
-
 ### 5.2 Technical Divider (With Pattern)
 
 Add a pattern for a tech vibe.
@@ -469,7 +459,6 @@ Add a pattern for a tech vibe.
 </div>
 </Grid>
 
-<DashedLine className="my-8" />
 
 ## 6. Showing Code
 
@@ -529,15 +518,12 @@ fn main() {
 </div>
 </Grid>
 
-<DashedLine variant="receipt" />
-
 ## 7. Tips & Tricks
 
 *   **Hydration Errors?** If the page crashes, it's usually because you put a Block component (like `<Grid>` or `<Box>`) inside a paragraph. **Always leave a blank line** before and after your layout components.
 *   **Need a Progress Bar?** Use `<Progress value={50} />` to show a 50% bar.
 *   **Images Not Loading?** Double-check your URL starts with `https://` and ends with an image extension like `.jpg` or `.png`.
 
-<DashedLine className="my-8" />
 
 ## That's It
 

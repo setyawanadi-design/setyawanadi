@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { X } from "lucide-react";
+import { usePathname } from "next/navigation";
 import { Card } from "@/components/ui/Card";
 import { cn } from "@/lib/utils";
 
@@ -79,9 +80,12 @@ export function Modal({ isOpen, onClose, title, children, className }: ModalProp
 
     // We need a ref to track if the back button was used
     const backButtonUsed = React.useRef(false);
+    const pathname = usePathname();
+    const mountedPathname = React.useRef(pathname);
 
     useEffect(() => {
         if (isOpen) {
+            mountedPathname.current = pathname;
             backButtonUsed.current = false;
             // Push history logic
             window.history.pushState({ modal: true }, "", window.location.href);
@@ -95,9 +99,21 @@ export function Modal({ isOpen, onClose, title, children, className }: ModalProp
 
             return () => {
                 window.removeEventListener('popstate', onPopState);
-                // If we didn't use the back button to close (i.e. clicked X),
-                // we must manually pop the history state we pushed.
-                if (!backButtonUsed.current) {
+
+                // CRITICAL FIX: "Navigation Bounce"
+                // If the user clicked a link (e.g. "View Full Log"), the route changes.
+                // Creating a navigation event usually effectively "pops" or "pushes" naturally.
+                // If we blindly call history.back(), we might undo that navigation.
+                // Detection: Check if current pathname is different from mounted pathname.
+
+                const currentPathname = window.location.pathname;
+                const hasNavigatedAway = currentPathname !== mountedPathname.current;
+
+                // Only pop history if:
+                // 1. Back button wasn't used (Manual Close)
+                // 2. AND We haven't navigated away (Staying on page)
+
+                if (!backButtonUsed.current && !hasNavigatedAway) {
                     window.history.back();
                 }
             };

@@ -97,7 +97,7 @@ export function LogPeek({
         <Modal
             isOpen={isOpen}
             onClose={onClose}
-            className="max-w-2xl border border-border"
+            className="max-w-2xl border border-border overflow-hidden"
         >
             <div className="flex flex-col max-h-[85vh]">
                 {/* 1. FIXED TOP SECTION (Header + Metadata) */}

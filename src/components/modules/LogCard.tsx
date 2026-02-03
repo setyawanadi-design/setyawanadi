@@ -108,7 +108,7 @@ export function LogCard({
 
         if (id) {
             return (
-                <Link href={`/${id}`} className="block">
+                <Link href={`/${id}`} className="block active:scale-[0.98] transition-transform duration-200">
                     {compactContent}
                 </Link>
             );
@@ -164,7 +164,7 @@ export function LogCard({
         <>
             <Card
                 variant="interactive"
-                className={cn("group flex flex-col justify-between p-6 bg-card hover:border-accent cursor-pointer", className)}
+                className={cn("group flex flex-col justify-between p-6 bg-card hover:border-accent cursor-pointer active:scale-[0.97] active:bg-neutral-100 transition-all duration-200", className)}
                 onClick={() => id && setIsModalOpen(true)}
             >
                 <div className="flex flex-col">
